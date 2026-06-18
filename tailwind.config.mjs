@@ -16,6 +16,19 @@ export default {
         // (2.2:1); this passes AA (8.35:1 on ink) and matches the dark wordmark.
         'accent-dark': '#7FC1A6',
       },
+      fontFamily: {
+        // DM Sans (self-hosted, variable) site-wide; system stack as fallback.
+        sans: [
+          '"DM Sans"',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
+      },
     },
   },
   plugins: [],
