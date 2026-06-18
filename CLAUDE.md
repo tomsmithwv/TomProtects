@@ -142,3 +142,93 @@ These let the checker leads, content subscribers, and buyers be emailed differen
 - [ ] `/privacy` page exists.
 - [ ] Launch pricing displayed with runway framing.
 - [ ] Fresh TomProtects Kit API key stored only as the `KIT_API_KEY` Cloudflare env var.
+
+---
+
+# Appendix: Claude Code prompt sequence
+
+Give these to Claude Code one at a time, in order. Verify each stage builds and runs locally under Wrangler before moving on — same build → test → commit → push rhythm as InboxTom. Each prompt assumes this file is `CLAUDE.md` in the repo root.
+
+**Before you start, three reminders:**
+- Don't paste the Kit API key into Claude Code or the repo. Set it as `KIT_API_KEY` in the Cloudflare Pages dashboard. Generate a fresh key from the **TomProtects** Kit account (the key pasted in chat earlier still needs rotating regardless).
+- Before Prompt 4, create the finding/source tags in Kit and have their IDs ready (Kit v4 tags by ID, not name).
+- Before testing Prompt 5, flip the three existing broadcasts to `public: true` in Kit, or you'll test against an empty feed.
+- There's no deploy prompt — deploy happens through the existing GitHub → Cloudflare Pages connection. Test locally, then push when a stage works.
+
+## Prompt 0 — Setup
+
+> Read CLAUDE.md in full. This is the project brief for the TomProtects site. It's a port of my existing InboxTom site — same stack: Astro + Cloudflare Pages Functions + Tailwind, deployed from a private GitHub repo to Cloudflare Pages. Don't write any code yet. Confirm you understand the brief, then give me: (1) the exact Astro + adapter versions you'll use and why, (2) the folder structure you'll create, and (3) the list of Cloudflare environment variables I need to set. Flag anything in the brief that's ambiguous before we start.
+
+## Prompt 1 — Scaffold + layout
+
+> Scaffold the Astro project with the Cloudflare adapter and Tailwind. Create the base layout, shared header/nav (links: How It Works, About, Blog, Tools, Get Started), and footer. Set up the routes as empty stubs: home, /audit, /blog, /blog/[slug], /tools, /bookaconsultation, /privacy. No content yet — just structure that builds and runs locally under Wrangler. Tell me the exact command to run it locally.
+
+## Prompt 2 — The checker API
+
+> Build the /api/check Pages Function per the brief's "checker API" section. Critical: DNS lookups must use DNS-over-HTTPS (cloudflare-dns.com/dns-query), not the Node dns module, because this runs on the Workers runtime. Read the Kit API key from context.env.KIT_API_KEY, never process.env. Implement SPF, DKIM (best-effort selector probing), and DMARC checks, freemail rejection, and a 5/min IP rate limit. Return a graded JSON report. Don't wire up Kit tagging yet — just the checks and the graded response. Write it so I can test it locally with Wrangler and show me a sample curl command.
+
+## Prompt 3 — Checker UI in the hero
+
+> Build the hero section on the home page with the checker form as the primary CTA: single email field + button. On submit, call /api/check, show a "checking…" state, then render the graded report inline below the form with three status-colored cards (SPF / DKIM / DMARC) and plain-language recommendations. Below the report, add the audit CTA that funnels to /audit (use the wording in the brief's "Post-result CTA" section). Make "See how it works" a secondary text link, not a competing button.
+
+## Prompt 4 — Kit integration for the checker
+
+> Now wire the checker to Kit. After a successful check, upsert the subscriber via Kit API v4 (POST /v4/subscribers) and apply tags: the relevant finding tags (spf-missing, spf-weak, dmarc-missing, dmarc-none, dkim-not-found, all-pass) plus source-checker. Use context.env.KIT_API_KEY. Kit failures must NOT break the report — log and continue so the user always sees their results. Confirm how you're handling the tag IDs (Kit v4 tags by ID, so tell me if I need to create these tags in Kit first and give you the IDs).
+
+## Prompt 5 — The Kit-powered blog
+
+> Build /blog and /blog/[slug] per the brief. Source is the TomProtects Kit account broadcasts (GET /v4/broadcasts, GET /v4/broadcasts/{id}), filtered to public === true. Render server-side via Pages Functions, not at build time, so new public broadcasts appear without redeploying. Edge-cache Kit responses ~1 hour with caches.default. Strip email-only artifacts (unsubscribe links, view-in-browser, footers, tracking pixels). Generate slugs from titles, resolving collisions with the broadcast ID. Each post must set a canonical link to its tomprotects.com/blog/{slug} URL, plus title/meta/OpenGraph. Add the empty-state page if no public broadcasts exist. End every post with a newsletter signup (tagged source-blog) and a link to the checker.
+
+## Prompt 6 — Remaining pages and content
+
+> Build out the rest of the home page sections in the order specified in the brief: Sample Audit Findings (right after the checker result), The Reality (3 risk cards), Who This Is For, How It Works, What You Get, Pricing, About, Latest from the Newsletter (3 most recent /blog posts), final CTA + newsletter signup. Then build the /audit intake form page, /tools, /bookaconsultation, and /privacy. For the newsletter signup forms on the homepage and footer, tag subscribers source-newsletter; the audit form tags source-audit-form. Pull the existing copy from the current site where the brief references it; I'll give you anything you're missing.
+
+## Prompt 7 — Pricing block
+
+> Build the pricing section using launch-pricing-with-runway framing: show the current price as a launch/introductory price with urgency ("Launch price — going up as spots fill"), and optionally show the next tier so the runway is visible. Keep the no-retainers/no-upsells/fixed-price promise and the included-items list from the brief. Leave the actual price numbers as clearly-marked placeholders at the top of the file so I can set them in one place.
+
+## Prompt 8 — Pre-deploy review
+
+> Before I deploy: audit the whole project against CLAUDE.md's "Definition of done" checklist and report pass/fail on each item. Specifically verify: no process.env anywhere (should all be context.env), no DNS module usage, the Kit API key only read from env and never logged or committed, canonical tags present on blog posts, all source tags wired correctly, and sitemap includes blog posts. List anything incomplete.
+
+---
+
+# Appendix: GitHub and Cloudflare setup
+
+Mirrors the InboxTom setup. Order matters in a few places — noted below.
+
+## GitHub
+
+1. **Create a new private repo** on github.com (e.g. `tomprotects` or `tomprotects-site`). Don't initialize with a README — the scaffold populates it.
+2. **Connect the local project** after Claude Code scaffolds (Prompt 1):
+   ```
+   git init
+   git add .
+   git commit -m "Initial scaffold"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/tomprotects.git
+   git push -u origin main
+   ```
+   (Skip `git init` if Claude Code already ran it.)
+3. **Verify `.gitignore` covers `node_modules`, `.env`, `.dev.vars`, and `dist`** before the first push, so secrets and build output never get committed. The Astro scaffold should include most of this — confirm.
+4. **Ongoing rhythm:** `git add . → git commit → git push`. Each push to `main` triggers a Cloudflare deploy once the connection below exists.
+
+## Cloudflare Pages
+
+Do this once the scaffold is pushed to GitHub.
+
+1. **Dashboard → Workers & Pages → Create → Pages → Connect to Git.** Authorize GitHub access if needed, then select the `tomprotects` repo.
+2. **Build settings:**
+   - Framework preset: **Astro**
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+   - (Confirm against what Claude Code reports in Prompt 0 — adapter setup can affect these.)
+3. **Set the environment variable.** Settings → Environment variables → add `KIT_API_KEY` = the fresh TomProtects Kit key. Add it to **both Production and Preview** so the checker/blog work on preview deploys too. This is the only place the key should live.
+4. **First deploy** runs automatically → gives a `tomprotects.pages.dev` URL. Test everything there first (checker, blog, forms).
+5. **Custom domain.** Pages project → Custom domains → add `tomprotects.com` and `www.tomprotects.com`. The domain is already on Cloudflare, so DNS records are added automatically — just confirm. Brief specifies www as canonical; let the other redirect.
+6. **Cut over from Framer.** Adding the custom domain to Pages takes `tomprotects.com` off Framer with no overlap window. So fully verify the `.pages.dev` site **before** attaching the custom domain. The swap is near-instant but there's no period where both serve.
+
+## Two ordering notes
+
+- **`KIT_API_KEY` must be set in Cloudflare (step 3) before the checker or blog work even on `.pages.dev`** — both call Kit server-side at request time. A blog error on the preview URL almost always means a missing/wrong env var.
+- **Local testing needs the key too.** For Wrangler local runs, put `KIT_API_KEY=...` in a `.dev.vars` file in the project root — Wrangler reads it automatically and it's gitignored. Don't use a committed `.env`.
