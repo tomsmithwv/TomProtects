@@ -1,6 +1,7 @@
 ---
 export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FounderPhoto from '../components/FounderPhoto.astro';
 
 // TODO(content): replace BOOKING_URL with the real scheduling link (Calendly /
 // SavvyCal / Cal.com). When set, the button below points to it.
@@ -18,6 +19,13 @@ const BOOKING_URL = '';
       Everything I do is async by default — but if you'd rather talk it through first, a short intro call is always
       optional. We'll cover where your domain, email, and revenue platforms stand and whether the full review is a fit.
     </p>
+
+    <div class="mt-6 flex items-center gap-4">
+      <FounderPhoto class="h-16 w-16" />
+      <p class="text-sm text-ink/70">
+        You'll be talking to me directly — Tom, CISSP · CISM · CDPSE, 20+ years in security.
+      </p>
+    </div>
 
     <ul class="mt-8 space-y-3 text-ink/80">
       <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> 15–20 minutes, no pressure, no pitch</li>

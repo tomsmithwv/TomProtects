@@ -1,0 +1,22 @@
+---
+// Founder photo (Tom). Source is a square 1:1 crop, served as WebP with a JPEG
+// fallback, both 400×400 (optimized). Pass `class` to set the display size.
+interface Props {
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+const { class: cls = 'h-40 w-40', loading = 'lazy' } = Astro.props;
+---
+
+<picture>
+  <source srcset="/images/tom-400.webp" type="image/webp" />
+  <img
+    src="/images/tom-400.jpg"
+    alt="Tom Smith, founder of TomProtects"
+    width="400"
+    height="400"
+    loading={loading}
+    decoding="async"
+    class={`rounded-full object-cover ring-2 ring-accent/30 ${cls}`}
+  />
+</picture>

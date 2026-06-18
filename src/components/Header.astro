@@ -1,4 +1,5 @@
 ---
+import Wordmark from './Wordmark.astro';
 // Primary navigation. "Get Started" is the primary CTA → /audit.
 const links = [
   { label: 'How It Works', href: '/#how-it-works' },
@@ -10,7 +11,7 @@ const links = [
 
 <header class="sticky top-0 z-40 border-b border-black/10 bg-cream/90 backdrop-blur">
   <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-    <a href="/" class="text-xl font-bold tracking-tight">TomProtects</a>
+    <a href="/" aria-label="tomprotects — home"><Wordmark theme="light" class="h-5 w-auto" /></a>
 
     <nav class="hidden items-center gap-6 text-sm md:flex">
       {links.map((l) => (
