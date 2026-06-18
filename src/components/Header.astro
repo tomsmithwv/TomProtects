@@ -50,10 +50,15 @@ const links = [
       toggle.addEventListener('click', () => {
         const open = menu.classList.toggle('hidden') === false;
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       });
-      menu
-        .querySelectorAll('a')
-        .forEach((a) => a.addEventListener('click', () => menu.classList.add('hidden')));
+      menu.querySelectorAll('a').forEach((a) =>
+        a.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+        }),
+      );
     }
   </script>
 </header>

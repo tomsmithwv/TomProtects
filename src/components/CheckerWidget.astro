@@ -13,7 +13,7 @@
     required
     autocomplete="email"
     placeholder="you@yourdomain.com"
-    class="flex-1 rounded-lg border border-black/15 bg-white px-5 py-4 text-lg text-ink placeholder-ink/40 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+    class="flex-1 rounded-lg border border-black/15 bg-white px-5 py-4 text-lg text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60"
   />
   <button
     id="checker-submit"
@@ -24,7 +24,7 @@
   </button>
 </form>
 
-<p class="mx-auto mt-3 max-w-xl text-sm text-ink/50">
+<p class="mx-auto mt-3 max-w-xl text-sm text-ink/70">
   We only read public DNS records. Enter your email to get your grade and fix-it guide.
 </p>
 
@@ -88,7 +88,7 @@
     const icon = statusIcon[check.status] || '?';
 
     const record = check.record
-      ? `<p style="font-size:11px;font-family:monospace;color:#9ca3af;margin-top:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(Array.isArray(check.record) ? check.record.join('; ') : check.record)}</p>`
+      ? `<p style="font-size:11px;font-family:monospace;color:#6b7280;margin-top:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(Array.isArray(check.record) ? check.record.join('; ') : check.record)}</p>`
       : '';
 
     const tips = check.modernizationTips && check.modernizationTips.length
@@ -102,7 +102,7 @@
 
     return `
       <div style="background:#fff;border:1px solid #eee;border-left:4px solid ${accent};border-radius:0 10px 10px 0;padding:14px 16px;">
-        <div style="font-size:14px;font-weight:700;color:${tColor};margin-bottom:6px;">${icon} ${name}</div>
+        <h3 style="font-size:14px;font-weight:700;color:${tColor};margin:0 0 6px;">${icon} ${name}</h3>
         <p style="font-size:13px;color:#4b5563;line-height:1.6;margin:0;">${escapeHtml(check.details || 'No details available')}</p>
         ${record}
         ${tips}
@@ -134,7 +134,7 @@
 
     const recs = (data.recommendations && data.recommendations.length)
       ? `<div style="background:#faf8f2;border-radius:10px;padding:16px 18px;margin-top:14px;">
-           <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 10px;">What to do next</h4>
+           <h3 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 10px;">What to do next</h3>
            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
              ${data.recommendations.map((r: string) => `<li style="display:flex;gap:8px;font-size:13px;color:#4b5563;line-height:1.6;"><span style="color:#0f5c4c;flex-shrink:0;">→</span><span>${escapeHtml(r)}</span></li>`).join('')}
            </ul>
@@ -144,7 +144,7 @@
     resultsEl.innerHTML = `
       <div style="background:#fff;border:1px solid #e7e2d6;border-radius:16px;padding:26px 22px;">
         <div style="text-align:center;margin-bottom:22px;">
-          <p style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0f5c4c;margin:0 0 10px;">Email authentication report</p>
+          <h2 style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0f5c4c;margin:0 0 10px;">Email authentication report</h2>
           <div style="display:inline-flex;align-items:center;justify-content:center;width:76px;height:76px;border-radius:14px;font-size:44px;font-weight:700;${gradeBadgeStyle(data.grade)}">${escapeHtml(data.grade)}</div>
           <p style="font-size:13px;font-weight:500;color:#5c5750;margin-top:8px;">${escapeHtml(data.domain)}</p>
         </div>

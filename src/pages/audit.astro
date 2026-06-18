@@ -21,26 +21,26 @@ const platforms = ['Stripe', 'Kit', 'Kajabi', 'Circle', 'Teachable', 'Shopify', 
       <div>
         <label for="name" class="block text-sm font-medium">Name</label>
         <input id="name" name="name" type="text" autocomplete="name"
-          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" />
+          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60" />
       </div>
 
       <div>
         <label for="email" class="block text-sm font-medium">Email <span class="text-fail">*</span></label>
         <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@yourdomain.com"
-          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/40 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" />
+          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60" />
       </div>
 
       <div>
         <label for="domain" class="block text-sm font-medium">Primary domain <span class="text-fail">*</span></label>
         <input id="domain" name="domain" type="text" required placeholder="yourbrand.com"
-          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/40 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" />
+          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60" />
       </div>
 
       <div>
         <span class="block text-sm font-medium">Platforms you run on</span>
         <div class="mt-2 flex flex-wrap gap-2">
           {platforms.map((p) => (
-            <label class="cursor-pointer rounded-lg border border-black/15 bg-white px-3 py-1.5 text-sm has-[:checked]:border-accent has-[:checked]:bg-accent/10">
+            <label class="cursor-pointer rounded-lg border border-black/15 bg-white px-3 py-1.5 text-sm has-[:checked]:border-accent has-[:checked]:bg-accent/10 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#2f7a66] has-[:focus-visible]:ring-offset-2">
               <input type="checkbox" name="platforms" value={p} class="sr-only" />
               {p}
             </label>
@@ -51,7 +51,7 @@ const platforms = ['Stripe', 'Kit', 'Kajabi', 'Circle', 'Teachable', 'Shopify', 
       <div>
         <label for="message" class="block text-sm font-medium">Anything else I should know?</label>
         <textarea id="message" name="message" rows="4" placeholder="Recent issues, concerns, deadlines…"
-          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/40 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"></textarea>
+          class="mt-1 w-full rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60"></textarea>
       </div>
 
       <button id="audit-submit" type="submit"

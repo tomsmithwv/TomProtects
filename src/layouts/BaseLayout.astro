@@ -39,8 +39,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://tomprotects
     {publishedTime && <meta property="article:published_time" content={publishedTime} />}
   </head>
   <body class="flex min-h-screen flex-col bg-cream text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:font-semibold focus:text-white"
+    >
+      Skip to content
+    </a>
     <Header />
-    <main class="flex-1">
+    <main id="main" class="flex-1">
       <slot />
     </main>
     <Footer />

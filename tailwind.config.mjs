@@ -11,7 +11,10 @@ export default {
         // Base brand palette (placeholder — calm/protective)
         ink: '#1a1a1a',
         cream: '#fdfaf3',
-        accent: '#0f5c4c',
+        accent: '#0f5c4c', // AA on light backgrounds (7.6:1 on cream)
+        // Lighter brand green for text on dark sections — #0f5c4c fails there
+        // (2.2:1); this passes AA (8.35:1 on ink) and matches the dark wordmark.
+        'accent-dark': '#7FC1A6',
       },
     },
   },
