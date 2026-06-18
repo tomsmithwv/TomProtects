@@ -1,0 +1,204 @@
+---
+// Free email-authentication checker: form → POST /api/check → inline graded
+// report with three status-colored cards + audit CTA. Used on the home hero
+// and on /tools. One instance per page (binds by element id).
+---
+
+<form id="checker-form" class="mx-auto flex max-w-xl flex-col gap-3 sm:flex-row" novalidate>
+  <label for="email" class="sr-only">Your email address</label>
+  <input
+    id="email"
+    name="email"
+    type="email"
+    required
+    autocomplete="email"
+    placeholder="you@yourdomain.com"
+    class="flex-1 rounded-lg border border-black/15 bg-white px-5 py-4 text-lg text-ink placeholder-ink/40 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+  />
+  <button
+    id="checker-submit"
+    type="submit"
+    class="whitespace-nowrap rounded-lg bg-accent px-7 py-4 text-lg font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+  >
+    Check my domain
+  </button>
+</form>
+
+<p class="mx-auto mt-3 max-w-xl text-sm text-ink/50">
+  We only read public DNS records. Enter your email to get your grade and fix-it guide.
+</p>
+
+<div id="loading" class="mt-12 hidden text-center" aria-live="polite">
+  <p class="text-lg text-ink/70">Checking your domain…</p>
+</div>
+<div
+  id="error"
+  class="mx-auto mt-12 hidden max-w-xl rounded-lg border border-fail/40 bg-white p-6 text-center text-fail"
+  role="alert"
+>
+</div>
+<div id="results-container" class="mx-auto mt-12 hidden max-w-2xl text-left" aria-live="polite">
+  <div id="results"></div>
+</div>
+
+<script>
+  const form = document.getElementById('checker-form');
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const submitBtn = document.getElementById('checker-submit') as HTMLButtonElement;
+  const loadingEl = document.getElementById('loading')!;
+  const errorEl = document.getElementById('error')!;
+  const resultsContainer = document.getElementById('results-container')!;
+  const resultsEl = document.getElementById('results')!;
+
+  function escapeHtml(value: unknown) {
+    return String(value).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    })[c] as string);
+  }
+
+  const cardAccent: Record<string, string> = {
+    pass: '#10b981', warn: '#f59e0b', fail: '#ef4444', error: '#ef4444',
+    'not-found': '#9ca3af', unknown: '#9ca3af',
+  };
+  const titleColor: Record<string, string> = {
+    pass: '#065f46', warn: '#92400e', fail: '#991b1b', error: '#991b1b',
+    'not-found': '#374151', unknown: '#374151',
+  };
+  const statusIcon: Record<string, string> = {
+    pass: '✓', warn: '⚠', fail: '✗', error: '✗', 'not-found': '?', unknown: '?',
+  };
+
+  function gradeBadgeStyle(grade: string) {
+    return ({
+      A: 'background:#ecfdf5;color:#065f46;border:2px solid #10b981',
+      B: 'background:#eff6ff;color:#1e40af;border:2px solid #3b82f6',
+      C: 'background:#fffbeb;color:#92400e;border:2px solid #f59e0b',
+      D: 'background:#fef2f2;color:#7f1d1d;border:2px solid #f87171',
+      F: 'background:#fef2f2;color:#7f1d1d;border:2px solid #ef4444',
+    } as Record<string, string>)[grade] || 'background:#f3f4f6;color:#374151;border:2px solid #9ca3af';
+  }
+
+  function cardHTML(name: string, check: any) {
+    const accent = cardAccent[check.status] || cardAccent.unknown;
+    const tColor = titleColor[check.status] || titleColor.unknown;
+    const icon = statusIcon[check.status] || '?';
+
+    const record = check.record
+      ? `<p style="font-size:11px;font-family:monospace;color:#9ca3af;margin-top:8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(Array.isArray(check.record) ? check.record.join('; ') : check.record)}</p>`
+      : '';
+
+    const tips = check.modernizationTips && check.modernizationTips.length
+      ? `<div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;">
+           <p style="font-size:11px;font-weight:700;color:#0f5c4c;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 6px;">Nice-to-know upgrades</p>
+           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;">
+             ${check.modernizationTips.map((t: string) => `<li style="font-size:12px;color:#0f5c4c;display:flex;gap:6px;line-height:1.5;"><span style="flex-shrink:0;">›</span><span>${escapeHtml(t)}</span></li>`).join('')}
+           </ul>
+         </div>`
+      : '';
+
+    return `
+      <div style="background:#fff;border:1px solid #eee;border-left:4px solid ${accent};border-radius:0 10px 10px 0;padding:14px 16px;">
+        <div style="font-size:14px;font-weight:700;color:${tColor};margin-bottom:6px;">${icon} ${name}</div>
+        <p style="font-size:13px;color:#4b5563;line-height:1.6;margin:0;">${escapeHtml(check.details || 'No details available')}</p>
+        ${record}
+        ${tips}
+      </div>`;
+  }
+
+  // Post-result CTA — funnels to the paid audit (wording from the brief)
+  function auditCTA(subscribed: boolean) {
+    return `
+      <div style="margin-top:14px;background:#0f5c4c;border-radius:12px;padding:22px 20px;color:#fff;">
+        <p style="font-size:15px;line-height:1.6;margin:0 0 14px;">
+          This checks your email setup. The full review covers your domain, registrar, WHOIS, and revenue platforms too — every gap, prioritized, with exact fixes.
+        </p>
+        <a href="/audit" style="display:inline-block;background:#fff;color:#0f5c4c;font-weight:600;font-size:15px;padding:12px 22px;border-radius:8px;text-decoration:none;">Get the full review →</a>
+        ${subscribed ? `<p style="font-size:13px;color:rgba(255,255,255,0.82);margin:14px 0 0;">You're now on the list — I'll email you the step-by-step fix-it series.</p>` : ''}
+      </div>`;
+  }
+
+  function displayResults(data: any) {
+    if (data.message) {
+      resultsEl.innerHTML = `
+        <div style="background:#fff;border:1px solid #e7e2d6;border-radius:16px;padding:22px;">
+          <p style="font-size:14px;color:#4b5563;line-height:1.6;margin:0;">${escapeHtml(data.message)}</p>
+        </div>
+        ${auditCTA(Boolean(data.subscribed))}`;
+      reveal();
+      return;
+    }
+
+    const recs = (data.recommendations && data.recommendations.length)
+      ? `<div style="background:#faf8f2;border-radius:10px;padding:16px 18px;margin-top:14px;">
+           <h4 style="font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 10px;">What to do next</h4>
+           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+             ${data.recommendations.map((r: string) => `<li style="display:flex;gap:8px;font-size:13px;color:#4b5563;line-height:1.6;"><span style="color:#0f5c4c;flex-shrink:0;">→</span><span>${escapeHtml(r)}</span></li>`).join('')}
+           </ul>
+         </div>`
+      : '';
+
+    resultsEl.innerHTML = `
+      <div style="background:#fff;border:1px solid #e7e2d6;border-radius:16px;padding:26px 22px;">
+        <div style="text-align:center;margin-bottom:22px;">
+          <p style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0f5c4c;margin:0 0 10px;">Email authentication report</p>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:76px;height:76px;border-radius:14px;font-size:44px;font-weight:700;${gradeBadgeStyle(data.grade)}">${escapeHtml(data.grade)}</div>
+          <p style="font-size:13px;font-weight:500;color:#5c5750;margin-top:8px;">${escapeHtml(data.domain)}</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
+          ${cardHTML('SPF', data.checks.spf)}
+          ${cardHTML('DKIM', data.checks.dkim)}
+          ${cardHTML('DMARC', data.checks.dmarc)}
+        </div>
+        ${recs}
+      </div>
+      ${auditCTA(Boolean(data.subscribed))}`;
+
+    reveal();
+  }
+
+  function reveal() {
+    resultsContainer.style.opacity = '0';
+    resultsContainer.style.transform = 'translateY(12px)';
+    resultsContainer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    resultsContainer.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      resultsContainer.style.opacity = '1';
+      resultsContainer.style.transform = 'translateY(0)';
+    });
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    resultsContainer.classList.add('hidden');
+    errorEl.classList.add('hidden');
+    loadingEl.classList.remove('hidden');
+    submitBtn.disabled = true;
+    const prevLabel = submitBtn.textContent;
+    submitBtn.textContent = 'Checking…';
+
+    try {
+      const res = await fetch('/api/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+      displayResults(data);
+    } catch (err) {
+      errorEl.textContent = err instanceof Error ? err.message : 'An error occurred. Please try again.';
+      errorEl.classList.remove('hidden');
+    } finally {
+      loadingEl.classList.add('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = prevLabel;
+    }
+  });
+</script>

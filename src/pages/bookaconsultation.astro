@@ -1,0 +1,43 @@
+---
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// TODO(content): replace BOOKING_URL with the real scheduling link (Calendly /
+// SavvyCal / Cal.com). When set, the button below points to it.
+const BOOKING_URL = '';
+---
+
+<BaseLayout
+  title="Book a consultation — TomProtects"
+  description="Prefer to talk it through first? Book a short, no-pressure call about your domain, email, and platform security."
+>
+  <section class="mx-auto max-w-2xl px-4 py-16">
+    <p class="text-xs font-bold uppercase tracking-[0.14em] text-accent">Optional call</p>
+    <h1 class="mt-2 text-4xl font-bold tracking-tight">Book a consultation</h1>
+    <p class="mt-4 text-ink/70">
+      Everything I do is async by default — but if you'd rather talk it through first, a short intro call is always
+      optional. We'll cover where your domain, email, and revenue platforms stand and whether the full review is a fit.
+    </p>
+
+    <ul class="mt-8 space-y-3 text-ink/80">
+      <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> 15–20 minutes, no pressure, no pitch</li>
+      <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> Plain-English answers to your security questions</li>
+      <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> A clear sense of what the full review would cover for you</li>
+    </ul>
+
+    <div class="mt-10">
+      {BOOKING_URL ? (
+        <a href={BOOKING_URL} class="inline-block rounded-lg bg-accent px-7 py-4 text-lg font-semibold text-white transition hover:opacity-90">
+          Pick a time →
+        </a>
+      ) : (
+        <div class="rounded-2xl border border-black/10 bg-white p-6">
+          <p class="text-ink/70">
+            Scheduling link coming soon. In the meantime, <a href="/audit" class="font-medium text-accent underline-offset-4 hover:underline">start with the form</a>
+            and note that you'd like a call — I'll send times.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

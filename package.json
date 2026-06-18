@@ -1,0 +1,26 @@
+{
+  "name": "tomprotects",
+  "version": "0.1.0",
+  "description": "Security review service marketing site + email authentication checker for TomProtects",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "preview:local": "astro build && wrangler pages dev ./dist",
+    "deploy": "wrangler pages deploy ./dist"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^10.4.0",
+    "@astrojs/sitemap": "3.1.6",
+    "astro": "^4.11.0",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.78.0"
+  }
+}

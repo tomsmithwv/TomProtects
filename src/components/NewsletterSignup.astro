@@ -1,0 +1,78 @@
+---
+// Inline newsletter signup → POST /api/subscribe with the given source tag.
+// source must be one the endpoint allowlists (source-blog | source-newsletter).
+interface Props {
+  source?: string;
+  buttonLabel?: string;
+}
+const { source = 'source-newsletter', buttonLabel = 'Subscribe' } = Astro.props;
+---
+
+<form class="js-newsletter flex flex-col gap-3 sm:flex-row" data-source={source} novalidate>
+  <label class="sr-only" for={`nl-${source}`}>Email address</label>
+  <input
+    id={`nl-${source}`}
+    type="email"
+    name="email"
+    required
+    autocomplete="email"
+    placeholder="you@yourdomain.com"
+    class="flex-1 rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/40 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
+  />
+  <button
+    type="submit"
+    class="whitespace-nowrap rounded-lg bg-accent px-6 py-3 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+  >
+    {buttonLabel}
+  </button>
+</form>
+<p class="js-newsletter-status mt-2 text-sm" role="status" aria-live="polite"></p>
+
+<script>
+  // Bind once per page; querySelectorAll covers every signup instance.
+  if (!(window as any).__nlBound) {
+    (window as any).__nlBound = true;
+    document.querySelectorAll('form.js-newsletter').forEach((el) => {
+      const form = el as HTMLFormElement;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = form.querySelector('input[type="email"]') as HTMLInputElement;
+        const btn = form.querySelector('button') as HTMLButtonElement;
+        const status = form.nextElementSibling as HTMLElement | null;
+        const email = input.value.trim();
+        if (!email) return;
+
+        btn.disabled = true;
+        const prev = btn.textContent;
+        btn.textContent = 'Subscribing…';
+        if (status) {
+          status.textContent = '';
+          status.style.color = '';
+        }
+
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: form.dataset.source }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+          if (status) {
+            status.textContent = "You're on the list — thanks for subscribing.";
+            status.style.color = '#065f46';
+          }
+          input.value = '';
+        } catch (err) {
+          if (status) {
+            status.textContent = err instanceof Error ? err.message : 'An error occurred.';
+            status.style.color = '#991b1b';
+          }
+        } finally {
+          btn.disabled = false;
+          btn.textContent = prev;
+        }
+      });
+    });
+  }
+</script>

@@ -1,0 +1,36 @@
+---
+import NewsletterSignup from './NewsletterSignup.astro';
+const year = new Date().getFullYear();
+const links = [
+  { label: 'How It Works', href: '/#how-it-works' },
+  { label: 'About', href: '/#about' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Tools', href: '/tools' },
+  { label: 'Book a Consultation', href: '/bookaconsultation' },
+  { label: 'Privacy', href: '/privacy' },
+];
+---
+
+<footer class="mt-16 bg-ink text-cream">
+  <div class="mx-auto max-w-5xl px-4 py-12">
+    <div class="mb-10 max-w-md">
+      <p class="font-semibold">Get the newsletter</p>
+      <p class="mt-1 text-sm text-cream/60">Plain-English security and deliverability tips for online businesses.</p>
+      <div class="mt-4">
+        <NewsletterSignup source="source-newsletter" />
+      </div>
+    </div>
+
+    <div class="flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center">
+      <a href="/" class="text-lg font-bold">TomProtects</a>
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-cream/70">
+        {links.map((l) => (
+          <a href={l.href} class="transition hover:text-cream">{l.label}</a>
+        ))}
+      </nav>
+    </div>
+    <p class="mt-8 text-xs text-cream/50">
+      © {year} TomProtects. Protect the business behind the brand.
+    </p>
+  </div>
+</footer>

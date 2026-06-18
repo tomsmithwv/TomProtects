@@ -1,0 +1,38 @@
+---
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CheckerWidget from '../components/CheckerWidget.astro';
+---
+
+<BaseLayout
+  title="Free Email Authentication Checker — TomProtects"
+  description="Free check of your domain's SPF, DKIM, and DMARC. Get a grade and the exact gaps, in plain English."
+>
+  <section class="border-b border-black/5 bg-gradient-to-b from-white to-cream">
+    <div class="mx-auto max-w-3xl px-4 py-20 text-center">
+      <p class="mb-4 text-xs font-bold uppercase tracking-[0.14em] text-accent">Free tool</p>
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Email authentication checker</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-lg text-ink/70">
+        Check your domain's SPF, DKIM, and DMARC. Get a grade, see exactly what's missing, and a plain-English fix list.
+      </p>
+
+      <div class="mt-10">
+        <CheckerWidget />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-16">
+      <h2 class="text-2xl font-bold tracking-tight">What this checks (and what it doesn't)</h2>
+      <p class="mt-4 text-ink/70">
+        This tool reads your public DNS records to grade your email authentication — the setup that decides whether your
+        emails reach the inbox and whether others can spoof your domain. It's a fast, honest first look.
+      </p>
+      <p class="mt-4 text-ink/70">
+        The full <a href="/audit" class="font-medium text-accent underline-offset-4 hover:underline">Domain &amp; Deliverability Review</a>
+        goes further — registrar security, WHOIS exposure, subdomain inventory, and a prioritized fix list with the exact values to change.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

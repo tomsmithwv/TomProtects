@@ -1,0 +1,58 @@
+---
+// Primary navigation. "Get Started" is the primary CTA → /audit.
+const links = [
+  { label: 'How It Works', href: '/#how-it-works' },
+  { label: 'About', href: '/#about' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Tools', href: '/tools' },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-black/10 bg-cream/90 backdrop-blur">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+    <a href="/" class="text-xl font-bold tracking-tight">TomProtects</a>
+
+    <nav class="hidden items-center gap-6 text-sm md:flex">
+      {links.map((l) => (
+        <a href={l.href} class="text-ink/70 transition hover:text-ink">{l.label}</a>
+      ))}
+      <a
+        href="/audit"
+        class="rounded-lg bg-accent px-4 py-2 font-semibold text-white transition hover:opacity-90"
+      >
+        Get Started
+      </a>
+    </nav>
+
+    <button
+      id="nav-toggle"
+      class="md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="text-2xl leading-none">☰</span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-black/10 md:hidden">
+    {links.map((l) => (
+      <a href={l.href} class="block px-6 py-3 text-ink/70">{l.label}</a>
+    ))}
+    <a href="/audit" class="block px-6 py-3 font-semibold text-accent">Get Started</a>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        const open = menu.classList.toggle('hidden') === false;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu
+        .querySelectorAll('a')
+        .forEach((a) => a.addEventListener('click', () => menu.classList.add('hidden')));
+    }
+  </script>
+</header>

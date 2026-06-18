@@ -1,0 +1,6 @@
+name = "tomprotects"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "dist"
+
+# Environment variables are managed in Cloudflare Pages settings.
+# KIT_API_KEY is stored as a secret and never committed to this repo.
