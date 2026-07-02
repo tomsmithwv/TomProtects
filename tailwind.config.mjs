@@ -28,6 +28,8 @@ export default {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
+        // Handwritten accent — hero caption only
+        handwritten: ['Caveat', 'cursive'],
       },
     },
   },

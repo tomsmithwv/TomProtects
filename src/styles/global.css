@@ -6,6 +6,15 @@
   src: url('/fonts/dm-sans-latin-wght-normal.woff2') format('woff2');
 }
 
+/* Handwritten accent font — hero caption only. Not preloaded (decorative). */
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/caveat-latin-600-normal.woff2') format('woff2');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
