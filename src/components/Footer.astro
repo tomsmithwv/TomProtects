@@ -1,6 +1,14 @@
 ---
 import NewsletterSignup from './NewsletterSignup.astro';
 import Wordmark from './Wordmark.astro';
+
+// Pages whose closing section already contains a signup (e.g. home's final CTA)
+// pass showNewsletter={false} to avoid two stacked subscribe forms.
+interface Props {
+  showNewsletter?: boolean;
+}
+const { showNewsletter = true } = Astro.props;
+
 const year = new Date().getFullYear();
 const links = [
   { label: 'How It Works', href: '/#how-it-works' },
@@ -12,15 +20,17 @@ const links = [
 ];
 ---
 
-<footer class="mt-16 bg-ink text-cream">
+<footer class="bg-ink text-cream">
   <div class="mx-auto max-w-5xl px-4 py-12">
-    <div class="mb-10 max-w-md">
-      <p class="font-semibold">Get the newsletter</p>
-      <p class="mt-1 text-sm text-cream/60">Plain-English security and deliverability tips for online businesses.</p>
-      <div class="mt-4">
-        <NewsletterSignup source="source-newsletter" />
+    {showNewsletter && (
+      <div class="mb-10 max-w-md">
+        <p class="font-semibold">Get the newsletter</p>
+        <p class="mt-1 text-sm text-cream/60">Plain-English security and deliverability tips for online businesses.</p>
+        <div class="mt-4">
+          <NewsletterSignup source="source-newsletter" />
+        </div>
       </div>
-    </div>
+    )}
 
     <div class="flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center">
       <a href="/" aria-label="tomprotects — home"><Wordmark theme="dark" class="h-6 w-auto" /></a>

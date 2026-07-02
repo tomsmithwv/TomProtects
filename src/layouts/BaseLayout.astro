@@ -8,6 +8,8 @@ interface Props {
   description?: string;
   ogType?: string;
   publishedTime?: string;
+  /** Set false on pages whose closing section already has a newsletter signup. */
+  footerNewsletter?: boolean;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   description = 'Security reviews for online businesses: domain, email deliverability, registrar, and revenue-platform protection.',
   ogType = 'website',
   publishedTime,
+  footerNewsletter = true,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://tomprotects.com').href;
@@ -56,6 +59,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://tomprotects
     <main id="main" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer showNewsletter={footerNewsletter} />
   </body>
 </html>
