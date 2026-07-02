@@ -2,10 +2,6 @@
 export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FounderPhoto from '../components/FounderPhoto.astro';
-
-// TODO(content): replace BOOKING_URL with the real scheduling link (Calendly /
-// SavvyCal / Cal.com). When set, the button below points to it.
-const BOOKING_URL = '';
 ---
 
 <BaseLayout
@@ -33,19 +29,16 @@ const BOOKING_URL = '';
       <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> A clear sense of what the full review would cover for you</li>
     </ul>
 
-    <div class="mt-10">
-      {BOOKING_URL ? (
-        <a href={BOOKING_URL} class="inline-block rounded-lg bg-accent px-7 py-4 text-lg font-semibold text-white transition hover:opacity-90">
-          Pick a time →
-        </a>
-      ) : (
-        <div class="rounded-2xl border border-black/10 bg-white p-6">
-          <p class="text-ink/70">
-            Scheduling link coming soon. In the meantime, <a href="/audit" class="font-medium text-accent underline underline-offset-4">start with the form</a>
-            and note that you'd like a call — I'll send times.
-          </p>
-        </div>
-      )}
+    <!-- TidyCal scheduling embed -->
+    <div class="mt-10 rounded-2xl border border-black/10 bg-white p-2 sm:p-4">
+      <div class="tidycal-embed" data-path="tomsmith/discovery"></div>
+      <script is:inline src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
+      <noscript>
+        <p class="p-4 text-ink/70">
+          The booking calendar needs JavaScript. You can also book directly at
+          <a href="https://tidycal.com/tomsmith/discovery" class="font-medium text-accent underline underline-offset-4">tidycal.com/tomsmith/discovery</a>.
+        </p>
+      </noscript>
     </div>
   </section>
 </BaseLayout>
