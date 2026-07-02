@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://tomprotects.com/sitemap-index.xml
+Sitemap: https://tomprotects.com/sitemap-blog.xml
