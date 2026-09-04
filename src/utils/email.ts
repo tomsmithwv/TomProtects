@@ -1,24 +1,3 @@
-const FREE_MAIL_DOMAINS = new Set([
-  'gmail.com',
-  'googlemail.com',
-  'yahoo.com',
-  'ymail.com',
-  'outlook.com',
-  'hotmail.com',
-  'live.com',
-  'msn.com',
-  'icloud.com',
-  'me.com',
-  'mac.com',
-  'aol.com',
-  'proton.me',
-  'protonmail.com',
-  'gmx.com',
-  'zoho.com',
-  'mail.com',
-  'yandex.com',
-]);
-
 // Simple email regex validation
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -36,8 +15,4 @@ export function validateEmail(email: string): { valid: boolean; domain?: string;
   }
 
   return { valid: true, domain };
-}
-
-export function isFreemailDomain(domain: string): boolean {
-  return FREE_MAIL_DOMAINS.has(domain.toLowerCase());
 }

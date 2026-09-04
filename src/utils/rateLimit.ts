@@ -1,4 +1,8 @@
-import { RateLimitEntry } from './types';
+/** One IP's request count and the timestamp its window expires at. */
+interface RateLimitEntry {
+  count: number;
+  resetAt: number;
+}
 
 // Per-isolate in-memory limiter (~5/min/IP). Ephemeral and per-PoP, but matches
 // the brief's "simple in-memory" requirement. Revisit with KV if abuse appears.

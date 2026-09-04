@@ -1,43 +1,12 @@
 ---
 export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CheckerWidget from '../components/CheckerWidget.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import FounderPhoto from '../components/FounderPhoto.astro';
 import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
-import Button from '../components/Button.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Icon from '../components/Icon.astro';
-
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║  PRICING — set your numbers here. This is the only place to edit prices.  ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
-const pricing = {
-  launchPrice: '$297', //  ← current LIVE launch price (the big number)
-  nextPrice: '$497', //    ← the next tier it steps up to (runway). Set '' to hide the runway line.
-  standardPrice: 'standard', // ← eventual standard price/label, e.g. '$997' or 'standard rate'
-  unit: 'one-time', //     ← billing note shown beside the price
-};
-
-// What's included at this price (from the brief).
-const priceIncludes = [
-  'Full domain & deliverability report',
-  'SPF / DKIM / DMARC review',
-  'Registrar security review',
-  'Prioritized fix list with specific values',
-  'Optional intro + walkthrough calls',
-  '30-day follow-up',
-];
-
-const findings = [
-  { sev: 'high', title: 'No 2FA on the domain registrar', body: 'The single account that controls your domain — and therefore your email and website — protected by a password alone.' },
-  { sev: 'high', title: 'A reused, breached password', body: 'The login for a critical account found in a known data breach and reused elsewhere. One of the most common ways businesses get taken over.' },
-  { sev: 'high', title: 'Shared registrar / hosting login', body: 'One set of credentials handed to a VA or contractor, never rotated, with full control of your domain.' },
-  { sev: 'med', title: 'DMARC set to p=none (or missing)', body: 'Anyone can spoof your domain and email your customers as you. No enforcement, no reporting.' },
-  { sev: 'med', title: 'Personal details exposed in WHOIS', body: 'Home address and phone number published in public domain records because privacy was never switched on.' },
-  { sev: 'med', title: 'A forgotten subdomain pointing nowhere', body: 'An old subdomain still aimed at a service you stopped using — a quiet takeover risk most owners never see.' },
-];
 
 // `icon` names resolve against src/components/Icon.astro.
 const reality = [
@@ -129,40 +98,9 @@ const deliverables = [
           Get a grade and the exact gaps, in plain English.
         </p>
 
-        <div class="mt-10">
-          <CheckerWidget />
-        </div>
-
         <p class="mt-4 text-sm">
           <a href="/#how-it-works" class="text-accent underline-offset-4 hover:underline">See how it works →</a>
         </p>
-      </div>
-  </Section>
-
-  <!-- 3. Sample Audit Findings -->
-  <Section background="white">
-      <Eyebrow>Sample audit findings</Eyebrow>
-      <h2 class="mt-2 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-        The free check covers email. The full audit goes much deeper.
-      </h2>
-      <p class="mt-4 max-w-2xl text-ink/70">
-        Here's the kind of thing a real review surfaces — the gaps you can't see from a DNS lookup alone:
-      </p>
-
-      <div class="mt-10 grid gap-4 sm:grid-cols-2">
-        {findings.map((f) => (
-          <Card surface="cream" padding="sm">
-            <span class={`inline-block rounded-full px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide ${f.sev === 'high' ? 'bg-fail/15 text-[#991b1b]' : 'bg-warn/20 text-[#92400e]'}`}>
-              {f.sev === 'high' ? 'High risk' : 'Needs attention'}
-            </span>
-            <h3 class="mt-3 font-semibold">{f.title}</h3>
-            <p class="mt-1.5 text-sm text-ink/70">{f.body}</p>
-          </Card>
-        ))}
-      </div>
-
-      <div class="mt-10">
-        <Button href="/audit" class="inline-block">See what your audit surfaces →</Button>
       </div>
   </Section>
 
@@ -225,47 +163,6 @@ const deliverables = [
           </li>
         ))}
       </ul>
-  </Section>
-
-  <!-- 8. Pricing -->
-  <Section background="ink" width="narrow" center>
-      <Eyebrow onDark>Pricing</Eyebrow>
-      <h2 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Launch price — going up as spots fill</h2>
-
-      <Card surface="dark" radius="2xl" padding="lg" class="mx-auto mt-10 max-w-md">
-        <p class="text-sm font-medium text-cream/60">Domain &amp; Deliverability Review</p>
-
-        <span class="mt-4 inline-block rounded-full bg-accent-dark/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent-dark">
-          Launch price
-        </span>
-        <p class="mt-3">
-          <span class="text-5xl font-bold">{pricing.launchPrice}</span>
-          <span class="text-cream/60">{pricing.unit}</span>
-        </p>
-
-        {pricing.nextPrice && (
-          <p class="mt-3 text-sm font-medium text-accent-dark">
-            {pricing.launchPrice} now → {pricing.nextPrice} → {pricing.standardPrice}.
-            Spots are limited — the price goes up as they fill.
-          </p>
-        )}
-        <p class="mt-2 text-xs text-cream/50">Early reviews are intentionally underpriced while I build testimonials.</p>
-
-        <ul class="mt-6 space-y-2 text-left text-sm text-cream/80">
-          {priceIncludes.map((item) => (
-            <li class="flex gap-2"><span class="text-accent-dark">✓</span> {item}</li>
-          ))}
-        </ul>
-
-        <Button href="/audit" class="mt-8 block">Start your review</Button>
-        <p class="mt-4 text-xs text-cream/50">
-          No retainers. No upsells. Fixed price. Payment is collected after scope is confirmed via the intake form.
-        </p>
-        <p class="mt-4 text-sm text-cream/80">
-          My goal is simple: leave you with more than you paid for. If something in your report isn't clear or
-          actionable, tell me — I'll make it right.
-        </p>
-      </Card>
   </Section>
 
   <!-- 9. About -->

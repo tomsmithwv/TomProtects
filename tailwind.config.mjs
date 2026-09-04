@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Checker status colors (ported from InboxTom, reused later)
-        pass: '#10b981',
+        // Status colors. These mark state — a validation error, a required
+        // field marker — and are never a brand accent.
         warn: '#f59e0b',
         fail: '#ef4444',
-        // Base brand palette (placeholder — calm/protective)
+        // Base brand palette
         ink: '#1a1a1a',
         cream: '#fdfaf3',
         accent: '#0f5c4c', // AA on light backgrounds (7.6:1 on cream)

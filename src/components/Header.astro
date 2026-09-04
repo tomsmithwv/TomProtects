@@ -2,12 +2,11 @@
 import Wordmark from './Wordmark.astro';
 import Container from './Container.astro';
 import Button from './Button.astro';
-// Primary navigation. "Get Started" is the primary CTA → /audit.
+// Primary navigation. "Get Started" is the primary CTA → /workwithme.
 const links = [
   { label: 'How It Works', href: '/#how-it-works' },
   { label: 'About', href: '/#about' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Tools', href: '/tools' },
 ];
 ---
 
@@ -19,7 +18,7 @@ const links = [
       {links.map((l) => (
         <a href={l.href} class="text-ink/70 transition hover:text-ink">{l.label}</a>
       ))}
-      <Button href="/audit" size="sm">Get Started</Button>
+      <Button href="/workwithme" size="sm">Get Started</Button>
     </nav>
 
     <button
@@ -37,7 +36,7 @@ const links = [
     {links.map((l) => (
       <a href={l.href} class="block px-6 py-3 text-ink/70">{l.label}</a>
     ))}
-    <a href="/audit" class="block px-6 py-3 font-semibold text-accent">Get Started</a>
+    <a href="/workwithme" class="block px-6 py-3 font-semibold text-accent">Get Started</a>
   </div>
 
   <script>
