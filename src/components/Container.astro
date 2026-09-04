@@ -1,0 +1,42 @@
+---
+/**
+ * The site's single column. Owns the centring, the horizontal gutter, and the
+ * vertical rhythm, so no page sets `mx-auto max-w-… px-4 py-…` by hand.
+ *
+ * Usually reached through <Section>, which pairs it with a background band.
+ * Used directly only where a band would be wrong — the header and footer.
+ *
+ * Variants are looked up from full literal class names rather than built by
+ * interpolation, because Tailwind scans this file as plain text and only sees
+ * classes that appear here complete.
+ */
+interface Props {
+  /** Reading width. `page` (max-w-5xl) is the default band width. */
+  width?: 'narrow' | 'text' | 'page' | 'wide';
+  /** Vertical rhythm. `none` hands padding back to the caller. */
+  py?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  center?: boolean;
+  class?: string;
+}
+
+const widths = {
+  narrow: 'max-w-2xl',
+  text: 'max-w-3xl',
+  page: 'max-w-5xl',
+  wide: 'max-w-6xl',
+} as const;
+
+const paddings = {
+  none: '',
+  sm: 'py-12',
+  md: 'py-16',
+  lg: 'py-20',
+  xl: 'py-24',
+} as const;
+
+const { width = 'page', py = 'lg', center = false, class: cls = '' } = Astro.props;
+---
+
+<div class:list={['mx-auto px-4', widths[width], paddings[py], center && 'text-center', cls]}>
+  <slot />
+</div>

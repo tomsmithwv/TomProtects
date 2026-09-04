@@ -1,4 +1,6 @@
 ---
+import Button from './Button.astro';
+
 // Inline newsletter signup → POST /api/subscribe with the given source tag.
 // source must be one the endpoint allowlists (source-blog | source-newsletter).
 interface Props {
@@ -19,12 +21,7 @@ const { source = 'source-newsletter', buttonLabel = 'Subscribe' } = Astro.props;
     placeholder="you@yourdomain.com"
     class="flex-1 rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60"
   />
-  <button
-    type="submit"
-    class="whitespace-nowrap rounded-lg bg-accent px-6 py-3 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-  >
-    {buttonLabel}
-  </button>
+  <Button size="md" class="whitespace-nowrap">{buttonLabel}</Button>
 </form>
 <p class="js-newsletter-status mt-2 text-sm" role="status" aria-live="polite"></p>
 

@@ -1,6 +1,7 @@
 ---
 import NewsletterSignup from './NewsletterSignup.astro';
 import Wordmark from './Wordmark.astro';
+import Container from './Container.astro';
 
 // Pages whose closing section already contains a signup (e.g. home's final CTA)
 // pass showNewsletter={false} to avoid two stacked subscribe forms.
@@ -21,7 +22,7 @@ const links = [
 ---
 
 <footer class="bg-ink text-cream">
-  <div class="mx-auto max-w-5xl px-4 py-12">
+  <Container py="sm">
     {showNewsletter && (
       <div class="mb-10 max-w-md">
         <p class="font-semibold">Get the newsletter</p>
@@ -43,5 +44,5 @@ const links = [
     <p class="mt-8 text-xs text-cream/50">
       © {year} TomProtects. Protect the business behind the brand.
     </p>
-  </div>
+  </Container>
 </footer>

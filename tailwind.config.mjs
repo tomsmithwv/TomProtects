@@ -17,7 +17,7 @@ export default {
         'accent-dark': '#7FC1A6',
       },
       fontFamily: {
-        // DM Sans (self-hosted, variable) site-wide; system stack as fallback.
+        // DM Sans (self-hosted, variable) for body and UI; system stack as fallback.
         sans: [
           '"DM Sans"',
           'ui-sans-serif',
@@ -28,6 +28,11 @@ export default {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
+        // Fraunces (self-hosted, variable weight axis 100–900) carries every
+        // heading. Applied to h1–h4 in global.css, so pages rarely name it
+        // directly. `display` is an alias onto the same stack.
+        serif: ['Fraunces', 'ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'serif'],
+        display: ['Fraunces', 'ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'serif'],
         // Handwritten accent — hero caption only
         handwritten: ['Caveat', 'cursive'],
       },

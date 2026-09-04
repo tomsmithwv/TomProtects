@@ -1,0 +1,26 @@
+---
+/**
+ * The small uppercase label that names a section above its heading.
+ *
+ * Deliberately DM Sans, not Fraunces: it is a label rather than a heading, and
+ * the wide tracking is what does the work at this size. It renders as a <p> so
+ * it never enters the heading structure — the h2 below it is the real heading.
+ */
+interface Props {
+  /** On an ink band. accent is 2.2:1 there; accent-dark is 8.35:1. */
+  onDark?: boolean;
+  class?: string;
+}
+
+const { onDark = false, class: cls = '' } = Astro.props;
+---
+
+<p
+  class:list={[
+    'text-xs font-bold uppercase tracking-[0.14em]',
+    onDark ? 'text-accent-dark' : 'text-accent',
+    cls,
+  ]}
+>
+  <slot />
+</p>

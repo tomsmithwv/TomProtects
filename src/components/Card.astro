@@ -1,0 +1,58 @@
+---
+/**
+ * A bordered surface lifted off the band behind it.
+ *
+ * Two jobs, distinguished by radius: `xl` is a card in a grid (findings,
+ * audience, steps), `2xl` is a panel that stands alone (a CTA block, an empty
+ * state, a form's success message).
+ *
+ * The surface flips with the band it sits on — `cream` on a white band, `white`
+ * on a cream one — so a card is always a step away from its ground rather than
+ * always a step in the same direction. `dark` is the ink-band variant.
+ */
+interface Props {
+  id?: string;
+  surface?: 'white' | 'cream' | 'dark';
+  radius?: 'xl' | '2xl';
+  /** Inner padding. Matches Tailwind's scale: p-2 … p-10. */
+  padding?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  center?: boolean;
+  class?: string;
+}
+
+const surfaces = {
+  white: 'border border-black/10 bg-white',
+  cream: 'border border-black/10 bg-cream',
+  dark: 'border border-white/15 bg-white/5',
+} as const;
+
+const radii = {
+  xl: 'rounded-xl',
+  '2xl': 'rounded-2xl',
+} as const;
+
+const paddings = {
+  none: '',
+  xs: 'p-2',
+  sm: 'p-5',
+  md: 'p-6',
+  lg: 'p-8',
+  xl: 'p-10',
+} as const;
+
+const {
+  id,
+  surface = 'white',
+  radius = 'xl',
+  padding = 'md',
+  center = false,
+  class: cls = '',
+} = Astro.props;
+---
+
+<div
+  id={id}
+  class:list={[radii[radius], surfaces[surface], paddings[padding], center && 'text-center', cls]}
+>
+  <slot />
+</div>

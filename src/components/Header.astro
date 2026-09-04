@@ -1,5 +1,7 @@
 ---
 import Wordmark from './Wordmark.astro';
+import Container from './Container.astro';
+import Button from './Button.astro';
 // Primary navigation. "Get Started" is the primary CTA → /audit.
 const links = [
   { label: 'How It Works', href: '/#how-it-works' },
@@ -10,19 +12,14 @@ const links = [
 ---
 
 <header class="sticky top-0 z-40 border-b border-black/10 bg-cream/90 backdrop-blur">
-  <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+  <Container py="none" class="flex items-center justify-between py-4">
     <a href="/" aria-label="tomprotects — home"><Wordmark theme="light" class="h-5 w-auto" /></a>
 
     <nav class="hidden items-center gap-6 text-sm md:flex">
       {links.map((l) => (
         <a href={l.href} class="text-ink/70 transition hover:text-ink">{l.label}</a>
       ))}
-      <a
-        href="/audit"
-        class="rounded-lg bg-accent px-4 py-2 font-semibold text-white transition hover:opacity-90"
-      >
-        Get Started
-      </a>
+      <Button href="/audit" size="sm">Get Started</Button>
     </nav>
 
     <button
@@ -34,7 +31,7 @@ const links = [
     >
       <span class="text-2xl leading-none">☰</span>
     </button>
-  </div>
+  </Container>
 
   <div id="mobile-menu" class="hidden border-t border-black/10 md:hidden">
     {links.map((l) => (

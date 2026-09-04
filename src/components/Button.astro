@@ -1,0 +1,80 @@
+---
+/**
+ * The site's two buttons.
+ *
+ * `primary` is the solid accent one and marks the action the page is asking
+ * for. `secondary` is the bordered one beside it, the quieter of two choices.
+ * One primary per view; the secondary should never compete with it.
+ *
+ * That border is drawn with an inset `ring-2` rather than a real border, so a
+ * secondary occupies exactly the same box as a primary of the same size and the
+ * two line up when they sit side by side.
+ *
+ * Renders an <a> when given `href`, otherwise a <button>. Extra attributes are
+ * forwarded, so the JS on the checker, the audit form, and the newsletter can
+ * keep finding these by id.
+ */
+interface Props {
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  /** On an ink band: accent has too little contrast, so switch to accent-dark. */
+  onDark?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const sizes = {
+  sm: 'px-4 py-2',
+  md: 'px-6 py-3',
+  lg: 'px-7 py-3.5',
+  xl: 'px-7 py-4 text-lg',
+} as const;
+
+const variants = {
+  primary: 'bg-accent text-white hover:opacity-90',
+  secondary: 'text-accent ring-2 ring-inset ring-accent hover:bg-accent hover:text-white',
+} as const;
+
+// On ink, the solid accent still reads (white on #0f5c4c is fine); only the
+// bordered variant needs lifting, because accent-on-ink is 2.2:1.
+const onDarkVariants = {
+  primary: 'bg-accent text-white hover:opacity-90',
+  secondary:
+    'text-accent-dark ring-2 ring-inset ring-accent-dark hover:bg-accent-dark hover:text-ink',
+} as const;
+
+const {
+  variant = 'primary',
+  size = 'lg',
+  href,
+  type = 'submit',
+  onDark = false,
+  class: cls = '',
+  ...rest
+} = Astro.props;
+
+const classes = [
+  'rounded-lg font-semibold transition',
+  sizes[size],
+  (onDark ? onDarkVariants : variants)[variant],
+  cls,
+];
+---
+
+{
+  href ? (
+    <a href={href} {...rest} class:list={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      {...rest}
+      class:list={[...classes, 'disabled:cursor-not-allowed disabled:opacity-60']}
+    >
+      <slot />
+    </button>
+  )
+}

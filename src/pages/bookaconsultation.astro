@@ -2,15 +2,18 @@
 export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FounderPhoto from '../components/FounderPhoto.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import Eyebrow from '../components/Eyebrow.astro';
 ---
 
 <BaseLayout
   title="Book a consultation — TomProtects"
   description="Prefer to talk it through first? Book a short, no-pressure call about your domain, email, and platform security."
 >
-  <section class="mx-auto max-w-2xl px-4 py-16">
-    <p class="text-xs font-bold uppercase tracking-[0.14em] text-accent">Optional call</p>
-    <h1 class="mt-2 text-4xl font-bold tracking-tight">Book a consultation</h1>
+  <Section width="narrow" py="md">
+    <Eyebrow>Optional call</Eyebrow>
+    <h1 class="mt-2 text-4xl font-semibold tracking-tight">Book a consultation</h1>
     <p class="mt-4 text-ink/70">
       Everything I do is async by default — but if you'd rather talk it through first, a short intro call is always
       optional. We'll cover where your domain, email, and revenue platforms stand and whether the full review is a fit.
@@ -30,7 +33,7 @@ import FounderPhoto from '../components/FounderPhoto.astro';
     </ul>
 
     <!-- TidyCal scheduling embed -->
-    <div class="mt-10 rounded-2xl border border-black/10 bg-white p-2 sm:p-4">
+    <Card radius="2xl" padding="xs" class="mt-10 sm:p-4">
       <div class="tidycal-embed" data-path="tomsmith/discovery"></div>
       <script is:inline src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
       <noscript>
@@ -39,6 +42,6 @@ import FounderPhoto from '../components/FounderPhoto.astro';
           <a href="https://tidycal.com/tomsmith/discovery" class="font-medium text-accent underline underline-offset-4">tidycal.com/tomsmith/discovery</a>.
         </p>
       </noscript>
-    </div>
-  </section>
+    </Card>
+  </Section>
 </BaseLayout>

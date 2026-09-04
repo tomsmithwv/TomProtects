@@ -1,4 +1,6 @@
 ---
+import Button from './Button.astro';
+
 // Free email-authentication checker: form → POST /api/check → inline graded
 // report with three status-colored cards + audit CTA. Used on the home hero
 // and on /tools. One instance per page (binds by element id).
@@ -15,13 +17,7 @@
     placeholder="you@yourdomain.com"
     class="flex-1 rounded-lg border border-black/15 bg-white px-5 py-4 text-lg text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60"
   />
-  <button
-    id="checker-submit"
-    type="submit"
-    class="whitespace-nowrap rounded-lg bg-accent px-7 py-4 text-lg font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-  >
-    Check my domain
-  </button>
+  <Button id="checker-submit" size="xl" class="whitespace-nowrap">Check my domain</Button>
 </form>
 
 <p class="mx-auto mt-3 max-w-xl text-sm text-ink/70">

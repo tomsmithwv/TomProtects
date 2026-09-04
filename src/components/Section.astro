@@ -1,0 +1,51 @@
+---
+import Container from './Container.astro';
+
+/**
+ * One band of the page: a full-bleed background with a <Container> inside it.
+ *
+ * The site alternates cream and white bands, with `ink` reserved for the few
+ * places that need to carry weight (the reality cards, pricing, the closing
+ * CTA). `ink` also flips the text to cream, so markup inside needs no dark
+ * variants of its own — but note that `accent` fails contrast on it, so an
+ * eyebrow or a secondary button in an ink band needs `onDark`.
+ *
+ * `gradient` is the hero treatment: white falling to cream, closed with a
+ * hairline rule.
+ */
+interface Props {
+  id?: string;
+  background?: 'none' | 'cream' | 'white' | 'ink' | 'gradient';
+  width?: 'narrow' | 'text' | 'page' | 'wide';
+  py?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  center?: boolean;
+  /** Extra classes on the <section> itself (scroll offsets, mostly). */
+  class?: string;
+  /** Extra classes on the inner container (layout overrides). */
+  innerClass?: string;
+}
+
+const backgrounds = {
+  none: '',
+  cream: 'bg-cream',
+  white: 'bg-white',
+  ink: 'bg-ink text-cream',
+  gradient: 'border-b border-black/5 bg-gradient-to-b from-white to-cream',
+} as const;
+
+const {
+  id,
+  background = 'none',
+  width = 'page',
+  py = 'lg',
+  center = false,
+  class: cls = '',
+  innerClass = '',
+} = Astro.props;
+---
+
+<section id={id} class:list={[backgrounds[background], cls]}>
+  <Container width={width} py={py} center={center} class={innerClass}>
+    <slot />
+  </Container>
+</section>

@@ -1,0 +1,71 @@
+---
+/**
+ * The site's icon set, drawn as inline SVG.
+ *
+ * Replaces the emoji the cards used to carry. Emoji render in the reader's
+ * system font, so they arrived in a different style on every platform, ignored
+ * the section's colour, and turned full-colour on a page with one accent. These
+ * inherit `currentColor` and sit at whatever size the class gives them.
+ *
+ * Icons are decorative: each one sits beside a heading that already says the
+ * same thing, so they carry aria-hidden and every card reads identically to a
+ * screen reader without them.
+ *
+ * Drawn on a 24x24 grid, 1.75 stroke, round caps and joins.
+ */
+interface Props {
+  name: keyof typeof paths;
+  class?: string;
+}
+
+const paths = {
+  /** A key: email as the master key to every other account. */
+  key: ['M11 12h9', 'M20 12v3', 'M16.5 12v2.5'],
+  /** A globe: the domain as the business's identity on the internet. */
+  globe: ['M3 12h18', 'M12 3a4.5 9 0 0 1 0 18', 'M12 3a4.5 9 0 0 0 0 18'],
+  /** A payment card: the revenue platforms attackers follow the money into. */
+  card: [
+    'M4.5 5.5h15A1.5 1.5 0 0 1 21 7v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17V7a1.5 1.5 0 0 1 1.5-1.5z',
+    'M3 10h18',
+  ],
+  /** A pen: creators, who sell what they write and make. */
+  pen: ['M4 20l1-4L16.4 4.6a2.05 2.05 0 0 1 2.9 2.9L8 19l-4 1z', 'M14.5 6.5l3 3'],
+  /** A compass needle: consultants, who sell direction. */
+  compass: ['M15 9l-1.75 4.25L9 15l1.75-4.25L15 9z'],
+  /** A trolley: online business owners, running on a commerce stack. */
+  cart: ['M3 5h2l2.2 9.4a1.5 1.5 0 0 0 1.46 1.15h7.68a1.5 1.5 0 0 0 1.46-1.15L19.5 8H6'],
+  /** An envelope: the newsletter, and the blog's empty state. */
+  mail: [
+    'M4 6.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z',
+    'M3.4 7.2 12 13l8.6-5.8',
+  ],
+} as const;
+
+/** Circles that belong to an icon, stroked to match its paths. [cx, cy, r] */
+const circles: Partial<Record<keyof typeof paths, [number, number, number][]>> = {
+  key: [[7.5, 12, 3.5]],
+  globe: [[12, 12, 9]],
+  compass: [[12, 12, 9]],
+  cart: [
+    [9.5, 19, 1.35],
+    [16.5, 19, 1.35],
+  ],
+};
+
+const { name, class: cls = 'h-6 w-6' } = Astro.props;
+---
+
+<svg
+  class={cls}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {paths[name].map((d) => <path d={d} />)}
+  {circles[name]?.map(([cx, cy, r]) => <circle cx={cx} cy={cy} r={r} />)}
+</svg>
