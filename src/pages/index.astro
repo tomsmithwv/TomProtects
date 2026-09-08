@@ -7,43 +7,68 @@ import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 import Icon from '../components/Icon.astro';
+import RuleList from '../components/RuleList.astro';
+import Callout from '../components/Callout.astro';
+import PullQuote from '../components/PullQuote.astro';
 
-// `icon` names resolve against src/components/Icon.astro.
-const reality = [
-  { icon: 'key', title: 'Email is the master key', body: 'Every password reset — your bank, Stripe, your course platform — flows through your inbox. Lose control of email and an attacker can walk into everything else.' },
-  { icon: 'globe', title: 'Your domain is your identity', body: 'Your domain is your brand, your email, and your reputation. If it lapses or gets hijacked, the business behind it goes dark with it.' },
-  { icon: 'card', title: 'Revenue platforms are targets', body: 'Stripe, Kit, Kajabi, Circle — the tools you get paid through are exactly what attackers go after. They follow the money, and the money runs through your stack.' },
-] as const;
-
-const audience = [
-  { icon: 'pen', title: 'Creators', body: 'You sell courses, memberships, or a paid newsletter, and your audience trusts your name.' },
-  { icon: 'compass', title: 'Consultants', body: 'Your reputation is the product. A spoofed email or hijacked domain hits where it hurts most.' },
-  { icon: 'cart', title: 'Online business owners', body: 'You run on Stripe, Kit, Kajabi, and Circle — and a gap in any one of them puts revenue at risk.' },
-] as const;
-
-const steps = [
-  { n: '1', title: 'Start with the form or a call', body: 'Tell me your domain and the platforms you run on. Prefer to talk it through first? A short intro call is optional.' },
-  { n: '2', title: 'I review and report', body: 'I dig into your domain, email auth, registrar, WHOIS, and subdomains, then write it up in plain English — typically 5–7 business days.' },
-  { n: '3', title: 'Walkthrough or async', body: 'We review the findings on a call, or you take the written report and work through it at your own pace. Your choice.' },
+// The questions a reader in this situation is already carrying. Ordered roughly
+// as they surface: broad worry first, then spending, then the people question.
+const questions = [
+  'Are we secure enough?',
+  'What should we fix first?',
+  'Are we spending money on the right things?',
+  'Do we really need this security product?',
+  'Is our IT provider doing enough?',
+  'How do we reduce business risk?',
+  'How do we build a security program without hiring a full-time CISO?',
 ];
 
-const deliverables = [
-  'A written report in plain English — every finding, prioritized',
-  'Full DNS review',
-  'Email authentication: SPF, DKIM, DMARC',
-  'Registrar security review',
-  'WHOIS / privacy exposure check',
-  'Subdomain inventory',
-  'A prioritized action list with exact values to change',
-];
+// Services folded into the outcome rather than listed, so the reader sees what
+// they get before they see what it is called. The icon on each card is
+// decorative: the heading beside it already says the same thing.
+const help = [
+  {
+    icon: 'shield',
+    heading: 'Understand where you stand',
+    body: `Before anything else, you need an accurate picture. A security foundation assessment
+      looks at how your business actually operates and where the real exposure sits. Most often
+      that is identity and access, and the email and productivity platform your team lives in all
+      day. A maturity assessment puts that in context, so you can see how far along you are rather
+      than only what is broken.`,
+  },
+  {
+    icon: 'route',
+    heading: 'Know what to do next',
+    body: `A list of findings is not a plan. I turn what we learn into a prioritized roadmap: what
+      to do now, what can wait, and what you can reasonably set aside. That includes the practical
+      pieces: security policies people will actually follow, and having your answers in order
+      before a cyber insurance renewal or a customer security review.`,
+  },
+  {
+    icon: 'clock',
+    heading: 'Keep it moving',
+    body: `Most security work stalls at the follow-through. As a fractional CISO I stay involved
+      month to month: keeping the roadmap current, reviewing new vendors and SaaS tools before they
+      are woven into your business, confirming your backups would genuinely get you running again,
+      and shaping security awareness that feels useful rather than like a compliance exercise.`,
+  },
+  {
+    icon: 'compass',
+    heading: 'Newer risks, handled calmly',
+    body: `AI is arriving in businesses faster than the guidance around it. The useful questions are
+      plain ones: which tools are people already using, what business data goes into them, and what
+      needs to be written down. This is more a governance question than a technical one, and it is
+      manageable with clear expectations.`,
+  },
+] as const;
 ---
 
 <BaseLayout
-  title="TomProtects — Protect the business behind the brand"
-  description="Security reviews for online businesses. Start with a free check of your domain's email authentication — SPF, DKIM, and DMARC — then get the full review."
+  title="TomProtects — Fractional CISO &amp; Security Advisor"
+  description="Fractional CISO and security advisory for growing businesses. Understand where you stand, what matters most, and what to do next."
   footerNewsletter={false}
 >
-  <!-- 1–2. Hero with the live checker (primary CTA) + inline result -->
+  <!-- 1. Hero: positioning, the checklist offer, and the signup -->
   <Section
     background="gradient"
     width="text"
@@ -91,81 +116,116 @@ const deliverables = [
       </div>
 
       <div class="text-center lg:order-1">
-        <Eyebrow class="mb-4">Free email security check</Eyebrow>
-        <h1 class="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">Protect the business behind the brand</h1>
+        <Eyebrow class="mb-4">Fractional CISO &amp; Security Advisor</Eyebrow>
+        <h1 class="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+          Helping growing businesses build their first real security program.
+        </h1>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-ink/70 sm:text-xl">
-          Start with a free check of your domain's email authentication — SPF, DKIM, and DMARC.
-          Get a grade and the exact gaps, in plain English.
+          You know security matters. What's less clear is where to start, what to fix first, and who
+          makes those calls when no one on staff owns security. I help you understand where you
+          stand, what matters most, and what to do next.
         </p>
+
+        {/*
+          The offer is stated here rather than by the form, so the hero keeps one
+          voice and the field can follow immediately. The full version of this
+          component, with its own heading, sits at the foot of the page.
+        */}
+        <p class="mx-auto mt-6 max-w-2xl text-ink/70">
+          Start with the free checklist:{' '}
+          <em>The Security Questions Every Growing Business Should Be Able to Answer</em>. A
+          self-scoring readiness check you can work through on your own.
+        </p>
+
+        <NewsletterSignup
+          id="hero"
+          variant="compact"
+          buttonLabel="Send me the checklist"
+          class="mx-auto mt-8 max-w-xl text-left"
+        />
 
         <p class="mt-4 text-sm">
-          <a href="/#how-it-works" class="text-accent underline-offset-4 hover:underline">See how it works →</a>
+          <a href="/#about" class="text-accent underline-offset-4 hover:underline">
+            More about how I work →
+          </a>
         </p>
       </div>
   </Section>
 
-  <!-- 4. The Reality -->
-  <Section background="ink">
-      <Eyebrow onDark class="text-center">The reality</Eyebrow>
-      <h2 class="mx-auto mt-2 max-w-2xl text-center text-3xl font-semibold tracking-tight sm:text-4xl">
-        Three things attackers already know about your business
-      </h2>
-      <div class="mt-12 grid gap-8 md:grid-cols-3">
-        {reality.map((r) => (
-          <div>
-            <Icon name={r.icon} class="h-9 w-9 text-accent-dark" />
-            <h3 class="mt-4 text-xl font-semibold">{r.title}</h3>
-            <p class="mt-2 text-cream/70">{r.body}</p>
-          </div>
-        ))}
-      </div>
+  <!-- 2. The questions you're already asking -->
+  <Section background="white" width="text">
+    <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+      The questions you're already asking
+    </h2>
+
+    <RuleList items={questions} class="mt-8" />
+
+    <p class="mt-8 max-w-2xl text-ink/70">
+      These are reasonable questions, and they usually come up long before anyone in the business
+      has the time or background to answer them properly. Working through them in order is most of
+      what a security program is.
+    </p>
   </Section>
 
-  <!-- 5. Who This Is For -->
-  <Section background="cream">
-      <Eyebrow>Who this is for</Eyebrow>
-      <h2 class="mt-2 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Built for the people who earn through their audience</h2>
-      <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {audience.map((a) => (
-          <Card>
-            <Icon name={a.icon} class="h-7 w-7 text-accent" />
-            <h3 class="mt-3 text-lg font-semibold">{a.title}</h3>
-            <p class="mt-2 text-sm text-ink/70">{a.body}</p>
-          </Card>
-        ))}
-      </div>
-  </Section>
-
-  <!-- 6. How It Works -->
-  <Section id="how-it-works" background="white" class="scroll-mt-20">
-      <Eyebrow>How it works</Eyebrow>
-      <h2 class="mt-2 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Async by default. Calls optional, both ends.</h2>
-      <div class="mt-10 grid gap-8 md:grid-cols-3">
-        {steps.map((s) => (
-          <Card surface="cream" class="relative">
-            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-lg font-bold text-white">{s.n}</span>
-            <h3 class="mt-4 text-lg font-semibold">{s.title}</h3>
-            <p class="mt-2 text-sm text-ink/70">{s.body}</p>
-          </Card>
-        ))}
-      </div>
-  </Section>
-
-  <!-- 7. What You Get -->
+  <!-- 3. How I help -->
   <Section background="cream" width="text">
-      <Eyebrow>What you get</Eyebrow>
-      <h2 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">A complete picture — and an exact list of what to fix</h2>
-      <ul class="mt-8 space-y-3">
-        {deliverables.map((d) => (
-          <li class="flex gap-3">
-            <span class="mt-0.5 flex-shrink-0 font-bold text-accent">✓</span>
-            <span class="text-ink/80">{d}</span>
-          </li>
-        ))}
-      </ul>
+    <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">How I help</h2>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {help.map((h) => (
+        <Card>
+          <span class="grid h-11 w-11 place-items-center rounded-lg bg-accent/10 text-accent">
+            <Icon name={h.icon} class="h-6 w-6" />
+          </span>
+          <h3 class="mt-4 text-xl font-semibold">{h.heading}</h3>
+          <p class="mt-2 text-sm text-ink/70">{h.body}</p>
+        </Card>
+      ))}
+    </div>
+
+    <Callout on="cream" class="mt-8 max-w-2xl">
+      <p class="text-ink/80">
+        Worth being clear about: this is advisory work. I do not sell products or take over your
+        systems. Implementation happens through your existing IT staff or MSP, who know your
+        environment. My part is making sure the right work is happening in the right order.
+      </p>
+    </Callout>
   </Section>
 
-  <!-- 9. About -->
+  <!-- 4. How I think about security -->
+  <Section background="white" width="text">
+    <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+      How I think about security
+    </h2>
+
+    <div class="mt-8 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        Security should leave a business more confident, not more anxious. Fear is a poor basis for
+        decisions. It tends to produce spending on whatever seems most urgent that week, rather than
+        on what actually reduces risk.
+      </p>
+
+      <p>
+        Good security is practical and sustainable. It fits the way your business already works, it
+        can be maintained by the people you already have, and it is prioritized so the most
+        important things happen first. A recommendation that cannot survive a busy quarter is not
+        the right recommendation.
+      </p>
+
+      <p>
+        It should also be understandable. You should be able to explain where your business stands
+        to your leadership team, your insurer, or a customer without needing a translator. That
+        means talking in terms of business outcomes rather than technical controls.
+      </p>
+    </div>
+
+    <PullQuote class="mt-10 max-w-2xl">
+      Most growing businesses do not need enterprise security. They need experienced guidance,
+      applied to their actual situation.
+    </PullQuote>
+  </Section>
+
+  <!-- 5. About -->
   <Section id="about" background="white" width="text" center class="scroll-mt-20">
       <FounderPhoto class="mx-auto h-32 w-32 sm:h-40 sm:w-40" />
       <Eyebrow class="mt-6">About</Eyebrow>
@@ -178,7 +238,7 @@ const deliverables = [
       <p class="mt-6 text-sm font-semibold text-accent">CISSP · CISM · CDPSE · 20+ years</p>
   </Section>
 
-  <!-- 10. Latest from the newsletter (3 most recent, loaded client-side) -->
+  <!-- 6. Latest from the newsletter (3 most recent, loaded client-side) -->
   <Section background="cream">
       <Eyebrow>From the newsletter</Eyebrow>
       <h2 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Latest writing</h2>
@@ -190,16 +250,14 @@ const deliverables = [
       </p>
   </Section>
 
-  <!-- 11. Final CTA + newsletter signup -->
-  <Section background="ink" width="narrow" center>
-      <Eyebrow onDark>Ready when you are</Eyebrow>
-      <h2 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Get practical security tips — and check your domain free</h2>
-      <p class="mt-4 text-cream/70">
-        Join the newsletter for plain-English security and deliverability tips for online businesses.
-      </p>
-      <div class="mx-auto mt-8 max-w-md text-left">
-        <NewsletterSignup source="source-newsletter" />
-      </div>
+  <!-- 7. Newsletter: the page's closing action, and its primary conversion -->
+  <Section background="ink" width="text">
+    <NewsletterSignup
+      id="newsletter"
+      variant="panel"
+      onDark
+      buttonLabel="Send me the checklist"
+    />
   </Section>
 
   <script>
