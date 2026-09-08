@@ -1,0 +1,36 @@
+---
+/**
+ * An aside that needs to sit apart from the copy around it without becoming a
+ * warning.
+ *
+ * A rule on the leading edge and a tinted ground, nothing else. The rule is
+ * `accent` at 40%: present enough to mark the block, quiet enough that it never
+ * reads as an alert. Status colours (warn, fail) are deliberately not used here
+ * — this is an aside, not a problem.
+ *
+ * The ground steps away from whatever band it sits on, the same way <Card>
+ * does: cream on a white band, white on a cream one.
+ */
+interface Props {
+  /** The band this sits on. `white` means the band is white, so the aside is cream. */
+  on?: 'white' | 'cream';
+  class?: string;
+}
+
+const grounds = {
+  white: 'bg-cream',
+  cream: 'bg-white',
+} as const;
+
+const { on = 'white', class: cls = '' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'rounded-lg border border-black/10 border-l-[3px] border-l-accent/40 p-6',
+    grounds[on],
+    cls,
+  ]}
+>
+  <slot />
+</div>

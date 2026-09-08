@@ -1,0 +1,27 @@
+---
+/**
+ * A line of copy given the weight of a statement rather than a paragraph.
+ *
+ * A rule on the leading edge and the heading face, with no ground behind it —
+ * so it lifts out of the prose without becoming a boxed callout. Use <Callout>
+ * when the block is an aside; use this when it is the point.
+ *
+ * Fraunces has to be named here. The base layer only sets the heading face on
+ * h1-h4, and this is a <p>: it carries a heading's weight visually without
+ * claiming a place in the document's heading structure.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: cls = '' } = Astro.props;
+---
+
+<p
+  class:list={[
+    'border-l-[3px] border-accent/40 pl-6 font-serif text-xl leading-snug tracking-tight sm:text-2xl',
+    cls,
+  ]}
+>
+  <slot />
+</p>

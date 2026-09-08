@@ -1,0 +1,56 @@
+---
+// Where the no-JavaScript form post lands. Readers with JavaScript never see
+// this page: their signup answers in place, without a navigation.
+//
+// Server-rendered rather than prerendered so it can read ?error=1 — the same
+// redirect target has to be able to say the address did not go through.
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+
+const failed = Astro.url.searchParams.get('error') === '1';
+---
+
+<BaseLayout
+  title={failed ? 'That didn’t go through — TomProtects' : 'You’re subscribed — TomProtects'}
+  description="Newsletter signup confirmation."
+  noindex
+  footerNewsletter={false}
+>
+  <Section width="narrow" py="xl">
+    {
+      failed ? (
+        <>
+          <Eyebrow>Newsletter</Eyebrow>
+          <h1 class="mt-3 text-3xl font-semibold tracking-tight">That didn't go through</h1>
+          <p class="mt-4 text-ink/70">
+            Your address wasn't added — either it looked malformed, or you tried a few times in
+            quick succession. Go back and try again, or email me at{' '}
+            <a
+              href="mailto:hello@tomprotects.com"
+              class="font-medium text-accent underline underline-offset-4"
+            >
+              hello@tomprotects.com
+            </a>{' '}
+            and I'll add you myself.
+          </p>
+        </>
+      ) : (
+        <>
+          <Eyebrow>Newsletter</Eyebrow>
+          <h1 class="mt-3 text-3xl font-semibold tracking-tight">You're on the list</h1>
+          <p class="mt-4 text-ink/70">
+            Check your inbox to confirm your address — the checklist follows right after. If it
+            hasn't arrived in a few minutes, it's worth a look in your spam folder.
+          </p>
+        </>
+      )
+    }
+
+    <p class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-accent">
+      <a href="/" class="hover:underline">Back home</a>
+      <a href="/blog" class="hover:underline">Read the blog</a>
+    </p>
+  </Section>
+</BaseLayout>

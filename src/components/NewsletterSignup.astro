@@ -1,73 +1,215 @@
 ---
 import Button from './Button.astro';
 
-// Inline newsletter signup → POST /api/subscribe with the given source tag.
-// source must be one the endpoint allowlists (source-blog | source-newsletter).
+/**
+ * The newsletter signup. The site's primary conversion, so it appears more than
+ * once on a page and has to behave the same everywhere.
+ *
+ * The form posts to this site's own /api/subscribe, which validates,
+ * rate-limits and upserts into Kit with a source tag — no API key ever reaches
+ * the browser. Without JavaScript it works as an ordinary form post and the
+ * endpoint answers with a redirect to /subscribed. With JavaScript it submits
+ * in the background and the reader stays where they are.
+ *
+ * Three shapes:
+ *   bare     the field and the button, nothing around them
+ *   compact  adds the microcopy. For a hero, where the copy above the form has
+ *            already said what the offer is and a heading would be a second title
+ *   panel    the full thing: heading, offer paragraph, form, microcopy
+ */
 interface Props {
+  /**
+   * Unique per instance. The field id derives from it, so two signups on one
+   * page must not share one — the home page renders the hero and the closing
+   * panel, both tagged source-newsletter.
+   */
+  id?: string;
+  /** Must be one the endpoint allowlists (source-blog | source-newsletter). */
   source?: string;
+  variant?: 'bare' | 'compact' | 'panel';
   buttonLabel?: string;
+  heading?: string;
+  /** Heading level, so each page keeps a sensible outline. */
+  as?: 'h2' | 'h3';
+  /** On an ink band: the wrapper copy and the status states need lifting. */
+  onDark?: boolean;
+  class?: string;
 }
-const { source = 'source-newsletter', buttonLabel = 'Subscribe' } = Astro.props;
+
+const {
+  id,
+  source = 'source-newsletter',
+  variant = 'bare',
+  buttonLabel = 'Subscribe',
+  heading = 'Join the newsletter',
+  as: Heading = 'h2',
+  onDark = false,
+  class: cls = '',
+} = Astro.props;
+
+const instanceId = id ?? source;
+const fieldId = `nl-${instanceId}`;
 ---
 
-<form class="js-newsletter flex flex-col gap-3 sm:flex-row" data-source={source} novalidate>
-  <label class="sr-only" for={`nl-${source}`}>Email address</label>
-  <input
-    id={`nl-${source}`}
-    type="email"
-    name="email"
-    required
-    autocomplete="email"
-    placeholder="you@yourdomain.com"
-    class="flex-1 rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60"
-  />
-  <Button size="md" class="whitespace-nowrap">{buttonLabel}</Button>
-</form>
-<p class="js-newsletter-status mt-2 text-sm" role="status" aria-live="polite"></p>
+<div class={cls}>
+  {variant === 'panel' && (
+    <Fragment>
+      <Heading class="text-2xl font-semibold tracking-tight">{heading}</Heading>
+      <p class:list={['mt-4 max-w-2xl', onDark ? 'text-cream/70' : 'text-ink/70']}>
+        Subscribe and I'll send you the checklist:{' '}
+        <em>The Security Questions Every Growing Business Should Be Able to Answer</em>. It's a
+        self-scoring readiness check — you work through the questions, score yourself, and come away
+        with a clear picture of where your business actually stands.
+      </p>
+    </Fragment>
+  )}
+
+  {/*
+    action and method are what make this work with JavaScript switched off; the
+    handler below cancels the native submit whenever it can run. The source
+    travels in a hidden field so the form post carries it too, not only the fetch.
+  */}
+  <form
+    class:list={['js-newsletter flex flex-col gap-3 sm:flex-row', variant === 'panel' && 'mt-6']}
+    action="/api/subscribe"
+    method="post"
+    data-source={source}
+    data-on-dark={onDark ? 'true' : 'false'}
+    novalidate
+  >
+    <input type="hidden" name="source" value={source} />
+    <label class="sr-only" for={fieldId}>Email address</label>
+    <input
+      id={fieldId}
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="you@yourdomain.com"
+      class="flex-1 rounded-lg border border-black/15 bg-white px-4 py-3 text-ink placeholder-ink/60 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/60"
+    />
+    <Button size="md" class="whitespace-nowrap">{buttonLabel}</Button>
+  </form>
+
+  {/*
+    Always rendered and always the same height, so a message arriving never
+    pushes the microcopy down. That space is reserved even while empty — which
+    is the whole point, and the reason there is no `empty:` variant here.
+    Success and failure differ in wording and in panel style, never by colour
+    alone. Written with no whitespace inside the tag: `:empty` in CSS counts a
+    whitespace text node as content, so a prettier-formatted <p> is never empty.
+  */}<p
+    class="js-newsletter-status mt-3 flex min-h-[3rem] items-center rounded-lg px-4 text-sm"
+    role="status"
+    aria-live="polite"
+  ></p>
+
+  {variant !== 'bare' && (
+    <p class:list={['max-w-2xl text-sm', onDark ? 'text-cream/60' : 'text-ink/60']}>
+      One email a week with practical security guidance for growing businesses. No sales pitches.
+      Unsubscribe at any time, and your address goes nowhere else.
+    </p>
+  )}
+</div>
 
 <script>
   // Bind once per page; querySelectorAll covers every signup instance.
   if (!(window as any).__nlBound) {
     (window as any).__nlBound = true;
+
+    // Written out in full so Tailwind's scanner generates them — these classes
+    // are only ever applied from here.
+    const STATE = {
+      light: {
+        success: ['bg-accent/10', 'text-ink'],
+        error: ['bg-ink/5', 'border-l-[3px]', 'border-l-ink/30', 'text-ink'],
+      },
+      dark: {
+        success: ['bg-white/10', 'text-cream'],
+        error: ['bg-white/5', 'border-l-[3px]', 'border-l-cream/40', 'text-cream'],
+      },
+    };
+    const ALL = [
+      ...STATE.light.success,
+      ...STATE.light.error,
+      ...STATE.dark.success,
+      ...STATE.dark.error,
+    ];
+
     document.querySelectorAll('form.js-newsletter').forEach((el) => {
       const form = el as HTMLFormElement;
+      const input = form.querySelector('input[type="email"]') as HTMLInputElement;
+      const btn = form.querySelector('button') as HTMLButtonElement;
+      const status = form.parentElement?.querySelector(
+        '.js-newsletter-status',
+      ) as HTMLElement | null;
+      const palette = form.dataset.onDark === 'true' ? STATE.dark : STATE.light;
+
+      // Messages are kept to a single line at the narrowest place this appears
+      // (the footer, ~448px). Reserving the height only stops the page moving
+      // if what lands in it actually fits — so the contact address goes in as a
+      // short link rather than as a full address in the text.
+      const setStatus = (message: string, kind: 'success' | 'error' | 'pending') => {
+        if (!status) return;
+        status.textContent = message;
+        status.classList.remove(...ALL);
+        if (kind !== 'pending') status.classList.add(...palette[kind]);
+      };
+
+      const setErrorWithContact = (message: string) => {
+        if (!status) return;
+        setStatus(`${message} `, 'error');
+        const link = document.createElement('a');
+        link.href = 'mailto:hello@tomprotects.com';
+        link.textContent = 'Email me';
+        link.className = 'underline underline-offset-2';
+        status.append(link, ' instead.');
+      };
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const input = form.querySelector('input[type="email"]') as HTMLInputElement;
-        const btn = form.querySelector('button') as HTMLButtonElement;
-        const status = form.nextElementSibling as HTMLElement | null;
         const email = input.value.trim();
         if (!email) return;
 
         btn.disabled = true;
         const prev = btn.textContent;
         btn.textContent = 'Subscribing…';
-        if (status) {
-          status.textContent = '';
-          status.style.color = '';
-        }
+        setStatus('Sending your request…', 'pending');
 
+        let res: Response;
         try {
-          const res = await fetch('/api/subscribe', {
+          res = await fetch('/api/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, source: form.dataset.source }),
           });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
-          if (status) {
-            status.textContent = "You're on the list — thanks for subscribing.";
-            status.style.color = '#065f46';
+        } catch {
+          // Could not reach the endpoint at all: offline, or blocked. Hand the
+          // browser the plain form post rather than losing the subscriber to a
+          // script failure.
+          form.submit();
+          return;
+        }
+
+        btn.disabled = false;
+        btn.textContent = prev;
+
+        if (res.ok) {
+          form.reset();
+          setStatus("You're on the list. Check your email to confirm.", 'success');
+        } else {
+          // The endpoint's own messages are already short and specific
+          // ("Invalid email format", "Too many requests…"), so they are shown
+          // as sent. Only the unknown case needs the fallback wording.
+          let message = '';
+          try {
+            const data = await res.json();
+            if (typeof data?.error === 'string') message = data.error;
+          } catch {
+            /* fall through to the generic message */
           }
-          input.value = '';
-        } catch (err) {
-          if (status) {
-            status.textContent = err instanceof Error ? err.message : 'An error occurred.';
-            status.style.color = '#991b1b';
-          }
-        } finally {
-          btn.disabled = false;
-          btn.textContent = prev;
+          if (message) setStatus(message, 'error');
+          else setErrorWithContact('Something went wrong.');
         }
       });
     });

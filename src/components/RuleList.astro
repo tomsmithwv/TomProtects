@@ -1,0 +1,33 @@
+---
+/**
+ * A list where each item is separated by a rule rather than a bullet.
+ *
+ * Built for the questions a reader is already asking, where each line is a
+ * short statement that deserves its own row. Items are set in the heading face,
+ * because they read as a run of small headings rather than as prose.
+ *
+ * The dividers reuse `divide-y divide-black/10`, the same rule the blog index
+ * already uses, so the two lists match. The marker is `accent` at 60% — it is
+ * decorative, and the list reads identically without it.
+ *
+ * Deliberately no hover state: these rows are static text, not links, and a
+ * hover that tints or nudges them would imply they can be clicked.
+ */
+interface Props {
+  items: readonly string[];
+  class?: string;
+}
+
+const { items, class: cls = '' } = Astro.props;
+---
+
+<ul class:list={['divide-y divide-black/10 border-y border-black/10', cls]}>
+  {
+    items.map((item) => (
+      <li class="flex items-center gap-3.5 py-4 font-serif text-lg tracking-tight">
+        <span class="h-1.5 w-1.5 flex-none rounded-full bg-accent/60" aria-hidden="true" />
+        <span>{item}</span>
+      </li>
+    ))
+  }
+</ul>
