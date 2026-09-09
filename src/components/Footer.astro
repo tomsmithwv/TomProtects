@@ -3,6 +3,7 @@ import NewsletterSignup from './NewsletterSignup.astro';
 import Wordmark from './Wordmark.astro';
 import Container from './Container.astro';
 import Certifications from './Certifications.astro';
+import { SITE } from '../consts';
 
 // Pages whose closing section already contains a signup (e.g. home's final CTA)
 // pass showNewsletter={false} to avoid two stacked subscribe forms.
@@ -66,7 +67,7 @@ const isCurrent = (href: string) => {
       <Certifications size={32} gap="gap-4" onDark label="Professional certifications" />
 
       <p class="text-xs text-cream/50">
-        © {year} TomProtects. Fractional CISO &amp; Security Advisor.
+        © {year} {SITE.name}. {SITE.positioning}.
       </p>
     </div>
   </Container>

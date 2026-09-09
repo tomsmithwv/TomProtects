@@ -2,11 +2,12 @@
 export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
+import { SITE } from '../consts';
 
 // TODO(legal): this is written to be accurate rather than to be a lawyer's
 // draft. Worth a review before it matters, and worth revisiting whenever a
 // form, an embed or a third-party script is added to the site.
-const CONTACT_EMAIL = 'hello@tomprotects.com';
+const CONTACT_EMAIL = SITE.email;
 const UPDATED = 'September 2026';
 ---
 

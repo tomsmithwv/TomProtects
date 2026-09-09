@@ -113,6 +113,8 @@ const fieldId = `nl-${instanceId}`;
 </div>
 
 <script>
+  import { SITE } from '../consts';
+
   // Bind once per page; querySelectorAll covers every signup instance.
   if (!(window as any).__nlBound) {
     (window as any).__nlBound = true;
@@ -160,7 +162,7 @@ const fieldId = `nl-${instanceId}`;
         if (!status) return;
         setStatus(`${message} `, 'error');
         const link = document.createElement('a');
-        link.href = 'mailto:hello@tomprotects.com';
+        link.href = `mailto:${SITE.email}`;
         link.textContent = 'Email me';
         link.className = 'underline underline-offset-2';
         status.append(link, ' instead.');

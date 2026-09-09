@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
 
 interface Props {
   title?: string;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const {
-  title = 'TomProtects — Fractional CISO & Security Advisor',
+  title = `${SITE.name} — ${SITE.positioning}`,
   description = 'Fractional CISO and security advisory for growing businesses. Understand where you stand, what matters most, and what to do next.',
   ogType = 'website',
   publishedTime,
@@ -23,7 +24,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://tomprotects.com').href;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
 ---
 
 <!doctype html>

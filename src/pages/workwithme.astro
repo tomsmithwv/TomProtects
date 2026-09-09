@@ -5,8 +5,9 @@ import FounderPhoto from '../components/FounderPhoto.astro';
 import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
 import Callout from '../components/Callout.astro';
+import { SITE } from '../consts';
 
-const CONTACT_EMAIL = 'hello@tomprotects.com';
+const CONTACT_EMAIL = SITE.email;
 ---
 
 <BaseLayout

@@ -8,6 +8,7 @@ export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Eyebrow from '../components/Eyebrow.astro';
+import { SITE } from '../consts';
 
 const failed = Astro.url.searchParams.get('error') === '1';
 ---
@@ -28,10 +29,10 @@ const failed = Astro.url.searchParams.get('error') === '1';
             Your address wasn't added — either it looked malformed, or you tried a few times in
             quick succession. Go back and try again, or email me at{' '}
             <a
-              href="mailto:hello@tomprotects.com"
+              href={`mailto:${SITE.email}`}
               class="font-medium text-accent underline underline-offset-4"
             >
-              hello@tomprotects.com
+              {SITE.email}
             </a>{' '}
             and I'll add you myself.
           </p>
