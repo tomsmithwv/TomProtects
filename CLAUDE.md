@@ -411,6 +411,20 @@ Booking is the contact path, so this page carries **no form** and needs no Kit
 source tag. Alongside the calendar, offer `hello@tomprotects.com` for anyone who
 would rather write than book.
 
+**`tidycal.com/tomsmith/discovery` is a real entry point, not only a fallback.**
+It is what the `noscript` block links to, and it is a public URL that can be
+pasted into an email or found on its own. A reader arriving there sees the event
+name, the duration and whatever the TidyCal description holds — none of this
+page's copy. Whatever that description says is the whole of the framing for those
+bookings, so it should say, briefly and in the same voice, what the call is and
+who it is for. Empty is safe; it is not the same as sufficient.
+
+The TidyCal account's display name also shows on the card, above the event. It
+currently reads *Tom Smith III* while the line directly above the calendar says
+*You'll be talking to me directly — Tom*. Both are true and the mismatch is
+small, but the calendar is the more formal of the two and it is the one a
+stranger reads first.
+
 ### /privacy
 
 What the site collects and why, in the same plain voice: newsletter signups are
@@ -549,8 +563,12 @@ words.
       tomsmithtech's separate account, under the new title and written for the
       narrowed audience. **This is the one gap with a cost:** the site offers that
       checklist in five places and currently delivers nothing.
-- [ ] The TidyCal event description rewritten. It still sells the Domain Security
-      Review and offers to explain its pricing, on a page that does neither.
+- [x] The TidyCal event description no longer sells the Domain Security Review.
+      It was removed outright rather than rewritten, so the card now shows the
+      event name and the duration and nothing else. On `/workwithme` that is
+      right — the page above the calendar already does the expectation-setting,
+      and the duration lives in exactly one place. See the note below about the
+      direct booking link, where that framing is absent.
 - [ ] `KIT_API_KEY` set in Cloudflare for Production **and** Preview; nothing
       else in the environment. Without it on Preview, a preview deploy renders an
       empty blog.
