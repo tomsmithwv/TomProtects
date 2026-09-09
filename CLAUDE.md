@@ -392,6 +392,17 @@ incidents rather than only plans for them. That history is the point: it is
 straightforward to recommend good security when someone else has to find the time
 and money for it.
 
+**Why this size, specifically.** One paragraph, placed before the one explaining
+why the practice exists, so it sets up the conclusion rather than repeating it.
+The argument is structural, not a complaint: a large organization can hire the
+experience it needs and a very small one does not yet need much, and in between
+sits a band carrying real responsibility with no straightforward way to buy
+senior attention on it — so the work gets skipped, because it was nobody's job
+rather than because anyone decided it did not matter. **Never a swipe.** The
+reason good guidance is scarce at this size is economics, and saying so is
+honest; naming firms or vendors as the cause would be neither, and would break
+the "not as a swipe at anyone else's work" rule this brief sets elsewhere.
+
 **This is the page where *fractional CISO* belongs.** Here it is biography rather
 than a label the reader has to decode: the title for the ongoing end of the work,
 defined in the sentence it appears in, for the reader who already knows the term
