@@ -273,12 +273,16 @@ a `prefers-reduced-motion` guard.
 `/` · `/about` · `/blog` · `/blog/{slug}` · `/workwithme` · `/privacy` · 404
 
 **Pricing: one number, in one place.** `/workwithme` states a fixed price for
-the starting assessment, because a reader deciding whether to book needs to know
-whether this is a five-hundred-dollar conversation or a fifteen-thousand-dollar
-one, and making them ask is a tax on exactly the cautious reader this practice
-wants. That is the whole of it: **no price anywhere else on the site**, no
-packages, no tiers, no table, no "from", and no figure attached to the ongoing
-advisory — that is scoped in conversation, as it always was.
+the starting assessment — **Security foundation assessment — $3,500** — because a
+reader deciding whether to book needs to know whether this is a
+five-hundred-dollar conversation or a fifteen-thousand-dollar one, and making
+them ask is a tax on exactly the cautious reader this practice wants. The
+figure lives here in the brief once, and on that page once; if it changes,
+those are the two places.
+
+That is the whole of it: **no price anywhere else on the site**, no packages, no
+tiers, no table, no "from", and no figure attached to the ongoing advisory —
+that is scoped in conversation, as it always was.
 
 This reverses the v2 rule, which was that the site carried no pricing at all.
 That rule came from v1's launch-price block and price runway, which were a
@@ -479,11 +483,19 @@ What the page should say now:
   what is already being asked of it, and whether an engagement makes sense. No
   obligation either way.
 - **How an engagement starts.** The fixed-price starting assessment as the entry
-  point — scope and cost both set before it begins — stated plainly with the
-  figure. Then that the assessment stands on its own and plenty of organizations
-  run the roadmap themselves, and that ongoing month-to-month advisory is
-  available *afterwards* rather than bundled, so a reader can see the work before
-  deciding whether they want more of it. The ongoing side carries no figure.
+  point — scope and cost both set before it begins — with the figure in a Panel
+  rather than in the prose, so it can be found by someone scanning rather than
+  reading. One sentence follows it saying what the assessment is not: no
+  penetration testing, no remediation work, no ongoing monitoring. **A sentence,
+  never a list** — a bulleted set of exclusions reads as a contract, and the
+  point is to save a reader a wasted call, not to defend a scope.
+
+  Then that the assessment stands on its own — *if you would rather take the
+  roadmap and run it with the IT provider you already have*, conditional and
+  addressed to the reader, never "plenty of organizations do" — and that ongoing
+  month-to-month advisory is available *afterwards* rather than bundled, so a
+  reader can see the work before deciding whether they want more of it. The
+  ongoing side carries no figure.
 - **The one-off audit objection**, answered in a paragraph. A reader comparing
   this to a security firm's audit is asking a fair question and deserves a fair
   answer: an audit is a reasonable purchase, it produces a report at the point
@@ -667,23 +679,6 @@ words.
       `SITE.location` was added alongside it
 - [x] The checklist is *The Security Questions Every Small Organization Should Be
       Able to Answer* everywhere the site offers it
-
-### Live placeholders — visible to readers right now
-
-Two sections ship deliberately unfinished, and both are on the production site.
-Neither is a bug; both are a promise the site is currently not keeping.
-
-- [ ] **The price on `/workwithme`.** The page states that the starting
-      assessment is fixed-price and then does not say what the price is, which is
-      a worse position than never raising it — a reader who came to find out
-      leaves without the one fact they came for. Nothing anywhere may invent a
-      number, a range or a "starting at" to close this; it is Tom's figure and
-      only Tom's.
-- [ ] **The engagement example on Home.** Structure with TODO text where the
-      content goes. It needs one real engagement, anonymized by removing detail
-      rather than by substituting invented detail. If no engagement can be
-      written up yet, deleting the band is the correct move and is better than
-      leaving it standing.
 
 ### Not done, and not doable from the repo
 

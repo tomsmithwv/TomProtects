@@ -104,14 +104,26 @@ const CONTACT_EMAIL = SITE.email;
       </p>
     </div>
 
-    <Callout on="cream" class="mt-8 max-w-2xl">
-      <p class="text-ink/80">
-        <strong>TODO — price.</strong> The fixed price for the starting assessment goes here, and
-        this note comes out. It is deliberately blank: no number, no range and no "starting at" has
-        been invented for it. Until it is filled in, this page promises a fixed price and does not
-        say what it is.
+    {/*
+      The one price on the site. A Panel rather than a Callout: a Callout is an
+      aside set apart from the copy, and this is not an aside — it is the answer
+      to the question a reader arrives with, and it should be findable by
+      someone scanning the page rather than reading it.
+
+      font-serif is named explicitly. The base layer only puts Fraunces on
+      h1-h4, and this is a <p>: it carries display weight without claiming a
+      place in the heading structure, the same way <PullQuote> does.
+    */}
+    <Card radius="2xl" padding="lg" class="mt-8 max-w-2xl">
+      <p class="font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
+        Security foundation assessment — $3,500
       </p>
-    </Callout>
+    </Card>
+
+    <p class="mt-6 max-w-2xl text-ink/70">
+      The assessment is advisory: it does not include penetration testing, remediation work, or
+      ongoing monitoring.
+    </p>
 
     <h3 class="mt-12 text-xl font-semibold text-ink">
       Why not just buy a one-off audit from a security firm?
