@@ -1,7 +1,7 @@
 // Blog source: TomProtects Kit account broadcasts (API v4), rendered server-side
 // at request time so new public broadcasts appear without a redeploy. Kit
 // responses are edge-cached ~1h via caches.default.
-import { sanitizePostHtml, excerptFrom } from './sanitize';
+import { sanitizePostHtml, firstProseSentence } from './sanitize';
 
 const KIT_API = 'https://api.kit.com/v4';
 const CACHE_TTL = 3600; // seconds
@@ -111,10 +111,23 @@ function assignSlugs(list: Broadcast[]): Map<number, string> {
 }
 
 // Kit's description and preview_text can carry markup, so this goes through the
-// same parser as the post body rather than a tag-stripping regex, and truncates
-// on a word boundary.
+// same parser as the post body rather than a tag-stripping regex.
+//
+// Tried in order, taking the first that yields real prose. The order matters:
+// description is where a summary is supposed to live, but Kit will happily
+// accept an image, a heading or a preheader line there, and previously whatever
+// sat in that field went straight onto the card. Now a source that flattens to
+// nothing usable falls through to the next one instead.
+//
+// `content` is last and is only used when the list endpoint already returned it
+// — this must not become a per-post detail fetch, which would turn one request
+// into one per broadcast on every uncached blog render.
 function makeExcerpt(b: Broadcast): string {
-  return excerptFrom(b.description || b.preview_text || '', 180);
+  for (const source of [b.description, b.preview_text, b.content]) {
+    const prose = firstProseSentence(source || '', 180);
+    if (prose) return prose;
+  }
+  return '';
 }
 
 function formatDate(iso?: string | null): string {

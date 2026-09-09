@@ -397,6 +397,14 @@ const help = [
             '<p class="max-w-2xl text-ink/70">Nothing has been published yet. The first piece will appear here as soon as it goes out.</p>';
           return;
         }
+        // Three columns is right for three cards and wrong for one: a lone
+        // card in a three-track grid sits at a third width with two empty
+        // tracks beside it, which reads as a page that failed to load rather
+        // than as a blog with one post. Below three, one full-width column.
+        // md:grid-cols-3 also appears in the markup above, which is what keeps
+        // Tailwind's scanner generating it.
+        wrap.className = posts.length >= 3 ? 'mt-10 grid gap-6 md:grid-cols-3' : 'mt-10 grid gap-6';
+
         const esc = (s: unknown) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string);
 
         // Built by hand rather than with <Card>, because this section is filled
