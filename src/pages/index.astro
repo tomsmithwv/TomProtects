@@ -48,23 +48,35 @@ const audience = [
   },
 ] as const;
 
-// PLACEHOLDER — scaffolding for one anonymized engagement example, and nothing
-// more. There is no client, no outcome, no quote and no number here, because
-// none of them exist yet and inventing them would be inventing a reference.
-// Each line below is an instruction to whoever fills this in, written to be
-// impossible to mistake for copy.
-const engagementExample = [
+// How a first engagement is shaped. This describes a process, not a history:
+// every line is present or conditional tense, and none of it claims an
+// engagement has already happened. No "most clients", no "we found", no
+// outcomes and no numbers — a process can be described honestly before it has
+// ever run, and a result cannot.
+const steps = [
   {
-    label: 'The situation',
-    todo: 'TODO — the organization in one or two sentences: rough size, sector, and what prompted the call. No name, and no detail specific enough to identify it.',
+    heading: 'A first call',
+    body: `A short conversation about where the organization stands, what is already being asked of
+      it, and whether an engagement would help at all. No obligation either way, and no pitch — if
+      this is not the right fit, that is a useful thing to find out in the first ten minutes.`,
   },
   {
-    label: 'What was found',
-    todo: 'TODO — what the assessment actually turned up, in plain language. Two or three things at most, described as a reader would recognise them rather than as findings with severities.',
+    heading: 'A starting assessment',
+    body: `A fixed-scope look at how the organization actually works and where the real exposure
+      sits: identity and access, the email and productivity platform your team lives in, whether
+      backups would genuinely get you running again, and the tools and vendors already in use.`,
   },
   {
-    label: 'What changed',
-    todo: 'TODO — what was different afterwards, and over roughly what period. Only what can be said plainly and truthfully; no figure that was never actually measured.',
+    heading: 'A prioritized roadmap',
+    body: `The findings turned into an order rather than a list — what to do now, what can wait, and
+      what can reasonably be set aside — each with a reason and a realistic sense of the effort
+      involved. It is written to be read by your leadership as well as your IT provider.`,
+  },
+  {
+    heading: 'Then it is your call',
+    body: `You can take the roadmap and run it with the IT staff or provider you already have, or
+      keep me involved month to month to keep it current as things change. That decision comes
+      after the assessment, when there is something concrete to decide about.`,
   },
 ] as const;
 
@@ -321,37 +333,43 @@ const help = [
   </Section>
 
   <!--
-    7. Engagement example — PLACEHOLDER. This band ships empty on purpose and is
-    not finished content. It sits here, after "Latest writing" and before the
-    closing panel, for two reasons: proof reads best immediately before the ask,
-    and white here is the one insertion point that leaves every band above it on
-    the ground it already had. Moving it means re-checking the cream/white
-    alternation from that point down.
+    7. What working together looks like. Sits here, after "Latest writing" and
+    before the closing panel, because knowing how a thing starts is the last
+    doubt to settle before the ask — and because white here leaves every band
+    above it on the ground it already had. Moving it means re-checking the
+    cream/white alternation from that point down.
+
+    An <ol>, because these are ordered steps and the numbers carry meaning; the
+    badge reuses the tile that holds an icon in "How I help", with a numeral in
+    place of the glyph. h-full so cards in a row match height rather than each
+    shrinking to its own copy.
   -->
   <Section background="white" width="text">
-    <Eyebrow>Engagement example</Eyebrow>
-    <h2 class="mt-2 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-      What this looks like in practice
+    <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+      What working together looks like
     </h2>
 
-    <Callout on="white" class="mt-6 max-w-2xl">
-      <p class="text-ink/80">
-        <strong>TODO — placeholder, not real content.</strong> This is scaffolding for one
-        anonymized engagement example. Nothing below describes real work. Fill it in or delete the
-        section; it should not reach a reader as it stands.
-      </p>
-    </Callout>
+    <p class="mt-6 max-w-2xl text-ink/70">
+      A first engagement follows four steps. Nothing in it is a surprise, and you can stop after
+      any of them.
+    </p>
 
-    <Card radius="2xl" padding="lg" surface="cream" class="mt-8 max-w-2xl">
-      <dl class="divide-y divide-black/10">
-        {engagementExample.map((row) => (
-          <div class="py-5 first:pt-0 last:pb-0">
-            <dt><Eyebrow>{row.label}</Eyebrow></dt>
-            <dd class="mt-2 text-ink/70">{row.todo}</dd>
-          </div>
-        ))}
-      </dl>
-    </Card>
+    <ol class="mt-10 grid list-none gap-4 p-0 sm:grid-cols-2">
+      {steps.map((step, i) => (
+        <li>
+          <Card surface="cream" class="h-full">
+            <span
+              class="grid h-11 w-11 place-items-center rounded-lg bg-accent/10 text-lg font-semibold text-accent"
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
+            <h3 class="mt-4 text-xl font-semibold">{step.heading}</h3>
+            <p class="mt-2 text-sm text-ink/70">{step.body}</p>
+          </Card>
+        </li>
+      ))}
+    </ol>
   </Section>
 
   <!-- 8. Newsletter: the closing action. Concise, because the hero above has
