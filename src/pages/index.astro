@@ -18,8 +18,8 @@ const questions = [
   'Are we spending money on the right things?',
   'Do we really need this security product?',
   'Is our IT provider doing enough?',
-  'How do we reduce business risk?',
-  'How do we build a security program without hiring a full-time CISO?',
+  'What happens if we lose access to our systems for a week?',
+  'How do we get someone in charge of this without hiring a full-time person?',
 ];
 
 // Services folded into the outcome rather than listed, so the reader sees what
@@ -30,7 +30,7 @@ const help = [
     icon: 'shield',
     heading: 'Understand where you stand',
     body: `Before anything else, you need an accurate picture. A security foundation assessment
-      looks at how your business actually operates and where the real exposure sits. Most often
+      looks at how your organization actually operates and where the real exposure sits. Most often
       that is identity and access, and the email and productivity platform your team lives in all
       day. A maturity assessment puts that in context, so you can see how far along you are rather
       than only what is broken.`,
@@ -46,16 +46,18 @@ const help = [
   {
     icon: 'clock',
     heading: 'Keep it moving',
-    body: `Most security work stalls at the follow-through. As a fractional CISO I stay involved
-      month to month: keeping the roadmap current, reviewing new vendors and SaaS tools before they
-      are woven into your business, confirming your backups would genuinely get you running again,
-      and shaping security awareness that feels useful rather than like a compliance exercise.`,
+    body: `Most security work stalls at the follow-through. So I stay involved month to month:
+      keeping the roadmap current, reviewing new vendors and software before they are woven into how
+      you work, confirming your backups would genuinely get you running again, and shaping security
+      awareness that feels useful rather than like a compliance exercise. This is the part some
+      people call a fractional CISO — a part-time security leader, shared across a few
+      organizations rather than hired full time.`,
   },
   {
     icon: 'compass',
     heading: 'Newer risks, handled calmly',
-    body: `AI is arriving in businesses faster than the guidance around it. The useful questions are
-      plain ones: which tools are people already using, what business data goes into them, and what
+    body: `AI is arriving in workplaces faster than the guidance around it. The useful questions are
+      plain ones: which tools are people already using, what information goes into them, and what
       needs to be written down. This is more a governance question than a technical one, and it is
       manageable with clear expectations.`,
   },
@@ -63,8 +65,8 @@ const help = [
 ---
 
 <BaseLayout
-  title="TomProtects — Fractional CISO &amp; Security Advisor"
-  description="Fractional CISO and security advisory for growing businesses. Understand where you stand, what matters most, and what to do next."
+  title="TomProtects — Security advice for small organizations"
+  description="Security advice for small practices, nonprofits and local government agencies with nobody whose job is security. Based in Morgantown, West Virginia, working across the region and remotely."
   footerNewsletter={false}
 >
   <!-- 1. Hero: positioning, the checklist offer, and the signup -->
@@ -115,14 +117,25 @@ const help = [
       </div>
 
       <div class="text-center lg:order-1">
-        <Eyebrow class="mb-4">Fractional CISO &amp; Security Advisor</Eyebrow>
+        <Eyebrow class="mb-4">Security advisor · Morgantown, West Virginia</Eyebrow>
         <h1 class="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-          Helping growing businesses build their first real security program.
+          Helping small organizations build their first real security program.
         </h1>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-ink/70 sm:text-xl">
           You know security matters. What's less clear is where to start, what to fix first, and who
-          makes those calls when no one on staff owns security. I help you understand where you
-          stand, what matters most, and what to do next.
+          makes those calls when no one on staff owns security. I work with small practices,
+          nonprofits and local government agencies to understand where they stand, what matters
+          most, and what to do next.
+        </p>
+
+        {/*
+          Geography, stated flat and once. It qualifies a reader in rather than
+          out, so both halves belong in the same sentence: nearby means I can be
+          in the room, further away means we work remotely.
+        */}
+        <p class="mx-auto mt-4 max-w-2xl text-ink/70">
+          I'm based in Morgantown and work with organizations across north-central West Virginia,
+          and remotely with those further afield.
         </p>
 
         {/*
@@ -132,7 +145,7 @@ const help = [
         */}
         <p class="mx-auto mt-6 max-w-2xl text-ink/70">
           Start with the free checklist:{' '}
-          <em>The Security Questions Every Growing Business Should Be Able to Answer</em>. A
+          <em>The Security Questions Every Small Organization Should Be Able to Answer</em>. A
           self-scoring readiness check you can work through on your own.
         </p>
 
@@ -160,9 +173,9 @@ const help = [
     <RuleList items={questions} class="mt-8" />
 
     <p class="mt-8 max-w-2xl text-ink/70">
-      These are reasonable questions, and they usually come up long before anyone in the business
-      has the time or background to answer them properly. Working through them in order is most of
-      what a security program is.
+      These are reasonable questions, and they usually come up long before anyone on staff has the
+      time or background to answer them properly. Working through them in order is most of what a
+      security program is.
     </p>
   </Section>
 
@@ -185,8 +198,8 @@ const help = [
     <Callout on="cream" class="mt-8 max-w-2xl">
       <p class="text-ink/80">
         Worth being clear about: this is advisory work. I do not sell products or take over your
-        systems. Implementation happens through your existing IT staff or MSP, who know your
-        environment. My part is making sure the right work is happening in the right order.
+        systems. Implementation happens through the IT staff or provider you already have, who know
+        your environment. My part is making sure the right work is happening in the right order.
       </p>
     </Callout>
   </Section>
@@ -199,28 +212,28 @@ const help = [
 
     <div class="mt-8 max-w-2xl space-y-6 text-ink/70">
       <p>
-        Security should leave a business more confident, not more anxious. Fear is a poor basis for
-        decisions. It tends to produce spending on whatever seems most urgent that week, rather than
-        on what actually reduces risk.
+        Security should leave an organization more confident, not more anxious. Fear is a poor
+        basis for decisions. It tends to produce spending on whatever seems most urgent that week,
+        rather than on what actually reduces risk.
       </p>
 
       <p>
-        Good security is practical and sustainable. It fits the way your business already works, it
-        can be maintained by the people you already have, and it is prioritized so the most
-        important things happen first. A recommendation that cannot survive a busy quarter is not
-        the right recommendation.
+        Good security is practical and sustainable. It fits the way you already work, it can be
+        maintained by the people you already have, and it is prioritized so the most important
+        things happen first. A recommendation that cannot survive a busy month is not the right
+        recommendation.
       </p>
 
       <p>
-        It should also be understandable. You should be able to explain where your business stands
-        to your leadership team, your insurer, or a customer without needing a translator. That
-        means talking in terms of business outcomes rather than technical controls.
+        It should also be understandable. You should be able to explain where you stand to your
+        board, your insurer, or a client without needing a translator. That means talking in terms
+        of real-world outcomes rather than technical controls.
       </p>
     </div>
 
     <PullQuote class="mt-10 max-w-2xl">
-      Most growing businesses do not need enterprise security. They need experienced guidance,
-      applied to their actual situation.
+      A small organization does not need enterprise security. It needs experienced guidance,
+      applied to its actual situation.
     </PullQuote>
   </Section>
 

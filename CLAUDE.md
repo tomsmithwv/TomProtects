@@ -2,14 +2,19 @@
 
 ## What this is
 
-The marketing site for **TomProtects**, the fractional CISO and security advisory
-practice of Tom Smith. Astro on Cloudflare Pages, deployed from a private GitHub
-repo. The site's job is to explain the practice, establish that Tom is credible,
-and convert readers to the newsletter.
+The marketing site for **TomProtects**, the security advisory practice of Tom
+Smith. Astro on Cloudflare Pages, deployed from a private GitHub repo. The site's
+job is to explain the practice, establish that Tom is credible, and convert
+readers to the newsletter.
 
-**Positioning:** Fractional CISO & Security Advisor.
+**Positioning:** the security advisor for a small organization that has nobody
+whose job is security. *Fractional CISO* is the name for the larger end of that
+work — a secondary descriptor, not the lead. See "Naming the work" under Voice.
 
-**Core message:** *Helping growing businesses build their first real security program.*
+**Core message:** *Helping small organizations build their first real security
+program.*
+
+**Where the practice is based:** Morgantown, West Virginia.
 
 **The transformation the site sells:** from *"we don't know where to start"* to
 *"we understand our risks, have a prioritized roadmap, and know what to do next."*
@@ -26,18 +31,46 @@ looks like a leftover.
 
 ## Who this is for
 
-Growing businesses, roughly **5–50 employees**, that:
+Small organizations, roughly **5–25 people**, that:
 
 - depend on technology for nearly everything they do,
-- have **no dedicated security leadership** — usually a capable IT provider or a
-  small internal IT function, but nobody whose job is to decide what the business
+- have **no dedicated security leadership** — usually a capable IT provider or
+  one internal IT person, but nobody whose job is to decide what the organization
   should do about security and in what order,
-- are being asked security questions they can't currently answer, by **customers,
-  cyber insurers, or regulators**.
+- are being asked security questions they can't currently answer, by **clients,
+  insurers, regulators, or their own board**.
 
-They have reached the point where security clearly matters and no one inside the
-company owns it. A full-time security leader is more than they need or can
+Concretely, that means three kinds of organization:
+
+- **small professional practices** — dental, medical, legal, accounting,
+- **small nonprofits**,
+- **small local government agencies**.
+
+What they have in common is more useful than what separates them. Each one holds
+data that matters to the people it belongs to — patient records, client files,
+donor details, resident information — on a handful of systems that arrived one at
+a time and were never looked at together. Each is small enough that the person
+who would have to fix a security problem is already doing three other jobs. Each
+has reached the point where security clearly matters and no one inside the
+organization owns it. A full-time security leader is more than they need or can
 justify. Product vendors answer a narrower question than the one being asked.
+
+Write for the office manager, the practice manager, the executive director, the
+county or city administrator. They are competent, busy, accountable for the
+decision, and not technical. Nothing on the site should assume otherwise.
+
+## Where the work happens
+
+The practice is based in **Morgantown, West Virginia**, and is regionally
+anchored: it works with organizations in and around north-central West Virginia,
+where being able to turn up in person is part of what makes the advice land. It
+also works remotely, and does.
+
+Say this plainly wherever it belongs — Home, About, `/workwithme`. Geography is a
+qualifier, not a limitation. It tells a nearby reader this is someone they can
+actually sit down with, and it tells a remote reader the door is open. State both
+halves in a flat voice and move on. Never apologize for the location, never hedge
+it, never bury it in the footer as if it were a disclosure.
 
 ## What this practice is not
 
@@ -75,8 +108,33 @@ reduces risk.
   checkable; judgment is what actually matters and no certification demonstrates
   it
 
-**Prefer:** short sentences. Concrete nouns. Business outcomes over technical
-controls. The second person. Admitting the limits of what can be known.
+**Prefer:** short sentences. Concrete nouns. Outcomes over technical controls.
+The second person. Admitting the limits of what can be known.
+
+### Naming the work
+
+The primary buyer **does not know what a CISO is** and will not look it up.
+Leading with the job title asks the reader to decode a job description before
+they can tell whether the page is for them, and the ones most likely to give up
+are exactly the readers this practice wants.
+
+- **Home and `/workwithme` lead with plain language and the outcome.** What the
+  reader gets, in words they already use: knowing where the organization stands,
+  knowing what to fix first, having an answer ready when someone asks. *Security
+  advisor* is fine. The job title is not the lead — not in an h1, not in a hero
+  eyebrow, not in a page `<title>` or meta description.
+- **"Fractional CISO" stays as a secondary descriptor.** It is the accurate term
+  for the larger end of the work, and it is what a reader who already knows the
+  term will search for. It belongs on **About**, where Tom's background is the
+  subject and the phrase reads as biography rather than as a demand on the
+  reader. Elsewhere it may appear at most once, in a supporting line, after the
+  plain-language version has already landed.
+- **Define it in the sentence it appears in**, like any other acronym — a
+  part-time security leader, shared across a few organizations rather than hired
+  full time.
+- The same rule applies to *organization* over *business*. A dental practice, a
+  nonprofit and a county agency are not businesses, and copy that calls them one
+  tells a third of the audience the page is not about them.
 
 ## Stack
 
@@ -203,9 +261,11 @@ job is to make someone want that conversation.
 
 The primary conversion is the newsletter. Section order:
 
-1. **Hero.** Eyebrow (*Fractional CISO & Security Advisor*), the core message as
-   the h1, a short lede naming the reader's situation, the newsletter offer stated
-   in prose, and the signup field. A quiet secondary link to `/about`.
+1. **Hero.** Eyebrow in plain language, naming the work and the place —
+   *Security advisor · Morgantown, West Virginia* — the core message as the h1, a
+   short lede naming the reader's situation and the kinds of organization this is
+   for, the newsletter offer stated in prose, and the signup field. No job title
+   in the eyebrow or the h1. A quiet secondary link to `/about`.
    The photograph of Tom, the handwritten "Hi, I'm Tom!" caption, and the
    hand-drawn arrow between them are **kept** — they are what stops a calm page
    reading as an impersonal one. Photo cluster above the headline on mobile,
@@ -213,25 +273,28 @@ The primary conversion is the newsletter. Section order:
 2. **The questions you're already asking.** The list of questions a reader in this
    situation already has — *Are we secure enough? What should we fix first? Are we
    spending money on the right things? Do we really need this security product? Is
-   our IT provider doing enough? How do we reduce business risk? How do we build a
-   security program without hiring a full-time CISO?* — then a line noting that
-   working through them in order is most of what a security program is.
+   our IT provider doing enough? What happens if we lose access to our systems for
+   a week? How do we get someone in charge of this without hiring a full-time
+   person?* — then a line noting that working through them in order is most of
+   what a security program is.
 3. **How I help.** Four cards, each an outcome first and a service second:
    *Understand where you stand* (security foundation and maturity assessment,
    most often identity and access plus the email and productivity platform),
    *Know what to do next* (a prioritized roadmap, policies people will follow,
    answers ready for an insurance renewal or a customer security review),
-   *Keep it moving* (month-to-month fractional CISO work: roadmap upkeep, vendor
-   and SaaS review, backup verification, useful security awareness), and
+   *Keep it moving* (month-to-month advisory: roadmap upkeep, vendor and SaaS
+   review, backup verification, useful security awareness — this is the card that
+   may name *fractional CISO*, once, in a supporting line, defined where it
+   stands), and
    *Newer risks, handled calmly* (AI governance as a plain question about which
    tools are in use and what data goes into them). Follow the cards with the
    advisory-not-implementation note.
 4. **How I think about security.** The philosophy in prose: security should leave
-   a business more confident, not more anxious; good security is practical and
-   sustainable and fits how the business already works; it should be explainable
-   to leadership, an insurer, or a customer without a translator. Close on the
-   line that most growing businesses do not need enterprise security — they need
-   experienced guidance applied to their actual situation.
+   an organization more confident, not more anxious; good security is practical
+   and sustainable and fits how the place already works; it should be explainable
+   to a board, an insurer, or a client without a translator. Close on the line
+   that a small organization does not need enterprise security — it needs
+   experienced guidance applied to its actual situation.
 5. **Latest from the newsletter.** The three most recent `/blog` posts.
 6. **Newsletter signup.** The full signup with its heading, the checklist offer,
    and the microcopy.
@@ -241,12 +304,21 @@ Certifications appear as a quiet row of badges, not as a banner.
 ### About
 
 Tom's background, and why the practice exists. More than twenty years keeping
-businesses secure, much of it as the sole security and systems lead for a group
+organizations secure, much of it as the sole security and systems lead for a group
 of affiliated operating companies — responsible for both the systems people used
 daily and the security decisions nobody else was going to make, including real
 incidents rather than only plans for them. That history is the point: it is
 straightforward to recommend good security when someone else has to find the time
 and money for it.
+
+**This is the page where *fractional CISO* belongs.** Here it is biography rather
+than a label the reader has to decode: the title for the ongoing end of the work,
+defined in the sentence it appears in, for the reader who already knows the term
+and for the one meeting it for the first time.
+
+Morgantown belongs here too, as part of the story rather than a location stamp —
+where Tom is, and that the practice is deliberately anchored in the region while
+working remotely as well.
 
 Certifications: **CISSP, CISM, CDPSE, PMP**, each badge linking to its Credly
 record so the claim is checkable in one click. State plainly that they show the
@@ -259,7 +331,8 @@ with the newsletter.
 ### Blog
 
 Mirrors the TomProtects Kit newsletter so the site has fresh content with no
-separate CMS.
+separate CMS. Its framing follows the audience: notes on building a security
+program in a small organization, in plain language.
 
 - **Source:** TomProtects Kit account, API v4 broadcasts (`GET /v4/broadcasts`,
   `GET /v4/broadcasts/{id}`), authenticated with `X-Kit-Api-Key`. Filtered to
@@ -296,17 +369,23 @@ and all of that framing goes. Rewrite it around the advisory practice.
 
 What the page should say now:
 
-- **What the work is.** Fractional CISO and security advisory: helping a growing
-  business build its first real security program. Advisory, not implementation —
-  the work happens through the IT staff or MSP already in place, and Tom's part is
-  making sure the right things happen in the right order. Point at the four areas
-  from the home page's "How I help" rather than restating them at length.
+- **What the work is**, in plain language and no job title: helping a small
+  organization build its first real security program — work out where it stands,
+  decide what to do first, and keep it moving. Advisory, not implementation — the
+  work happens through the IT staff or provider already in place, and Tom's part
+  is making sure the right things happen in the right order. Point at the four
+  areas from the home page's "How I help" rather than restating them at length.
 - **Who it fits.** The ICP above, stated so a reader can self-qualify out as
-  easily as in: 5–50 people, dependent on technology, nobody owning security, and
-  questions arriving from customers, insurers, or regulators.
-- **What the first conversation covers.** Where the business stands today, what is
-  already being asked of it, and whether an engagement makes sense. No obligation
-  either way.
+  easily as in: 5–25 people, dependent on technology, nobody owning security, and
+  questions arriving from clients, insurers, regulators or a board. Name the three
+  kinds of organization — small professional practices, small nonprofits, small
+  local government agencies — because a reader recognizes their own kind faster
+  than they recognise a headcount range.
+- **Where.** Based in Morgantown, working across the region, and working remotely
+  too. One flat sentence, no apology.
+- **What the first conversation covers.** Where the organization stands today,
+  what is already being asked of it, and whether an engagement makes sense. No
+  obligation either way.
 - **No pricing.** Engagements are scoped in conversation.
 
 Kept from the existing page, with only the wording updated:
@@ -345,14 +424,16 @@ embed on `/workwithme` as the one third-party script the site loads.
 
 The site's primary conversion, and the reason most pages end where they do.
 
-- **The offer:** the checklist, *The Security Questions Every Growing Business
+- **The offer:** the checklist, *The Security Questions Every Small Organization
   Should Be Able to Answer* — a self-scoring readiness check the reader works
-  through on their own to come away with a clear picture of where the business
-  stands.
+  through on their own to come away with a clear picture of where the
+  organization stands. (Renamed with the narrowed audience, and the site already
+  says so. The Kit incentive does not exist yet, so there was nothing to keep in
+  sync — build it in Kit under this title.)
 - **Delivery:** Kit sends the checklist as the signup incentive. **The PDF is
   never hosted on this site.**
 - **Cadence and promise, stated at every signup:** one email a week with practical
-  security guidance for growing businesses. No sales pitches. Unsubscribe at any
+  security guidance for small organizations. No sales pitches. Unsubscribe at any
   time, and the address goes nowhere else.
 - **Mechanics:** the form posts to this site's own `/api/subscribe`, which
   validates the address, rate-limits by IP, and upserts the subscriber into Kit
@@ -434,6 +515,30 @@ Routes are `/`, `/about`, `/blog`, `/blog/{slug}`, `/workwithme`, `/privacy`,
 `/sitemap-blog.xml` endpoints. `/subscribed` was added during the build as the
 landing page for a signup posted without JavaScript; it is `noindex`.
 
+### The narrowed audience, in the copy
+
+The audience narrowed after v2 shipped. The site copy was brought in line in a
+single pass, so nothing below is outstanding — it is recorded because it is the
+kind of change that gets half-reverted later by someone reaching for the old
+words.
+
+- [x] "Growing businesses" is gone; the site says **small organizations**, and
+      the headcount is five to twenty-five
+- [x] The three kinds of organization are named on Home, About and `/workwithme`
+      — small professional practices, small nonprofits, small local government
+      agencies — so a reader recognizes their own kind before a headcount range
+- [x] Morgantown and the region appear on Home, About and `/workwithme`, stated
+      flatly, with remote work in the same sentence
+- [x] "Fractional CISO" is out of the lead. It survives in exactly three places:
+      the About meta description, one About paragraph that defines it, and the
+      closing line of the "Keep it moving" card on Home. It is in no h1, no hero
+      eyebrow, and no other `<title>`
+- [x] `SITE.positioning` is *Security advice for small organizations*, which is
+      what the default `<title>` and the footer copyright line are built from.
+      `SITE.location` was added alongside it
+- [x] The checklist is *The Security Questions Every Small Organization Should Be
+      Able to Answer* everywhere the site offers it
+
 ### Not done, and not doable from the repo
 
 - [ ] `source-newsletter` and `source-blog` created in the TomProtects Kit
@@ -441,8 +546,9 @@ landing page for a signup posted without JavaScript; it is `noindex`.
       so signups would land untagged and nothing would say so.
 - [ ] The checklist incentive live in the TomProtects Kit account — the form and
       its incentive email, rebuilt here rather than carried over from
-      tomsmithtech's separate account. **This is the one gap with a cost:** the
-      site offers that checklist in five places and currently delivers nothing.
+      tomsmithtech's separate account, under the new title and written for the
+      narrowed audience. **This is the one gap with a cost:** the site offers that
+      checklist in five places and currently delivers nothing.
 - [ ] The TidyCal event description rewritten. It still sells the Domain Security
       Review and offers to explain its pricing, on a page that does neither.
 - [ ] `KIT_API_KEY` set in Cloudflare for Production **and** Preview; nothing
