@@ -339,7 +339,23 @@ The primary conversion is the newsletter. Section order:
    that a small organization does not need enterprise security — it needs
    experienced guidance applied to its actual situation.
 6. **Latest from the newsletter.** The three most recent `/blog` posts.
-7. **Newsletter signup.** The closing panel, in its **concise** form — heading,
+7. **Engagement example.** One anonymized engagement in three parts — *the
+   situation*, *what was found*, *what changed* — on the Panel pattern, with the
+   labels set as eyebrows inside a `<dl>`.
+
+   **This band is currently a placeholder and ships visible.** Every line in it
+   is an instruction to whoever fills it in, and a Callout above says plainly
+   that none of it is real work. That is deliberate: an empty section that
+   announces itself is recoverable, and one filled with a plausible invented
+   client is not. **Nothing here may be written from imagination** — no client,
+   no outcome, no quote, no number, and no figure that was not actually
+   measured. Anonymize by removing detail, not by inventing substitutes.
+
+   It sits after "Latest writing" rather than higher up for two reasons. Proof
+   reads best immediately before the ask. And white here is the one insertion
+   point that leaves every band above it on the ground it already had — moving
+   it means re-checking the cream/white alternation from that point down.
+8. **Newsletter signup.** The closing panel, in its **concise** form — heading,
    a one-line offer, the field, and one line of microcopy. The hero at the top of
    this page has already named the checklist and made the promise in full, and
    repeating either verbatim two screens later reads as filler rather than as a
@@ -347,7 +363,24 @@ The primary conversion is the newsletter. Section order:
    the only page that passes `concise`; About and every blog post carry the full
    version, because there the panel is the only signup on the page.
 
-Certifications appear as a quiet row of badges, not as a banner.
+Certifications appear as a quiet row of badges, not as a banner — the full four
+in the footer and on About.
+
+**The home hero is the one exception: CISSP alone, at 34px, grouped with the
+handwritten caption.** One checkable credential where the reader is already
+looking at the person does what a row of four cannot do there, which is register
+without competing with the headline. It comes from the same `Certifications`
+component via its `only` prop rather than from hand-written markup, so it cannot
+drift from the grayscale-until-hover treatment or the light/dark plaque logic the
+row uses. Badge keys are a typed union: a typo fails the build instead of
+rendering an empty row.
+
+The caption and the badge are one flex column, and that grouping is load-bearing.
+The mobile photo cluster is already caption, arrow and photograph across roughly
+343px of usable width; a fourth item on that row would push it. Grouped, the
+badge stacks under the caption and the row stays exactly as wide as it was, with
+the arrow still running cluster to photograph. Anything else added near the
+caption goes inside that group, not beside it.
 
 ### About
 
@@ -623,6 +656,23 @@ words.
       `SITE.location` was added alongside it
 - [x] The checklist is *The Security Questions Every Small Organization Should Be
       Able to Answer* everywhere the site offers it
+
+### Live placeholders — visible to readers right now
+
+Two sections ship deliberately unfinished, and both are on the production site.
+Neither is a bug; both are a promise the site is currently not keeping.
+
+- [ ] **The price on `/workwithme`.** The page states that the starting
+      assessment is fixed-price and then does not say what the price is, which is
+      a worse position than never raising it — a reader who came to find out
+      leaves without the one fact they came for. Nothing anywhere may invent a
+      number, a range or a "starting at" to close this; it is Tom's figure and
+      only Tom's.
+- [ ] **The engagement example on Home.** Structure with TODO text where the
+      content goes. It needs one real engagement, anonymized by removing detail
+      rather than by substituting invented detail. If no engagement can be
+      written up yet, deleting the band is the correct move and is better than
+      leaving it standing.
 
 ### Not done, and not doable from the repo
 
