@@ -13,23 +13,9 @@
  * turns image optimization off, so an unoptimized import would ship the full
  * originals.
  */
-/** The four badges, by key. Typed so a caller's typo fails the build rather
- * than silently rendering an empty row. */
-type BadgeKey = 'cissp' | 'cism' | 'cdpse' | 'pmp';
-
 interface Props {
   /** Rendered edge of each badge in px. The artwork is 104px, for 2x screens. */
   size?: number;
-  /**
-   * Render a subset, in the canonical order, rather than all four.
-   *
-   * For the home hero, which carries CISSP alone beside the caption — one
-   * checkable credential where the reader is already looking at the person,
-   * rather than a row of four competing with the headline. The full set still
-   * appears in the footer and on About; this narrows a placement, it does not
-   * replace them.
-   */
-  only?: readonly BadgeKey[];
   /** Accessible name for the list. */
   label?: string;
   /**
@@ -50,47 +36,38 @@ interface Props {
 const {
   size = 36,
   label = 'Certifications',
-  only,
   onDark = false,
   gap = 'gap-5',
   class: cls = '',
 } = Astro.props;
 
-const badges: { key: BadgeKey; src: string; alt: string; href: string }[] = [
+const badges = [
   {
-    key: 'cissp',
     src: '/images/certs/cissp.png',
     alt: 'CISSP, Certified Information Systems Security Professional',
     href: 'https://www.credly.com/badges/1c6d302c-adc0-4065-a7cc-7703901fcf0e/public_url',
   },
   {
-    key: 'cism',
     src: '/images/certs/cism.png',
     alt: 'CISM, Certified Information Security Manager',
     href: 'https://www.credly.com/badges/6f8fdad1-bacb-43e4-86b1-dd8e10a25296/public_url',
   },
   {
-    key: 'cdpse',
     src: '/images/certs/cdpse.png',
     alt: 'CDPSE, Certified Data Privacy Solutions Engineer',
     href: 'https://www.credly.com/badges/9712e709-5631-418f-ab0d-060f989ed31d/public_url',
   },
   {
-    key: 'pmp',
     src: '/images/certs/pmp.png',
     alt: 'PMP, Project Management Professional',
     href: 'https://www.credly.com/badges/97edaa44-7f03-4b71-8666-6dff27c6ac62/public_url',
   },
 ];
-
-// Filtered against the canonical order, not the caller's, so two placements
-// asking for the same pair can never disagree about which comes first.
-const shown = only ? badges.filter((b) => only.includes(b.key)) : badges;
 ---
 
 <ul aria-label={label} class:list={['flex list-none flex-wrap items-center p-0', gap, cls]}>
   {
-    shown.map((badge) => (
+    badges.map((badge) => (
       <li>
         <a
           href={badge.href}

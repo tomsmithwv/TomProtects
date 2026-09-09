@@ -364,23 +364,14 @@ The primary conversion is the newsletter. Section order:
    version, because there the panel is the only signup on the page.
 
 Certifications appear as a quiet row of badges, not as a banner — the full four
-in the footer and on About.
+in the footer and on About, and **nowhere else**.
 
-**The home hero is the one exception: CISSP alone, at 34px, grouped with the
-handwritten caption.** One checkable credential where the reader is already
-looking at the person does what a row of four cannot do there, which is register
-without competing with the headline. It comes from the same `Certifications`
-component via its `only` prop rather than from hand-written markup, so it cannot
-drift from the grayscale-until-hover treatment or the light/dark plaque logic the
-row uses. Badge keys are a typed union: a typo fails the build instead of
-rendering an empty row.
-
-The caption and the badge are one flex column, and that grouping is load-bearing.
-The mobile photo cluster is already caption, arrow and photograph across roughly
-343px of usable width; a fourth item on that row would push it. Grouped, the
-badge stacks under the caption and the row stays exactly as wide as it was, with
-the arrow still running cluster to photograph. Anything else added near the
-caption goes inside that group, not beside it.
+**The hero photo cluster stays clear of them.** A badge was tried there, CISSP
+alone beside the handwritten caption, and taken out again: the cluster is the
+one deliberately informal thing on the page, and a credential pinned to it
+crowds the caption and the arrow and makes the warmest part of the page work as
+a credibility panel. Credentials belong where the reader has gone looking for
+them. The caption, the arrow and the photograph are the whole of that cluster.
 
 ### About
 
