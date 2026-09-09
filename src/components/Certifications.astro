@@ -19,11 +19,13 @@ interface Props {
   /** Accessible name for the list. */
   label?: string;
   /**
-   * On an ink band. The four pieces of artwork have opposite polarity — the
-   * CISSP mark is drawn on white, the PMP mark is a near-black disc — so no
-   * single filter suits them all against deep ink, and PMP would simply vanish
-   * into it. Each badge gets a light plaque instead, which gives the row one
-   * common ground and lets it read as a set.
+   * On an ink band.
+   *
+   * The four pieces of artwork have opposite polarity: mean luminance of their
+   * opaque pixels runs 215 for CISM and 181 for CDPSE, but 42 for PMP. Against
+   * ink at 26 the dark one all but disappears; against a white page the light
+   * ones do. So each band gets its own ground — a translucent plaque on ink, a
+   * bordered tile on light — and the row reads as a set either way.
    */
   onDark?: boolean;
   /** Space between badges. A Tailwind gap class, since it varies by placement. */
@@ -72,11 +74,19 @@ const badges = [
           target="_blank"
           rel="noopener noreferrer"
           class:list={[
-            'inline-flex rounded opacity-60 grayscale transition',
-            'hover:opacity-100 hover:grayscale-0 focus-visible:opacity-100 focus-visible:grayscale-0',
-            // The plaque. Slightly translucent at rest so it sits into the band
-            // rather than on top of it, going solid white as the badge lights up.
-            onDark && 'bg-white/80 p-1 hover:bg-white focus-visible:bg-white',
+            // Quiet comes from the desaturation, not from a fade. An earlier
+            // version also dropped these to 60% opacity, which on a light band
+            // took the light badges to almost nothing — the same polarity
+            // problem the plaque solves on ink, mirrored. Colour returns on
+            // hover and on focus.
+            'inline-flex rounded p-1 grayscale transition hover:grayscale-0 focus-visible:grayscale-0',
+            onDark
+              ? // Translucent, so it sits into the band rather than on top of
+                // it, and goes solid as the badge lights up.
+                'bg-white/80 hover:bg-white focus-visible:bg-white'
+              : // On light the plaque cannot add contrast, so the tile is given
+                // an edge instead — which is what a pale badge needs there.
+                'bg-white ring-1 ring-black/10 hover:ring-black/20',
           ]}
         >
           <img
