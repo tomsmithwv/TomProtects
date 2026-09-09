@@ -534,6 +534,30 @@ page's copy. Whatever that description says is the whole of the framing for thos
 bookings, so it should say, briefly and in the same voice, what the call is and
 who it is for. Empty is safe; it is not the same as sufficient.
 
+**The description text, kept here because TidyCal is not in the repo.** Set in
+the TidyCal UI; this is the copy of record, so an edit made there should land
+here too:
+
+> A short, no-pressure call about where your organization stands on security,
+> what is already being asked of it, and whether working together would help.
+> No pitch — if it is not the right fit, that is a useful thing to find out
+> early.
+>
+> It is aimed at small organizations of roughly 5–25 people that depend on
+> technology and have nobody whose actual job is security: small professional
+> practices, small nonprofits, and local government agencies.
+>
+> You will be talking to Tom Smith directly — CISSP, CISM, CDPSE, PMP. Based in
+> Morgantown, West Virginia, and works remotely.
+>
+> More at tomprotects.com/workwithme
+
+Two things it deliberately leaves out. **No duration** — TidyCal already prints
+that on the card, and stating it twice is what let it drift in v1. **No price** —
+the figure lives in exactly two places, this brief and `/workwithme`, and a third
+copy in a system nobody diffs is how a stale number ends up in front of a reader.
+The link at the end is what carries someone to the page where the price is.
+
 The TidyCal account's display name also shows on the card, above the event. It
 currently reads *Tom Smith III* while the line directly above the calendar says
 *You'll be talking to me directly — Tom*. Both are true and the mismatch is
@@ -692,6 +716,8 @@ words.
       tomsmithtech's separate account, under the new title and written for the
       narrowed audience. **This is the one gap with a cost:** the site offers that
       checklist in five places and currently delivers nothing.
+- [ ] The TidyCal event description **written above but not yet pasted in** — it
+      is set in the TidyCal UI and cannot be changed from this repo.
 - [x] The TidyCal event description no longer sells the Domain Security Review.
       It was removed outright rather than rewritten, so the card now shows the
       event name and the duration and nothing else. On `/workwithme` that is
