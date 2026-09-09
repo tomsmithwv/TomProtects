@@ -3,55 +3,95 @@ export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 
-// TODO(content/legal): review this draft policy and set an effective date
-// you're happy with.
-const CONTACT_EMAIL = 'hello@tomprotects.com'; // confirmed
-const UPDATED = 'June 2026'; // TODO: confirm
+// TODO(legal): this is written to be accurate rather than to be a lawyer's
+// draft. Worth a review before it matters, and worth revisiting whenever a
+// form, an embed or a third-party script is added to the site.
+const CONTACT_EMAIL = 'hello@tomprotects.com';
+const UPDATED = 'September 2026';
 ---
 
 <BaseLayout
   title="Privacy — TomProtects"
-  description="How TomProtects handles the information you share — the free checker, the newsletter, and the audit intake form."
+  description="What this site collects, where it goes, and what it does not do."
 >
-  <Section width="narrow" py="md">
+  <Section width="narrow">
     <h1 class="text-4xl font-semibold tracking-tight">Privacy</h1>
-    <p class="mt-2 text-sm text-ink/70">Last updated: {UPDATED}</p>
+    <p class="mt-2 text-sm text-ink/60">Last updated: {UPDATED}</p>
 
-    <div class="post-content mt-8 space-y-5 text-ink/80">
+    <div class="mt-10 max-w-2xl space-y-5 text-ink/80">
       <p>
-        TomProtects keeps this simple. I collect the least I need to run the free checker, send the newsletter, and
-        scope reviews — and I don't sell your data to anyone.
+        This site collects one thing: your email address, and only if you choose to give it to me.
+        There is no analytics, no advertising, and nothing is sold or rented to anyone.
       </p>
 
-      <h2 class="text-xl font-semibold text-ink">The free email checker</h2>
+      <h2 class="pt-4 text-xl font-semibold text-ink">The newsletter</h2>
       <p>
-        When you run the checker, I look up <strong>public DNS records</strong> for the domain in your email address
-        (SPF, DKIM, DMARC). I don't access your mailbox or any private data. Your email address is added to my mailing
-        list (via Kit) so I can send your results and follow-up fix-it guidance. I don't store the report itself.
+        If you subscribe, your email address is stored in
+        <a
+          href="https://kit.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-accent underline underline-offset-4">Kit</a
+        >, the service I use to send email. It is tagged with where you signed up — the home page,
+        or the blog — so I can tell what people found useful. That is the whole record: an address
+        and a tag.
+      </p>
+      <p>
+        Every email has an unsubscribe link, and it works immediately. You can also ask me to delete
+        your address entirely, which removes it from Kit rather than just stopping the sending.
       </p>
 
-      <h2 class="text-xl font-semibold text-ink">Newsletter signups</h2>
+      <h2 class="pt-4 text-xl font-semibold text-ink">Booking a call</h2>
       <p>
-        If you subscribe, your email address is stored in Kit (my email provider) and tagged by where you signed up so
-        I can send relevant content. You can unsubscribe at any time using the link in any email.
+        The booking calendar on
+        <a href="/workwithme" class="font-medium text-accent underline underline-offset-4"
+          >Work With Me</a
+        >
+        is provided by TidyCal, and it is the one third-party script this site loads. The calendar
+        itself runs in a frame served by TidyCal, so anything you enter to book a call — your name,
+        your address, whatever you write in the notes — goes to them and is held by them, under
+        <a
+          href="https://tidycal.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-accent underline underline-offset-4">their privacy policy</a
+        >, not this one. If you would rather not use it, email me instead and we will find a time
+        that way.
       </p>
 
-      <h2 class="text-xl font-semibold text-ink">The audit intake form</h2>
+      <h2 class="pt-4 text-xl font-semibold text-ink">The blog</h2>
       <p>
-        Details you share on the intake form (name, domain, platforms, and any notes) are stored in Kit and used solely
-        to scope and deliver your review. I don't share them with third parties.
+        Posts are published to my newsletter first and pulled onto this site from Kit when you open
+        a page. Reading the blog records nothing about you. Newsletters usually carry a tracking
+        pixel that reports when a message is opened; those are stripped out before a post is
+        rendered here, so reading a post on the web does not report anything back.
       </p>
 
-      <h2 class="text-xl font-semibold text-ink">What I don't do</h2>
+      <h2 class="pt-4 text-xl font-semibold text-ink">Hosting</h2>
       <p>
-        I don't store your data anywhere beyond Kit, I don't run third-party advertising trackers, and I don't sell or
-        rent your information.
+        The site runs on Cloudflare Pages, so requests pass through Cloudflare's network the way
+        they would for any site hosted there. When you submit the signup form, your IP address is
+        held briefly in memory to limit how often the form can be submitted. It is not written to
+        disk, not logged, and not connected to your email address — it disappears within a minute.
       </p>
 
-      <h2 class="text-xl font-semibold text-ink">Your choices</h2>
+      <h2 class="pt-4 text-xl font-semibold text-ink">What this site does not do</h2>
       <p>
-        You can unsubscribe or ask me to delete your information at any time — just email
-        <a href={`mailto:${CONTACT_EMAIL}`} class="font-medium text-accent underline underline-offset-4">{CONTACT_EMAIL}</a>.
+        No analytics or visitor tracking of any kind. No advertising, and no advertising trackers.
+        This site sets no cookies and stores nothing in your browser; the booking calendar is the
+        one exception, and what it stores belongs to TidyCal rather than to me. Fonts are served
+        from this site rather than from a font provider, so loading a page does not tell anyone
+        else that you did. Nothing is sold, rented or shared, beyond the two services named above
+        doing the jobs they are named for.
+      </p>
+
+      <h2 class="pt-4 text-xl font-semibold text-ink">Getting in touch</h2>
+      <p>
+        To unsubscribe, to ask what I hold about you, or to have it deleted, email
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          class="font-medium text-accent underline underline-offset-4">{CONTACT_EMAIL}</a
+        >. A deletion request is done as soon as I see it, and I will confirm when it is.
       </p>
     </div>
   </Section>
