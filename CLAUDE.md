@@ -313,10 +313,15 @@ Kept from the existing page, with only the wording updated:
 
 - The founder photo beside a line confirming the reader is talking to Tom
   directly — CISSP, CISM, CDPSE, PMP, 20+ years.
-- The short expectation-setting list. The first two stand as written — 15–20
-  minutes, no pressure, no pitch; plain-English answers to security questions.
-  Replace the third, which promised "a clear sense of what the full review would
-  cover", with the equivalent for advisory work.
+- The short expectation-setting list: a short call with no pressure and no pitch;
+  plain-English answers to security questions; a clear sense of whether an
+  engagement would help and what it would involve. The last of those replaced a
+  promise about "what the full review would cover".
+
+  **No duration on this page.** The v1 copy said 15–20 minutes while the calendar
+  below it books a 30-minute slot — the two contradicted each other in a single
+  viewport. The length belongs in TidyCal, where it is set; stating it here as
+  well is what let it drift.
 - **The TidyCal scheduling embed, exactly as it is today** — `<div
   class="tidycal-embed" data-path="tomsmith/discovery">` with the
   `asset-tidycal.b-cdn.net/js/embed.js` script and the `<noscript>` fallback
@@ -393,36 +398,69 @@ must not be lost:
 
 ## Definition of done (v2)
 
-- [ ] No checker, no audit funnel, and no deliverability copy anywhere in `src/`
-      or in this brief
-- [ ] No pricing on any page, in any component, or in any meta description
-- [ ] Positioning, ICP, and the core message are consistent across Home, About,
-      `/workwithme`, both blog templates, the header, the footer, and every
-      `<title>` and meta description
-- [ ] Fraunces self-hosted, declared in `global.css`, wired into
-      `tailwind.config.mjs`, and carrying every heading
-- [ ] Caveat still loads and still styles exactly one line — the hero caption
-- [ ] Palette holds: no amber, `warn`/`fail` used only for status
-- [ ] Still Tailwind 3 and Astro 4; no `@theme`, no Tailwind 4 class syntax
-- [ ] Routes are exactly `/`, `/about`, `/blog`, `/blog/{slug}`, `/workwithme`,
-      `/privacy`, 404 — with no dead links in the header, footer, or 404 page
-- [ ] Certifications show all four (CISSP, CISM, CDPSE, PMP) with working Credly
-      links
-- [ ] Newsletter signup works from home, footer, blog index, and blog posts, with
-      the correct source tag on each
-- [ ] `source-newsletter` and `source-blog` exist in the TomProtects Kit account
-- [ ] The checklist incentive is live in the TomProtects Kit account
-- [ ] `/blog` renders live from Kit broadcasts with canonical tags and per-post
-      CTAs
-- [ ] `KIT_API_KEY` set in Cloudflare for Production and Preview; nothing else in
-      the environment
-- [ ] `.gitignore` still covers `node_modules`, `dist`, `.env`, and `.dev.vars`
-- [ ] The TidyCal embed works on `/workwithme` — calendar loads, `noscript`
+The v2 work was built on the branch `v2-fractional-ciso`. Everything that lives
+in this repo is done; what is left is in Kit, in TidyCal, and in DNS, and none of
+it can be finished by editing code.
+
+### Done in the repo
+
+- [x] No checker, no audit funnel, no pricing and no deliverability copy anywhere
+      in `src/`. The terms survive in this brief on purpose — the removal list
+      below is what stops them being reintroduced.
+- [x] Positioning, ICP and the core message are consistent across Home, About,
+      `/workwithme`, `/privacy`, both blog templates, the header, the footer, and
+      every `<title>` and meta description
+- [x] Fraunces self-hosted, declared in `global.css`, wired into
+      `tailwind.config.mjs`, and carrying every heading through a base-layer rule
+- [x] Caveat still loads and still styles exactly one line — the hero caption
+- [x] Palette holds: no amber anywhere. `warn` and `fail` are now unused
+      entirely, their only callers having gone with the checker and the audit form
+- [x] Still Tailwind 3 and Astro 4; no `@theme`, no Tailwind 4 class syntax
+- [x] Certifications show all four — CISSP, CISM, CDPSE and PMP — with working
+      Credly links, and read correctly on both light and ink bands
+- [x] Newsletter signup present on Home (hero and closing panel), the footer, the
+      blog index and every post, with the right source tag on each and unique
+      field ids where a page carries two
+- [x] `.gitignore` still covers `node_modules`, `dist`, `.env` and `.dev.vars`
+- [x] The TidyCal embed works on `/workwithme` — calendar loads, `noscript`
       fallback links to `tidycal.com/tomsmith/discovery`
-- [ ] `hello@tomprotects.com` appears on `/privacy` and `/workwithme`, and as the
-      newsletter failure fallback
-- [ ] tomsmithtech.com redirects in place; no redirects or stubs left behind for
-      `/bookaconsultation`, `/tools`, or `/audit`
+- [x] `hello@tomprotects.com` reaches `/privacy`, `/workwithme`, `/subscribed`
+      and the newsletter's failure message, from one constant in `src/consts.ts`
+- [x] No redirects or stubs left behind for `/bookaconsultation`, `/tools` or
+      `/audit`, and no dead links in the header, footer or 404 page
+
+Routes are `/`, `/about`, `/blog`, `/blog/{slug}`, `/workwithme`, `/privacy`,
+`/subscribed` and 404, plus the `/api/subscribe`, `/api/posts` and
+`/sitemap-blog.xml` endpoints. `/subscribed` was added during the build as the
+landing page for a signup posted without JavaScript; it is `noindex`.
+
+### Not done, and not doable from the repo
+
+- [ ] `source-newsletter` and `source-blog` created in the TomProtects Kit
+      account. A tag that does not exist is skipped silently rather than raising,
+      so signups would land untagged and nothing would say so.
+- [ ] The checklist incentive live in the TomProtects Kit account — the form and
+      its incentive email, rebuilt here rather than carried over from
+      tomsmithtech's separate account. **This is the one gap with a cost:** the
+      site offers that checklist in five places and currently delivers nothing.
+- [ ] The TidyCal event description rewritten. It still sells the Domain Security
+      Review and offers to explain its pricing, on a page that does neither.
+- [ ] `KIT_API_KEY` set in Cloudflare for Production **and** Preview; nothing
+      else in the environment. Without it on Preview, a preview deploy renders an
+      empty blog.
+- [ ] tomsmithtech.com redirects in place.
+- [ ] Optional Kit housekeeping: the orphaned `source-audit-form` tag and the
+      `audit_domain` / `audit_platforms` / `audit_notes` custom fields. Nothing
+      writes to them any more; they are harmless, just untidy.
+
+### Verified only against sample data
+
+- [ ] A real Kit broadcast rendered end to end. The sanitizer was proved on the
+      Workers runtime against sample markup, and the blog's empty state and miss
+      path are both confirmed, but no genuine broadcast has been through it.
+      Needs `KIT_API_KEY` in `.dev.vars` and `npm run preview:local`. It is also
+      what would settle whether the "view in browser" preheader and the "powered
+      by Kit" footer need handling — see the sanitizer's note.
 
 ## What was removed in v2 — do not resurrect
 
