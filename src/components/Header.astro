@@ -4,9 +4,18 @@ import Container from './Container.astro';
 import Button from './Button.astro';
 // Primary navigation. "Get Started" is the primary CTA → /workwithme.
 const links = [
-  { label: 'About', href: '/#about' },
+  { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
 ];
+
+// A link is current if it is the page, or the parent of it (/blog/a-post).
+// Trailing slashes are stripped from both sides first, because Astro will
+// serve /about and /about/ alike and the two must not disagree here.
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isCurrent = (href: string) => {
+  const target = href.replace(/\/+$/, '') || '/';
+  return path === target || (target !== '/' && path.startsWith(`${target}/`));
+};
 ---
 
 <header class="sticky top-0 z-40 border-b border-black/10 bg-cream/90 backdrop-blur">
@@ -15,7 +24,18 @@ const links = [
 
     <nav class="hidden items-center gap-6 text-sm md:flex">
       {links.map((l) => (
-        <a href={l.href} class="text-ink/70 transition hover:text-ink">{l.label}</a>
+        <a
+          href={l.href}
+          aria-current={isCurrent(l.href) ? 'page' : undefined}
+          class:list={[
+            'transition',
+            isCurrent(l.href)
+              ? 'font-medium text-ink underline decoration-accent decoration-2 underline-offset-8'
+              : 'text-ink/70 hover:text-ink',
+          ]}
+        >
+          {l.label}
+        </a>
       ))}
       <Button href="/workwithme" size="sm">Get Started</Button>
     </nav>
@@ -33,7 +53,16 @@ const links = [
 
   <div id="mobile-menu" class="hidden border-t border-black/10 md:hidden">
     {links.map((l) => (
-      <a href={l.href} class="block px-6 py-3 text-ink/70">{l.label}</a>
+      <a
+        href={l.href}
+        aria-current={isCurrent(l.href) ? 'page' : undefined}
+        class:list={[
+          'block px-6 py-3',
+          isCurrent(l.href) ? 'font-medium text-ink' : 'text-ink/70',
+        ]}
+      >
+        {l.label}
+      </a>
     ))}
     <a href="/workwithme" class="block px-6 py-3 font-semibold text-accent">Get Started</a>
   </div>

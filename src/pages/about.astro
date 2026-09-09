@@ -1,0 +1,110 @@
+---
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import FounderPhoto from '../components/FounderPhoto.astro';
+import Certifications from '../components/Certifications.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+---
+
+<BaseLayout
+  title="About — TomProtects"
+  description="More than twenty years in IT and security, spent doing this work under the same constraints growing businesses have."
+  footerNewsletter={false}
+>
+  <Section width="text">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
+      <FounderPhoto class="h-40 w-40 shrink-0" loading="eager" />
+
+      <div>
+        <h1 class="text-4xl font-semibold tracking-tight">About</h1>
+        <p class="mt-4 text-lg text-ink/70">
+          I'm Tom. I have spent more than twenty years keeping businesses secure.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        I work with growing businesses that have reached the point where security clearly matters
+        and no one inside the company owns it.
+      </p>
+
+      <p>
+        That situation is more common than it sounds. The business has grown, it depends on
+        technology for nearly everything, and customers or insurers have started asking questions
+        that are difficult to answer. There is usually an IT provider doing capable work, but
+        nobody whose job is to step back and decide what the business should be doing about
+        security, and in what order.
+      </p>
+
+      <p>
+        This practice exists because the usual options do not fit that situation. A full-time
+        security leader is more than most growing businesses need or can justify. Product vendors
+        answer a narrower question than the one being asked. What is actually needed is someone
+        experienced to look at the whole picture and help you decide what matters.
+      </p>
+    </div>
+  </Section>
+
+  <Section background="white" width="text">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Background</h2>
+
+    <div class="mt-6 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        Much of my career has been spent as the sole security and systems lead for a group of
+        affiliated operating companies, responsible for everything from the systems people used
+        every day to the security decisions nobody else was going to make. I have handled real
+        incidents, not only planned for them.
+      </p>
+
+      <p>
+        That shapes how I advise. It is straightforward to recommend good security when someone
+        else has to find the time and money for it. Having made those calls myself, with a limited
+        budget, a small team, and a business that had to keep running while security improved,
+        keeps my advice grounded in what can actually be done.
+      </p>
+
+      <h3 class="pt-2 text-xl font-semibold text-ink">Certifications</h3>
+
+      <p>
+        CISSP, CISM, CDPSE, and PMP. They are worth stating plainly because they show the work has
+        been measured against a standard. Judgment matters more than any of them, and no
+        certification demonstrates that on its own.
+      </p>
+
+      <Certifications size={52} label="Certification badges, verified on Credly" class="pt-1" />
+    </div>
+  </Section>
+
+  <Section width="text">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">What makes this different</h2>
+
+    <div class="mt-6 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        Most security advice fails for one of two reasons. It is either too generic to act on, or
+        it is written for an organization ten times the size of yours. Useful advice depends on
+        knowing which parts of a framework apply to a smaller business and which parts can wait
+        until you are much larger.
+      </p>
+
+      <p>
+        So the work is practical. Recommendations come with an order, a reason, and a realistic
+        sense of effort. I explain them in language your leadership team can follow, because a
+        recommendation nobody understands is a recommendation nobody funds. And because I work on
+        both sides of this, the business side and the technical side, I can talk to your IT
+        provider and your leadership team without either conversation getting lost.
+      </p>
+
+      <p>
+        I am not here to sell you software, and I am not going to scare you into a retainer. The
+        goal is a business that knows where it stands, has a plan it believes in, and can explain
+        both to anyone who asks.
+      </p>
+    </div>
+  </Section>
+
+  <Section background="ink" width="text">
+    <NewsletterSignup id="about" variant="panel" onDark buttonLabel="Send me the checklist" />
+  </Section>
+</BaseLayout>

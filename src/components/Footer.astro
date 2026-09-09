@@ -12,11 +12,18 @@ const { showNewsletter = true } = Astro.props;
 
 const year = new Date().getFullYear();
 const links = [
-  { label: 'About', href: '/#about' },
+  { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
   { label: 'Work With Me', href: '/workwithme' },
   { label: 'Privacy', href: '/privacy' },
 ];
+
+// Same rule as the header: the page itself, or a parent of it.
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isCurrent = (href: string) => {
+  const target = href.replace(/\/+$/, '') || '/';
+  return path === target || (target !== '/' && path.startsWith(`${target}/`));
+};
 ---
 
 <footer class="bg-ink text-cream">
@@ -35,7 +42,17 @@ const links = [
       <a href="/" aria-label="tomprotects — home"><Wordmark theme="dark" class="h-6 w-auto" /></a>
       <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-cream/70">
         {links.map((l) => (
-          <a href={l.href} class="transition hover:text-cream">{l.label}</a>
+          <a
+            href={l.href}
+            aria-current={isCurrent(l.href) ? 'page' : undefined}
+            class:list={[
+              'transition hover:text-cream',
+              isCurrent(l.href) &&
+                'font-medium text-cream underline decoration-accent-dark decoration-2 underline-offset-8',
+            ]}
+          >
+            {l.label}
+          </a>
         ))}
       </nav>
     </div>

@@ -2,7 +2,6 @@
 export const prerender = true;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
-import FounderPhoto from '../components/FounderPhoto.astro';
 import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
 import Eyebrow from '../components/Eyebrow.astro';
@@ -145,7 +144,7 @@ const help = [
         />
 
         <p class="mt-4 text-sm">
-          <a href="/#about" class="text-accent underline-offset-4 hover:underline">
+          <a href="/about" class="text-accent underline-offset-4 hover:underline">
             More about how I work →
           </a>
         </p>
@@ -225,20 +224,7 @@ const help = [
     </PullQuote>
   </Section>
 
-  <!-- 5. About -->
-  <Section id="about" background="white" width="text" center class="scroll-mt-20">
-      <FounderPhoto class="mx-auto h-32 w-32 sm:h-40 sm:w-40" />
-      <Eyebrow class="mt-6">About</Eyebrow>
-      <h2 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Hi, I'm Tom.</h2>
-      <p class="mt-5 text-lg leading-relaxed text-ink/70">
-        I've spent 20+ years in IT and cybersecurity — protecting organizations from the same threats that now target
-        online businesses. I help creators, consultants, and business owners lock down the domain, email, and platforms
-        their livelihood runs on. No jargon, no fear-mongering — just clear, practical fixes.
-      </p>
-      <p class="mt-6 text-sm font-semibold text-accent">CISSP · CISM · CDPSE · 20+ years</p>
-  </Section>
-
-  <!-- 6. Latest from the newsletter (3 most recent, loaded client-side) -->
+  <!-- 5. Latest from the newsletter (3 most recent, loaded client-side) -->
   <Section background="cream">
       <Eyebrow>From the newsletter</Eyebrow>
       <h2 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Latest writing</h2>
@@ -250,7 +236,7 @@ const help = [
       </p>
   </Section>
 
-  <!-- 7. Newsletter: the page's closing action, and its primary conversion -->
+  <!-- 6. Newsletter: the page's closing action, and its primary conversion -->
   <Section background="ink" width="text">
     <NewsletterSignup
       id="newsletter"

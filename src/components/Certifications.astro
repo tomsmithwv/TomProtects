@@ -1,0 +1,74 @@
+---
+/**
+ * The four certification badges, as one quiet row.
+ *
+ * A credibility marker rather than a feature, so the badges sit desaturated
+ * and faded until the reader points at one. Every badge links to its Credly
+ * record, which is what makes the claim checkable instead of decorative.
+ *
+ * Size comes in as a prop rather than a utility class, so the same component
+ * can be small in a footer and larger on the About page without a second set
+ * of markup. The artwork is pre-sized to 104px (2x the largest use) and lives
+ * in public/ rather than going through astro:assets — the Cloudflare adapter
+ * turns image optimization off, so an unoptimized import would ship the full
+ * originals.
+ */
+interface Props {
+  /** Rendered edge of each badge in px. The artwork is 104px, for 2x screens. */
+  size?: number;
+  /** Accessible name for the list. */
+  label?: string;
+  class?: string;
+}
+
+const { size = 36, label = 'Certifications', class: cls = '' } = Astro.props;
+
+const badges = [
+  {
+    src: '/images/certs/cissp.png',
+    alt: 'CISSP, Certified Information Systems Security Professional',
+    href: 'https://www.credly.com/badges/1c6d302c-adc0-4065-a7cc-7703901fcf0e/public_url',
+  },
+  {
+    src: '/images/certs/cism.png',
+    alt: 'CISM, Certified Information Security Manager',
+    href: 'https://www.credly.com/badges/6f8fdad1-bacb-43e4-86b1-dd8e10a25296/public_url',
+  },
+  {
+    src: '/images/certs/cdpse.png',
+    alt: 'CDPSE, Certified Data Privacy Solutions Engineer',
+    href: 'https://www.credly.com/badges/9712e709-5631-418f-ab0d-060f989ed31d/public_url',
+  },
+  {
+    src: '/images/certs/pmp.png',
+    alt: 'PMP, Project Management Professional',
+    href: 'https://www.credly.com/badges/97edaa44-7f03-4b71-8666-6dff27c6ac62/public_url',
+  },
+];
+---
+
+<ul aria-label={label} class:list={['flex list-none flex-wrap items-center gap-5 p-0', cls]}>
+  {
+    badges.map((badge) => (
+      <li>
+        <a
+          href={badge.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex rounded opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0 focus-visible:opacity-100 focus-visible:grayscale-0"
+        >
+          <img
+            src={badge.src}
+            alt={badge.alt}
+            width={size}
+            height={size}
+            style={`width:${size}px;height:${size}px`}
+            loading="lazy"
+            decoding="async"
+            class="object-contain"
+          />
+        </a>
+      </li>
+    ))
+  }
+</ul>
