@@ -1,6 +1,8 @@
 // Blog source: TomProtects Kit account broadcasts (API v4), rendered server-side
 // at request time so new public broadcasts appear without a redeploy. Kit
 // responses are edge-cached ~1h via caches.default.
+import { sanitizePostHtml, excerptFrom } from './sanitize';
+
 const KIT_API = 'https://api.kit.com/v4';
 const CACHE_TTL = 3600; // seconds
 
@@ -108,10 +110,11 @@ function assignSlugs(list: Broadcast[]): Map<number, string> {
   return map;
 }
 
+// Kit's description and preview_text can carry markup, so this goes through the
+// same parser as the post body rather than a tag-stripping regex, and truncates
+// on a word boundary.
 function makeExcerpt(b: Broadcast): string {
-  const raw = b.description || b.preview_text || '';
-  const text = raw.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  return text.length > 180 ? `${text.slice(0, 177).trimEnd()}…` : text;
+  return excerptFrom(b.description || b.preview_text || '', 180);
 }
 
 function formatDate(iso?: string | null): string {
@@ -128,46 +131,6 @@ function formatDate(iso?: string | null): string {
   } catch {
     return iso.slice(0, 10);
   }
-}
-
-/**
- * Strip email-only artifacts from broadcast HTML before rendering on the web.
- *
- * Best-effort, targeting standard Kit/ConvertKit artifacts: tracking pixels,
- * "view in browser" preheaders, unsubscribe/preferences links, and the Kit
- * footer block. NOTE: validate against a real public broadcast once KIT_API_KEY
- * is live — the footer patterns may need tuning to the exact markup Kit emits.
- */
-export function cleanBroadcastHtml(html: string): string {
-  if (!html) return '';
-  let out = html;
-
-  // 1. Tracking pixels — 1x1 (or smaller) beacon images.
-  out = out.replace(/<img[^>]*\b(?:width|height)\s*=\s*["']?1["']?[^>]*>/gi, '');
-  out = out.replace(/<img[^>]*style\s*=\s*["'][^"']*(?:width\s*:\s*1px|height\s*:\s*1px)[^"']*["'][^>]*>/gi, '');
-
-  // 2. "View this email in your browser" links.
-  out = out.replace(/<a\b[^>]*>[^<]*view[^<]*browser[^<]*<\/a>/gi, '');
-
-  // 3. Unsubscribe / manage-preferences / opt-out links.
-  out = out.replace(
-    /<a\b[^>]*href\s*=\s*["'][^"']*(?:unsubscribe|email[_-]?preferences|\/preferences|opt[-_]?out|update[-_]?your[-_]?profile)[^"']*["'][^>]*>[\s\S]*?<\/a>/gi,
-    '',
-  );
-  out = out.replace(/<a\b[^>]*>\s*unsubscribe\s*<\/a>/gi, '');
-
-  // 4. Footer block — remove a small container that mentions unsubscribe /
-  //    "powered by Kit" / "this email was sent". Conservative: only matches a
-  //    single non-nested div/table/footer/p element.
-  out = out.replace(
-    /<(div|table|footer|p)\b[^>]*>(?:(?!<\/?\1\b)[\s\S]){0,2000}?(?:unsubscribe|powered by (?:kit|convertkit)|this email was sent|update your profile)[\s\S]*?<\/\1>/gi,
-    '',
-  );
-
-  // Tidy leftover empty paragraphs.
-  out = out.replace(/<p\b[^>]*>\s*(?:&nbsp;|\s)*<\/p>/gi, '');
-
-  return out.trim();
 }
 
 // List public broadcasts, newest first, with slugs + excerpts. Paginates up to
@@ -214,5 +177,5 @@ export async function getPostBySlug(apiKey: string, slug: string): Promise<PostF
 
   const data = await kitGetCached(`/broadcasts/${meta.id}`, apiKey);
   const content: string = data?.broadcast?.content ?? '';
-  return { ...meta, content: cleanBroadcastHtml(content) };
+  return { ...meta, content: sanitizePostHtml(content) };
 }

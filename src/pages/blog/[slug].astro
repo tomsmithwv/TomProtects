@@ -2,8 +2,7 @@
 export const prerender = false;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsletterSignup from '../../components/NewsletterSignup.astro';
-import Container from '../../components/Container.astro';
-import Card from '../../components/Card.astro';
+import Section from '../../components/Section.astro';
 import { getPostBySlug } from '../../utils/blog';
 
 const { slug } = Astro.params;
@@ -22,27 +21,40 @@ if (!post) {
     description={post.excerpt}
     ogType="article"
     publishedTime={post.date}
+    footerNewsletter={false}
   >
-    <Container width="narrow" py="md">
+    <Section width="text">
       <article>
-        <a href="/blog" class="text-sm font-medium text-accent">← All posts</a>
-        <h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight">{post.subject}</h1>
-        {post.dateLabel && <p class="mt-2 text-sm text-ink/70">{post.dateLabel}</p>}
+        <header>
+          {post.dateLabel && (
+            <p class="text-sm text-ink/60">
+              <time datetime={post.date}>{post.dateLabel}</time>
+            </p>
+          )}
 
-        <div class="post-content mt-8" set:html={post.content} />
+          <h1 class="mt-2 text-4xl font-semibold leading-tight tracking-tight">{post.subject}</h1>
+        </header>
 
-        <hr class="my-12 border-black/10" />
-
-        <!-- Per-post CTA: newsletter signup (source-blog) -->
-        <Card radius="2xl" padding="lg">
-          <h3 class="text-xl font-semibold">Get the next one in your inbox</h3>
-          <p class="mt-2 text-ink/70">Practical security and deliverability tips for online businesses. No hype.</p>
-          <div class="mt-4">
-            <NewsletterSignup source="source-blog" />
-          </div>
-        </Card>
+        {/* Sanitized in src/utils/sanitize.ts before it ever reaches this page. */}
+        <div class="post-content mt-10 max-w-2xl" set:html={post.content} />
       </article>
-    </Container>
+
+      <p class="mt-12">
+        <a href="/blog" class="font-medium text-accent underline-offset-4 hover:underline">
+          Back to all posts
+        </a>
+      </p>
+    </Section>
+
+    <Section background="cream" width="text">
+      <NewsletterSignup
+        id="post"
+        source="source-blog"
+        variant="panel"
+        heading="Get these by email"
+        buttonLabel="Send me the checklist"
+      />
+    </Section>
   </BaseLayout>
 )}
 
