@@ -66,11 +66,14 @@ anchored: it works with organizations in and around north-central West Virginia,
 where being able to turn up in person is part of what makes the advice land. It
 also works remotely, and does.
 
-Say this plainly wherever it belongs — Home, About, `/workwithme`. Geography is a
-qualifier, not a limitation. It tells a nearby reader this is someone they can
-actually sit down with, and it tells a remote reader the door is open. State both
-halves in a flat voice and move on. Never apologize for the location, never hedge
-it, never bury it in the footer as if it were a disclosure.
+Say this plainly where it belongs. **About is where it is said properly** — a
+full paragraph, both halves, part of the story. Home and `/workwithme` each carry
+one flat sentence in the body copy, and that is the whole of it; the location is
+not a strapline and does not belong in the hero eyebrow, where it was tried and
+cut. Geography is a qualifier, not a limitation: it tells a nearby reader this is
+someone they can actually sit down with, and it tells a remote reader the door is
+open. Never apologize for the location, never hedge it, never bury it in the
+footer as if it were a disclosure.
 
 ## What this practice is not
 
@@ -120,9 +123,16 @@ are exactly the readers this practice wants.
 
 - **Home and `/workwithme` lead with plain language and the outcome.** What the
   reader gets, in words they already use: knowing where the organization stands,
-  knowing what to fix first, having an answer ready when someone asks. *Security
-  advisor* is fine. The job title is not the lead — not in an h1, not in a hero
-  eyebrow, not in a page `<title>` or meta description.
+  knowing what to fix first, having an answer ready when someone asks. The job
+  title is not the lead — **not in an h1, not in a page `<title>`, not in a meta
+  description.**
+- **The home hero eyebrow is the exception, and it reads *Fractional CISO &
+  Security Advisor*.** The eyebrow is a kicker above the h1, not the lead: the
+  first full line a reader meets is still the plain-language core message. A
+  reader who does not know the term loses nothing by skipping four words in small
+  caps, and a reader who does know it gets it immediately. This was decided
+  deliberately after the narrowing — it is not a leftover, and it is not an
+  invitation to move the title into the headline or the `<title>` beneath it.
 - **"Fractional CISO" stays as a secondary descriptor.** It is the accurate term
   for the larger end of the work, and it is what a reader who already knows the
   term will search for. It belongs on **About**, where Tom's background is the
@@ -261,11 +271,11 @@ job is to make someone want that conversation.
 
 The primary conversion is the newsletter. Section order:
 
-1. **Hero.** Eyebrow in plain language, naming the work and the place —
-   *Security advisor · Morgantown, West Virginia* — the core message as the h1, a
-   short lede naming the reader's situation and the kinds of organization this is
-   for, the newsletter offer stated in prose, and the signup field. No job title
-   in the eyebrow or the h1. A quiet secondary link to `/about`.
+1. **Hero.** Eyebrow (*Fractional CISO & Security Advisor*), the core message as
+   the h1, a short lede naming the reader's situation and the kinds of
+   organization this is for, the newsletter offer stated in prose, and the signup
+   field. The job title lives in the eyebrow and nowhere else above the fold —
+   the h1 stays plain language. A quiet secondary link to `/about`.
    The photograph of Tom, the handwritten "Hi, I'm Tom!" caption, and the
    hand-drawn arrow between them are **kept** — they are what stops a calm page
    reading as an impersonal one. Photo cluster above the headline on mobile,
@@ -542,11 +552,13 @@ words.
       — small professional practices, small nonprofits, small local government
       agencies — so a reader recognizes their own kind before a headcount range
 - [x] Morgantown and the region appear on Home, About and `/workwithme`, stated
-      flatly, with remote work in the same sentence
-- [x] "Fractional CISO" is out of the lead. It survives in exactly three places:
-      the About meta description, one About paragraph that defines it, and the
-      closing line of the "Keep it moving" card on Home. It is in no h1, no hero
-      eyebrow, and no other `<title>`
+      flatly, with remote work in the same sentence — in body copy on Home and
+      `/workwithme`, at length on About, and not in the hero eyebrow
+- [x] "Fractional CISO" is out of the lead, though not off the page. It appears
+      in the home hero eyebrow (a kicker above the plain-language h1, kept on
+      purpose), the About meta description, one About paragraph that defines it,
+      and the closing line of the "Keep it moving" card on Home. It is in no h1
+      and in no `<title>`
 - [x] `SITE.positioning` is *Security advice for small organizations*, which is
       what the default `<title>` and the footer copyright line are built from.
       `SITE.location` was added alongside it
