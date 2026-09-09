@@ -18,10 +18,26 @@ interface Props {
   size?: number;
   /** Accessible name for the list. */
   label?: string;
+  /**
+   * On an ink band. The four pieces of artwork have opposite polarity — the
+   * CISSP mark is drawn on white, the PMP mark is a near-black disc — so no
+   * single filter suits them all against deep ink, and PMP would simply vanish
+   * into it. Each badge gets a light plaque instead, which gives the row one
+   * common ground and lets it read as a set.
+   */
+  onDark?: boolean;
+  /** Space between badges. A Tailwind gap class, since it varies by placement. */
+  gap?: string;
   class?: string;
 }
 
-const { size = 36, label = 'Certifications', class: cls = '' } = Astro.props;
+const {
+  size = 36,
+  label = 'Certifications',
+  onDark = false,
+  gap = 'gap-5',
+  class: cls = '',
+} = Astro.props;
 
 const badges = [
   {
@@ -47,7 +63,7 @@ const badges = [
 ];
 ---
 
-<ul aria-label={label} class:list={['flex list-none flex-wrap items-center gap-5 p-0', cls]}>
+<ul aria-label={label} class:list={['flex list-none flex-wrap items-center p-0', gap, cls]}>
   {
     badges.map((badge) => (
       <li>
@@ -55,7 +71,13 @@ const badges = [
           href={badge.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex rounded opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0 focus-visible:opacity-100 focus-visible:grayscale-0"
+          class:list={[
+            'inline-flex rounded opacity-60 grayscale transition',
+            'hover:opacity-100 hover:grayscale-0 focus-visible:opacity-100 focus-visible:grayscale-0',
+            // The plaque. Slightly translucent at rest so it sits into the band
+            // rather than on top of it, going solid white as the badge lights up.
+            onDark && 'bg-white/80 p-1 hover:bg-white focus-visible:bg-white',
+          ]}
         >
           <img
             src={badge.src}

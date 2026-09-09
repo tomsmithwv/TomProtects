@@ -2,6 +2,7 @@
 import NewsletterSignup from './NewsletterSignup.astro';
 import Wordmark from './Wordmark.astro';
 import Container from './Container.astro';
+import Certifications from './Certifications.astro';
 
 // Pages whose closing section already contains a signup (e.g. home's final CTA)
 // pass showNewsletter={false} to avoid two stacked subscribe forms.
@@ -56,8 +57,17 @@ const isCurrent = (href: string) => {
         ))}
       </nav>
     </div>
-    <p class="mt-8 text-xs text-cream/50">
-      © {year} TomProtects. Protect the business behind the brand.
-    </p>
+    {/*
+      The badges close the footer beside the copyright line, small and greyed,
+      so they read as a quiet credential rather than a banner. This is the one
+      dark band they appear on, so it is the one place the plaque is needed.
+    */}
+    <div class="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+      <Certifications size={32} gap="gap-4" onDark label="Professional certifications" />
+
+      <p class="text-xs text-cream/50">
+        © {year} TomProtects. Protect the business behind the brand.
+      </p>
+    </div>
   </Container>
 </footer>
