@@ -271,27 +271,50 @@ job is to make someone want that conversation.
 
 The primary conversion is the newsletter. Section order:
 
-1. **Hero.** Eyebrow (*Fractional CISO & Security Advisor*), the core message as
-   the h1, a short lede naming the reader's situation and the kinds of
-   organization this is for, the newsletter offer stated in prose, and the signup
-   field. The job title lives in the eyebrow and nowhere else above the fold —
-   the h1 stays plain language. A quiet secondary link to `/about`.
+1. **Hero.** Eyebrow (*Fractional CISO & Security Advisor*), then an h1 that
+   names the three kinds of organization outright, so a visitor knows within a
+   second or two whether the page is about them. The core message did not
+   survive as the h1 and does not need to — it is the first thing the lede says,
+   which is where it now lives. The lede states the reader's situation and the
+   promise; a separate flat line gives Morgantown and the region; then the
+   newsletter offer in prose and the signup field. The job title lives in the
+   eyebrow and nowhere else above the fold. A quiet secondary link to `/about`.
    The photograph of Tom, the handwritten "Hi, I'm Tom!" caption, and the
    hand-drawn arrow between them are **kept** — they are what stops a calm page
    reading as an impersonal one. Photo cluster above the headline on mobile,
    right-hand column on desktop.
-2. **The questions you're already asking.** The list of questions a reader in this
-   situation already has — *Are we secure enough? What should we fix first? Are we
-   spending money on the right things? Do we really need this security product? Is
-   our IT provider doing enough? What happens if we lose access to our systems for
-   a week? How do we get someone in charge of this without hiring a full-time
-   person?* — then a line noting that working through them in order is most of
-   what a security program is.
-3. **How I help.** Four cards, each an outcome first and a service second:
+2. **Who this is for.** Four cards, a heading and one line each: *small
+   professional practices* (dental, medical, legal, accounting), *small
+   nonprofits*, *local government agencies*, and *anyone with no security owner*.
+   The fourth exists because the first three are examples, not a gate — an
+   organization that is none of them and in exactly the same position should not
+   read three cards and conclude the page is not for it. A line above the cards
+   gives the size, five to twenty-five people, since the h1 no longer does.
+   This band sits before the questions on purpose: a reader confirms the page is
+   about them before being asked to recognise themselves in a list.
+3. **The questions you're already asking.** The list of questions a reader in this
+   situation already has, in the words they would actually use — *Are we secure
+   enough? How do we stop someone falling for a phishing email? What should we fix
+   first? Are we spending money on the right things? Do we really need this
+   security product? Is our IT provider doing enough? What happens if we lose
+   access to our systems for a week? Who is supposed to be in charge of all this?*
+   — then a line noting that working through them in order is most of what a
+   security program is.
+
+   **Phishing sits second because it is what people actually ask first.** It is
+   the one part of security a reader has already seen with their own eyes, and a
+   list that omits it reads as written by someone who has not been asked. The
+   last question is the people question in a practice owner's register; anything
+   built around a job title belongs nowhere near this list.
+4. **How I help.** Four cards, each an outcome first and a service second:
    *Understand where you stand* (security foundation and maturity assessment,
    most often identity and access plus the email and productivity platform),
    *Know what to do next* (a prioritized roadmap, policies people will follow,
-   answers ready for an insurance renewal or a customer security review),
+   answers ready for an insurance renewal or a customer security review, and a
+   note that grant-based funding can carry security expectations of its own —
+   **stated in general terms only.** Naming a specific program, regulation or
+   requirement would be a claim about someone's funding that this site is not
+   in a position to make, and it dates badly),
    *Keep it moving* (month-to-month advisory: roadmap upkeep, vendor and SaaS
    review, backup verification, useful security awareness — this is the card that
    may name *fractional CISO*, once, in a supporting line, defined where it
@@ -299,15 +322,20 @@ The primary conversion is the newsletter. Section order:
    *Newer risks, handled calmly* (AI governance as a plain question about which
    tools are in use and what data goes into them). Follow the cards with the
    advisory-not-implementation note.
-4. **How I think about security.** The philosophy in prose: security should leave
+5. **How I think about security.** The philosophy in prose: security should leave
    an organization more confident, not more anxious; good security is practical
    and sustainable and fits how the place already works; it should be explainable
    to a board, an insurer, or a client without a translator. Close on the line
    that a small organization does not need enterprise security — it needs
    experienced guidance applied to its actual situation.
-5. **Latest from the newsletter.** The three most recent `/blog` posts.
-6. **Newsletter signup.** The full signup with its heading, the checklist offer,
-   and the microcopy.
+6. **Latest from the newsletter.** The three most recent `/blog` posts.
+7. **Newsletter signup.** The closing panel, in its **concise** form — heading,
+   a one-line offer, the field, and one line of microcopy. The hero at the top of
+   this page has already named the checklist and made the promise in full, and
+   repeating either verbatim two screens later reads as filler rather than as a
+   second chance to convert. Home is the only page where that is true, so it is
+   the only page that passes `concise`; About and every blog post carry the full
+   version, because there the panel is the only signup on the page.
 
 Certifications appear as a quiet row of badges, not as a banner.
 

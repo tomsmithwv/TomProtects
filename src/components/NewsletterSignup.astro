@@ -33,6 +33,16 @@ interface Props {
   as?: 'h2' | 'h3';
   /** On an ink band: the wrapper copy and the status states need lifting. */
   onDark?: boolean;
+  /**
+   * Trim the offer and the microcopy to a line each.
+   *
+   * For a second signup on a page that has already made the offer in full — the
+   * home page's closing panel, which sits under a hero that names the checklist
+   * and states the promise. Repeated verbatim, that copy reads as filler and the
+   * reader skips the block it is meant to sell. Off everywhere the block is the
+   * only signup on the page, which is About and every blog post.
+   */
+  concise?: boolean;
   class?: string;
 }
 
@@ -44,6 +54,7 @@ const {
   heading = 'Join the newsletter',
   as: Heading = 'h2',
   onDark = false,
+  concise = false,
   class: cls = '',
 } = Astro.props;
 
@@ -56,10 +67,19 @@ const fieldId = `nl-${instanceId}`;
     <Fragment>
       <Heading class="text-2xl font-semibold tracking-tight">{heading}</Heading>
       <p class:list={['mt-4 max-w-2xl', onDark ? 'text-cream/70' : 'text-ink/70']}>
-        Subscribe and I'll send you the checklist:{' '}
-        <em>The Security Questions Every Small Organization Should Be Able to Answer</em>. It's a
-        self-scoring readiness check — you work through the questions, score yourself, and come away
-        with a clear picture of where your organization actually stands.
+        {concise ? (
+          <Fragment>
+            Subscribe and the checklist comes with it — a self-scoring readiness check you work
+            through on your own.
+          </Fragment>
+        ) : (
+          <Fragment>
+            Subscribe and I'll send you the checklist:{' '}
+            <em>The Security Questions Every Small Organization Should Be Able to Answer</em>. It's
+            a self-scoring readiness check — you work through the questions, score yourself, and
+            come away with a clear picture of where your organization actually stands.
+          </Fragment>
+        )}
       </p>
     </Fragment>
   )}
@@ -106,8 +126,9 @@ const fieldId = `nl-${instanceId}`;
 
   {variant !== 'bare' && (
     <p class:list={['max-w-2xl text-sm', onDark ? 'text-cream/60' : 'text-ink/60']}>
-      One email a week with practical security guidance for small organizations. No sales pitches.
-      Unsubscribe at any time, and your address goes nowhere else.
+      {concise
+        ? 'One email a week. No sales pitches, and you can unsubscribe at any time.'
+        : "One email a week with practical security guidance for small organizations. No sales pitches. Unsubscribe at any time, and your address goes nowhere else."}
     </p>
   )}
 </div>

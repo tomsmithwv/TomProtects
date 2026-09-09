@@ -10,17 +10,43 @@ import RuleList from '../components/RuleList.astro';
 import Callout from '../components/Callout.astro';
 import PullQuote from '../components/PullQuote.astro';
 
-// The questions a reader in this situation is already carrying. Ordered roughly
-// as they surface: broad worry first, then spending, then the people question.
+// The questions a reader in this situation is already carrying, in the words
+// they would actually use. Ordered roughly as they surface: the broad worry,
+// then the one that prompts most first calls, then spending, then the people
+// question. Phishing sits second because it is what people ask about first —
+// it is the part of security they have already seen with their own eyes.
 const questions = [
   'Are we secure enough?',
+  'How do we stop someone falling for a phishing email?',
   'What should we fix first?',
   'Are we spending money on the right things?',
   'Do we really need this security product?',
   'Is our IT provider doing enough?',
   'What happens if we lose access to our systems for a week?',
-  'How do we get someone in charge of this without hiring a full-time person?',
+  'Who is supposed to be in charge of all this?',
 ];
+
+// The reader should find themselves here before they read anything else. Four
+// rows rather than three: the last one catches an organization that is none of
+// the first three and is in exactly the same position anyway.
+const audience = [
+  {
+    heading: 'Small professional practices',
+    body: 'Dental, medical, legal and accounting offices, holding records that patients and clients trusted you with.',
+  },
+  {
+    heading: 'Small nonprofits',
+    body: 'Donor details and program data, and a board that has started asking how all of it is protected.',
+  },
+  {
+    heading: 'Local government agencies',
+    body: 'Resident information and public accountability, usually on a budget that was set a year in advance.',
+  },
+  {
+    heading: 'Anyone with no security owner',
+    body: 'Capable IT, in-house or a provider, but nobody whose job is deciding what should happen next.',
+  },
+] as const;
 
 // Services folded into the outcome rather than listed, so the reader sees what
 // they get before they see what it is called. The icon on each card is
@@ -41,7 +67,9 @@ const help = [
     body: `A list of findings is not a plan. I turn what we learn into a prioritized roadmap: what
       to do now, what can wait, and what you can reasonably set aside. That includes the practical
       pieces: security policies people will actually follow, and having your answers in order
-      before a cyber insurance renewal or a customer security review.`,
+      before a cyber insurance renewal or a customer security review. If part of your funding is
+      grant-based, that can carry security expectations of its own, and the same preparation
+      covers them.`,
   },
   {
     icon: 'clock',
@@ -119,13 +147,12 @@ const help = [
       <div class="text-center lg:order-1">
         <Eyebrow class="mb-4">Fractional CISO &amp; Security Advisor</Eyebrow>
         <h1 class="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-          Helping small organizations build their first real security program.
+          Straightforward security for small practices, nonprofits, and local agencies.
         </h1>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-ink/70 sm:text-xl">
-          You know security matters. What's less clear is where to start, what to fix first, and who
-          makes those calls when no one on staff owns security. I work with small practices,
-          nonprofits and local government agencies to understand where they stand, what matters
-          most, and what to do next.
+          You depend on technology for nearly everything, you hold information people trusted you
+          with, and nobody on staff owns security. I help you build your first real security
+          program: work out where you stand, what to fix first, and what can safely wait.
         </p>
 
         {/*
@@ -134,7 +161,7 @@ const help = [
           in the room, further away means we work remotely.
         */}
         <p class="mx-auto mt-4 max-w-2xl text-ink/70">
-          I'm based in Morgantown and work with organizations across north-central West Virginia,
+          I'm based in Morgantown, West Virginia, and work with organizations across the region —
           and remotely with those further afield.
         </p>
 
@@ -164,7 +191,31 @@ const help = [
       </div>
   </Section>
 
-  <!-- 2. The questions you're already asking -->
+  <!--
+    2. Who this is for. Placed before the questions so a reader confirms the page
+    is about them before being asked to recognise themselves in a list. Cream
+    keeps the alternation intact: the hero gradient closes on a hairline, and
+    every band after this one keeps the ground it already had.
+  -->
+  <Section background="cream" width="text">
+    <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Who this is for</h2>
+
+    <p class="mt-6 max-w-2xl text-ink/70">
+      Mostly organizations of five to twenty-five people, where technology runs almost everything
+      and security belongs to nobody in particular.
+    </p>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      {audience.map((a) => (
+        <Card>
+          <h3 class="text-xl font-semibold">{a.heading}</h3>
+          <p class="mt-2 text-sm text-ink/70">{a.body}</p>
+        </Card>
+      ))}
+    </div>
+  </Section>
+
+  <!-- 3. The questions you're already asking -->
   <Section background="white" width="text">
     <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
       The questions you're already asking
@@ -179,7 +230,7 @@ const help = [
     </p>
   </Section>
 
-  <!-- 3. How I help -->
+  <!-- 4. How I help -->
   <Section id="how-i-help" background="cream" width="text" class="scroll-mt-20">
     <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">How I help</h2>
 
@@ -204,7 +255,7 @@ const help = [
     </Callout>
   </Section>
 
-  <!-- 4. How I think about security -->
+  <!-- 5. How I think about security -->
   <Section background="white" width="text">
     <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
       How I think about security
@@ -237,7 +288,7 @@ const help = [
     </PullQuote>
   </Section>
 
-  <!-- 5. Latest from the newsletter (3 most recent, loaded client-side) -->
+  <!-- 6. Latest from the newsletter (3 most recent, loaded client-side) -->
   <Section background="cream">
       <Eyebrow>From the newsletter</Eyebrow>
       <h2 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Latest writing</h2>
@@ -249,12 +300,14 @@ const help = [
       </p>
   </Section>
 
-  <!-- 6. Newsletter: the page's closing action, and its primary conversion -->
+  <!-- 7. Newsletter: the closing action. Concise, because the hero above has
+       already made the offer in full and repeating it verbatim reads as filler. -->
   <Section background="ink" width="text">
     <NewsletterSignup
       id="newsletter"
       variant="panel"
       onDark
+      concise
       buttonLabel="Send me the checklist"
     />
   </Section>
