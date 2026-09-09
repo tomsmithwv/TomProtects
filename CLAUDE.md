@@ -473,9 +473,11 @@ The site's primary conversion, and the reason most pages end where they do.
 - `source-newsletter` — subscribed from the home page or the footer
 - `source-blog` — subscribed from the blog index or a post
 
-Tag names are resolved to Kit IDs at runtime, so no IDs are hardcoded. A tag that
-does not exist in the account yet is skipped rather than failing the signup —
-which means **a tag must be created in Kit before it does anything.**
+Tag names are resolved to Kit IDs at runtime, so no IDs are hardcoded. The lookup
+is an exact, case-sensitive match on the tag name, and a tag that does not resolve
+is skipped rather than failing the signup — so **a misspelled or missing tag is
+invisible from the outside.** The signup succeeds either way; only a server log
+line distinguishes them. Both tags now exist in the account.
 
 ## Retiring tomsmithtech.com
 
@@ -567,9 +569,11 @@ words.
 
 ### Not done, and not doable from the repo
 
-- [ ] `source-newsletter` and `source-blog` created in the TomProtects Kit
-      account. A tag that does not exist is skipped silently rather than raising,
-      so signups would land untagged and nothing would say so.
+- [x] `source-newsletter` and `source-blog` created in the TomProtects Kit
+      account. Names must match exactly — the runtime does a case-sensitive
+      lookup, so `Source-Newsletter` or an underscore resolves to nothing, the
+      signup still succeeds, and the subscriber lands untagged with only a
+      `[KIT] Tag not found in account, skipping` line to say so.
 - [ ] The checklist incentive live in the TomProtects Kit account — the form and
       its incentive email, rebuilt here rather than carried over from
       tomsmithtech's separate account, under the new title and written for the
