@@ -9,6 +9,7 @@ import Icon from '../components/Icon.astro';
 import RuleList from '../components/RuleList.astro';
 import Callout from '../components/Callout.astro';
 import PullQuote from '../components/PullQuote.astro';
+import Certifications from '../components/Certifications.astro';
 
 // The questions a reader in this situation is already carrying, in the words
 // they would actually use. Ordered roughly as they surface: the broad worry,
@@ -45,6 +46,26 @@ const audience = [
   {
     heading: 'Anyone with no security owner',
     body: 'Capable IT, in-house or a provider, but nobody whose job is deciding what should happen next.',
+  },
+] as const;
+
+// PLACEHOLDER — scaffolding for one anonymized engagement example, and nothing
+// more. There is no client, no outcome, no quote and no number here, because
+// none of them exist yet and inventing them would be inventing a reference.
+// Each line below is an instruction to whoever fills this in, written to be
+// impossible to mistake for copy.
+const engagementExample = [
+  {
+    label: 'The situation',
+    todo: 'TODO — the organization in one or two sentences: rough size, sector, and what prompted the call. No name, and no detail specific enough to identify it.',
+  },
+  {
+    label: 'What was found',
+    todo: 'TODO — what the assessment actually turned up, in plain language. Two or three things at most, described as a reader would recognise them rather than as findings with severities.',
+  },
+  {
+    label: 'What changed',
+    todo: 'TODO — what was different afterwards, and over roughly what period. Only what can be said plainly and truthfully; no figure that was never actually measured.',
   },
 ] as const;
 
@@ -106,9 +127,22 @@ const help = [
   >
       <!-- Photo cluster: above headline on mobile, right column on desktop -->
       <div class="mb-8 flex items-center justify-center gap-1 lg:order-2 lg:mb-0 lg:block">
-        <p class="-rotate-6 font-handwritten text-3xl text-accent lg:mb-1 lg:ml-6 lg:text-4xl">
-          Hi, I'm Tom!
-        </p>
+        {/*
+          The caption and one badge travel together. Grouping them keeps the
+          mobile row the same width it already was — the badge is narrower than
+          the caption, so it stacks under it rather than adding a fourth item
+          across — and on desktop it sits under the caption, above the arrow.
+          The arrow still runs caption-cluster to photograph, untouched.
+        */}
+        <div class="flex flex-col items-center gap-2 lg:mb-1 lg:ml-6 lg:items-start">
+          <p class="-rotate-6 font-handwritten text-3xl text-accent lg:text-4xl">Hi, I'm Tom!</p>
+          <Certifications
+            only={['cissp']}
+            size={34}
+            gap="gap-0"
+            label="CISSP certification, verified on Credly"
+          />
+        </div>
         <!-- Hand-drawn arrow from caption to photo -->
         <svg
           viewBox="0 0 60 60"
@@ -300,7 +334,41 @@ const help = [
       </p>
   </Section>
 
-  <!-- 7. Newsletter: the closing action. Concise, because the hero above has
+  <!--
+    7. Engagement example — PLACEHOLDER. This band ships empty on purpose and is
+    not finished content. It sits here, after "Latest writing" and before the
+    closing panel, for two reasons: proof reads best immediately before the ask,
+    and white here is the one insertion point that leaves every band above it on
+    the ground it already had. Moving it means re-checking the cream/white
+    alternation from that point down.
+  -->
+  <Section background="white" width="text">
+    <Eyebrow>Engagement example</Eyebrow>
+    <h2 class="mt-2 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+      What this looks like in practice
+    </h2>
+
+    <Callout on="white" class="mt-6 max-w-2xl">
+      <p class="text-ink/80">
+        <strong>TODO — placeholder, not real content.</strong> This is scaffolding for one
+        anonymized engagement example. Nothing below describes real work. Fill it in or delete the
+        section; it should not reach a reader as it stands.
+      </p>
+    </Callout>
+
+    <Card radius="2xl" padding="lg" surface="cream" class="mt-8 max-w-2xl">
+      <dl class="divide-y divide-black/10">
+        {engagementExample.map((row) => (
+          <div class="py-5 first:pt-0 last:pb-0">
+            <dt><Eyebrow>{row.label}</Eyebrow></dt>
+            <dd class="mt-2 text-ink/70">{row.todo}</dd>
+          </div>
+        ))}
+      </dl>
+    </Card>
+  </Section>
+
+  <!-- 8. Newsletter: the closing action. Concise, because the hero above has
        already made the offer in full and repeating it verbatim reads as filler. -->
   <Section background="ink" width="text">
     <NewsletterSignup
