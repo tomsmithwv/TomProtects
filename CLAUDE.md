@@ -110,6 +110,15 @@ reduces risk.
 - claims that can't be backed. Certifications are stated because they are
   checkable; judgment is what actually matters and no certification demonstrates
   it
+- **an implied track record.** "Most clients find…", "plenty of organizations
+  choose…", "what we usually see…" — every one of those is a claim about work
+  already done, made in a phrasing casual enough to slip past the writer. Describe
+  the process in the present and the reader's options in the conditional: *if you
+  would rather run it yourself*, not *most organizations run it themselves*. A
+  method can be described honestly before it has ever run; a pattern across
+  clients cannot. This does not gag genuine facts about the practice — where Tom
+  works and who he has worked for are his to state — it rules out inventing
+  frequency to sound established
 
 **Prefer:** short sentences. Concrete nouns. Outcomes over technical controls.
 The second person. Admitting the limits of what can be known.
