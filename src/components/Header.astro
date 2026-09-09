@@ -2,7 +2,11 @@
 import Wordmark from './Wordmark.astro';
 import Container from './Container.astro';
 import Button from './Button.astro';
-// Primary navigation. "Get Started" is the primary CTA → /workwithme.
+// Primary navigation. The primary CTA → /workwithme. Its label is the page's
+// own name, "Work with me", and it is the same string in the desktop pill, the
+// mobile menu and the footer link. Three spellings of one destination read as
+// three destinations, which is what "Get Started" and "Work With Me" were
+// doing here.
 const links = [
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
@@ -37,7 +41,7 @@ const isCurrent = (href: string) => {
           {l.label}
         </a>
       ))}
-      <Button href="/workwithme" size="sm">Get Started</Button>
+      <Button href="/workwithme" size="sm">Work with me</Button>
     </nav>
 
     <button
@@ -64,7 +68,7 @@ const isCurrent = (href: string) => {
         {l.label}
       </a>
     ))}
-    <a href="/workwithme" class="block px-6 py-3 font-semibold text-accent">Get Started</a>
+    <a href="/workwithme" class="block px-6 py-3 font-semibold text-accent">Work with me</a>
   </div>
 
   <script>

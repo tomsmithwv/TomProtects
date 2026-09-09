@@ -33,10 +33,6 @@ const CONTACT_EMAIL = SITE.email;
         start.
       </p>
 
-      <p>
-        I work from Morgantown with organizations across north-central West Virginia, and remotely
-        with those further afield.
-      </p>
     </div>
 
     <Callout on="cream" class="mt-8 max-w-2xl">
@@ -67,20 +63,85 @@ const CONTACT_EMAIL = SITE.email;
       </p>
 
       <p>
-        It is worth saying what does not fit, too. If you already have a security team, or what you
-        need is a penetration test, or a certification against a deadline, this is not the right
-        engagement — and I would rather tell you that in the first ten minutes than three weeks in.
+        It is worth saying what does not fit, too. If you are much larger than this — big enough
+        that security is already someone's actual job — or you already have a security team, or
+        what you need is a penetration test or a certification against a fixed deadline, this is
+        not the right engagement. I would rather tell you that in the first ten minutes than three
+        weeks in.
       </p>
     </div>
   </Section>
 
+  <!--
+    Engagement shape. Cream, which is why the booking band below it is now white
+    rather than inheriting the page ground — inserting a band here would
+    otherwise put two cream bands back to back. The order matters more than the
+    grounds: what an engagement costs and how it is shaped belongs before the
+    calendar, not after it.
+  -->
   <Section width="text">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">How an engagement starts</h2>
+
+    <div class="mt-6 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        Almost every engagement begins the same way, with a fixed-price starting assessment. The
+        scope is set before it begins and so is the cost, so there is no meter running and no
+        surprise at the end. You get an accurate picture of where the organization stands, and a
+        prioritized roadmap: what to do now, what can wait, and what you can reasonably set aside.
+      </p>
+
+      <p>
+        That assessment stands on its own. Plenty of organizations take the roadmap and run it
+        themselves with their existing IT provider, and that is a perfectly good outcome.
+      </p>
+
+      <p>
+        For organizations that would rather not carry it alone, ongoing advisory is available
+        afterwards — month to month, keeping the roadmap current and staying reachable when a
+        decision comes up. It is offered after the assessment rather than bundled into it, because
+        you should be able to see the work before deciding whether you want more of it.
+      </p>
+    </div>
+
+    <Callout on="cream" class="mt-8 max-w-2xl">
+      <p class="text-ink/80">
+        <strong>TODO — price.</strong> The fixed price for the starting assessment goes here, and
+        this note comes out. It is deliberately blank: no number, no range and no "starting at" has
+        been invented for it. Until it is filled in, this page promises a fixed price and does not
+        say what it is.
+      </p>
+    </Callout>
+
+    <h3 class="mt-12 text-xl font-semibold text-ink">
+      Why not just buy a one-off audit from a security firm?
+    </h3>
+
+    <div class="mt-4 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        It is a reasonable thing to buy, and for some organizations it is the right thing. What it
+        usually produces is a report, written to be thorough, and handed over at the point where
+        the actual work starts. If you have someone in-house who can turn a hundred findings into
+        the four things worth doing this quarter, that is a good trade. If you do not, the report
+        becomes one more thing nobody has time to read, and a year later the same questions are
+        still open. The assessment here is not a better audit — it is an assessment that arrives
+        already sorted into an order you can act on, from someone who is still around afterwards to
+        answer what comes up.
+      </p>
+    </div>
+  </Section>
+
+  <Section background="white" width="text">
     <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Starting a conversation</h2>
 
     <p class="mt-6 max-w-2xl text-ink/70">
       A first call is about where your organization stands today, what is already being asked of
-      it, and whether an engagement would help. No obligation either way, and nothing to price until
-      there is something specific worth pricing.
+      it, and whether an engagement would help. No obligation either way.
+    </p>
+
+    <p class="mt-4 max-w-2xl text-ink/70">
+      I'm based in Morgantown, West Virginia. Most of the organizations I work with are around
+      north-central West Virginia, close enough to meet in person when that is the useful thing to
+      do, and I work remotely with those further afield. Either way the call is the same.
     </p>
 
     <div class="mt-8 flex items-center gap-4">
@@ -112,7 +173,7 @@ const CONTACT_EMAIL = SITE.email;
     </ul>
 
     <!-- TidyCal scheduling embed — unchanged: same account, same path, same markup. -->
-    <Card radius="2xl" padding="xs" class="mt-10 sm:p-4">
+    <Card radius="2xl" padding="xs" surface="cream" class="mt-10 sm:p-4">
       <div class="tidycal-embed" data-path="tomsmith/discovery"></div>
       <script is:inline src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
       <noscript>

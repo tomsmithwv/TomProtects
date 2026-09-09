@@ -263,9 +263,19 @@ a `prefers-reduced-motion` guard.
 
 `/` · `/about` · `/blog` · `/blog/{slug}` · `/workwithme` · `/privacy` · 404
 
-There is **no pricing anywhere on the site**. No price, no range, no "starting
-at", no packages with figures. Engagements are scoped in conversation. The site's
-job is to make someone want that conversation.
+**Pricing: one number, in one place.** `/workwithme` states a fixed price for
+the starting assessment, because a reader deciding whether to book needs to know
+whether this is a five-hundred-dollar conversation or a fifteen-thousand-dollar
+one, and making them ask is a tax on exactly the cautious reader this practice
+wants. That is the whole of it: **no price anywhere else on the site**, no
+packages, no tiers, no table, no "from", and no figure attached to the ongoing
+advisory — that is scoped in conversation, as it always was.
+
+This reverses the v2 rule, which was that the site carried no pricing at all.
+That rule came from v1's launch-price block and price runway, which were a
+different thing: a funnel built around a number. One fixed entry price is not
+that, and the removal list at the end of this brief is about the funnel, not
+about ever naming a cost.
 
 ### Home
 
@@ -424,7 +434,18 @@ What the page should say now:
 - **What the first conversation covers.** Where the organization stands today,
   what is already being asked of it, and whether an engagement makes sense. No
   obligation either way.
-- **No pricing.** Engagements are scoped in conversation.
+- **How an engagement starts.** The fixed-price starting assessment as the entry
+  point — scope and cost both set before it begins — stated plainly with the
+  figure. Then that the assessment stands on its own and plenty of organizations
+  run the roadmap themselves, and that ongoing month-to-month advisory is
+  available *afterwards* rather than bundled, so a reader can see the work before
+  deciding whether they want more of it. The ongoing side carries no figure.
+- **The one-off audit objection**, answered in a paragraph. A reader comparing
+  this to a security firm's audit is asking a fair question and deserves a fair
+  answer: an audit is a reasonable purchase, it produces a report at the point
+  where the work begins, and it assumes someone in-house can turn findings into
+  an order of operations. **Never a swipe** — the difference is the sorting and
+  the staying, not the quality of anyone's assessment.
 
 Kept from the existing page, with only the wording updated:
 
@@ -526,7 +547,9 @@ must not be lost:
 
 ## Out of scope
 
-- Pricing, payment processing, or checkout of any kind
+- Payment processing or checkout of any kind. The site names one price; it never
+  takes money. Payment is arranged outside the site entirely
+- Pricing beyond that one figure: no tiers, no packages, no calculator
 - Customer login or client dashboard
 - Storing user data anywhere other than Kit
 - A second newsletter, or any combined feed with another Kit account
@@ -539,9 +562,10 @@ it can be finished by editing code.
 
 ### Done in the repo
 
-- [x] No checker, no audit funnel, no pricing and no deliverability copy anywhere
-      in `src/`. The terms survive in this brief on purpose — the removal list
-      below is what stops them being reintroduced.
+- [x] No checker, no audit funnel and no deliverability copy anywhere in `src/`.
+      The terms survive in this brief on purpose — the removal list below is what
+      stops them being reintroduced. Pricing is no longer on that list: see
+      "Pricing: one number, in one place" above
 - [x] Positioning, ICP and the core message are consistent across Home, About,
       `/workwithme`, `/privacy`, both blog templates, the header, the footer, and
       every `<title>` and meta description
@@ -563,6 +587,11 @@ it can be finished by editing code.
       and the newsletter's failure message, from one constant in `src/consts.ts`
 - [x] No redirects or stubs left behind for `/bookaconsultation`, `/tools` or
       `/audit`, and no dead links in the header, footer or 404 page
+
+The link to `/workwithme` is labelled **"Work with me"** everywhere it appears —
+the header pill, the mobile menu and the footer. It previously read "Get Started"
+in the header and "Work With Me" in the footer, which gave one destination three
+names on a five-page site. The page's own h1 is the canonical spelling.
 
 Routes are `/`, `/about`, `/blog`, `/blog/{slug}`, `/workwithme`, `/privacy`,
 `/subscribed` and 404, plus the `/api/subscribe`, `/api/posts` and
@@ -647,8 +676,11 @@ If any of this is still in the codebase, it is a leftover, not a feature.
   `source-audit-form` tag and the `audit_domain` / `audit_platforms` /
   `audit_notes` custom fields in Kit; they are harmless left in place, but nothing
   writes to them any more.
-- **All pricing:** the launch-price block, the price runway, and the
-  no-retainers/fixed-price framing.
+- **v1's pricing *funnel*:** the launch-price block, the price runway, and the
+  no-retainers framing that went with the retired review. Note the boundary: the
+  fixed-price starting assessment on `/workwithme` is deliberate and current, and
+  is not one of these. What must not come back is a page organised around a
+  price — a runway, a countdown, tiers, or a figure doing the persuading.
 - **Deliverability as a topic.** It is no longer what this practice is about. It
   may appear in a newsletter post like any other subject, but not in the site's
   own positioning copy.
