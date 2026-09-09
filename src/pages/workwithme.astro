@@ -4,35 +4,100 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import FounderPhoto from '../components/FounderPhoto.astro';
 import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
-import Eyebrow from '../components/Eyebrow.astro';
+import Callout from '../components/Callout.astro';
+
+const CONTACT_EMAIL = 'hello@tomprotects.com';
 ---
 
 <BaseLayout
-  title="Book a consultation — TomProtects"
-  description="Prefer to talk it through first? Book a short, no-pressure call about your domain, email, and platform security."
+  title="Work with me — TomProtects"
+  description="Fractional CISO and security advisory for growing businesses. What the work is, who it fits, and how to start a conversation."
 >
-  <Section width="narrow" py="md">
-    <Eyebrow>Optional call</Eyebrow>
-    <h1 class="mt-2 text-4xl font-semibold tracking-tight">Book a consultation</h1>
-    <p class="mt-4 text-ink/70">
-      Everything I do is async by default — but if you'd rather talk it through first, a short intro call is always
-      optional. We'll cover where your domain, email, and revenue platforms stand and whether the full review is a fit.
-    </p>
+  <Section width="text">
+    <h1 class="text-4xl font-semibold tracking-tight">Work with me</h1>
 
-    <div class="mt-6 flex items-center gap-4">
-      <FounderPhoto class="h-16 w-16" />
-      <p class="text-sm text-ink/70">
-        You'll be talking to me directly — Tom, CISSP · CISM · CDPSE, 20+ years in security.
+    <div class="mt-8 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        Fractional CISO and security advisory for growing businesses: helping you build your first
+        real security program, and keeping it moving once it exists.
+      </p>
+
+      <p>
+        Engagements vary, but they draw on the same
+        <a href="/#how-i-help" class="font-medium text-accent underline underline-offset-4"
+          >four areas</a
+        >: understanding where you stand, knowing what to do next, keeping it moving, and handling
+        newer risks calmly. Some businesses want one assessment and a roadmap they can run
+        themselves. Others want someone in the room month to month. Both are reasonable places to
+        start.
       </p>
     </div>
 
-    <ul class="mt-8 space-y-3 text-ink/80">
-      <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> 15–20 minutes, no pressure, no pitch</li>
-      <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> Plain-English answers to your security questions</li>
-      <li class="flex gap-3"><span class="mt-0.5 font-bold text-accent">✓</span> A clear sense of what the full review would cover for you</li>
+    <Callout on="cream" class="mt-8 max-w-2xl">
+      <p class="text-ink/80">
+        The work is advisory. I do not sell products and I do not take over your systems.
+        Implementation happens through the IT staff or provider you already have, who know your
+        environment. My part is making sure the right things happen, in the right order.
+      </p>
+    </Callout>
+  </Section>
+
+  <Section background="white" width="text">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Who it fits</h2>
+
+    <div class="mt-6 max-w-2xl space-y-6 text-ink/70">
+      <p>
+        Growing businesses, roughly five to fifty people, that depend on technology for nearly
+        everything they do, have nobody whose actual job is security, and have started fielding
+        questions from customers, insurers or regulators that are difficult to answer.
+      </p>
+
+      <p>
+        It is worth saying what does not fit, too. If you already have a security team, or what you
+        need is a penetration test, or a certification against a deadline, this is not the right
+        engagement — and I would rather tell you that in the first ten minutes than three weeks in.
+      </p>
+    </div>
+  </Section>
+
+  <Section width="text">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Starting a conversation</h2>
+
+    <p class="mt-6 max-w-2xl text-ink/70">
+      A first call is about where your business stands today, what is already being asked of it, and
+      whether an engagement would help. No obligation either way, and nothing to price until there
+      is something specific worth pricing.
+    </p>
+
+    <div class="mt-8 flex items-center gap-4">
+      <FounderPhoto class="h-16 w-16 shrink-0" />
+      <p class="text-sm text-ink/70">
+        You'll be talking to me directly — Tom. CISSP, CISM, CDPSE and PMP, and more than twenty
+        years in security.
+      </p>
+    </div>
+
+    <ul class="mt-8 max-w-2xl space-y-3 text-ink/80">
+      {/*
+        Deliberately no duration here. The calendar below is booked as a
+        30-minute slot, and the v1 copy this page replaced said 15–20, so the
+        two contradicted each other on the same screen. Whichever is right, it
+        belongs in TidyCal — stating it twice only means it can drift again.
+      */}
+      <li class="flex gap-3">
+        <span class="mt-0.5 font-bold text-accent">✓</span> A short call, no pressure, no pitch
+      </li>
+      <li class="flex gap-3">
+        <span class="mt-0.5 font-bold text-accent">✓</span> Plain-English answers to your security
+        questions
+      </li>
+      <li class="flex gap-3">
+        <span class="mt-0.5 font-bold text-accent">✓</span> A clear sense of whether an engagement
+        would help, and what it would involve
+      </li>
     </ul>
 
-    <!-- TidyCal scheduling embed -->
+    <!-- TidyCal scheduling embed — unchanged: same account, same path, same markup. -->
     <Card radius="2xl" padding="xs" class="mt-10 sm:p-4">
       <div class="tidycal-embed" data-path="tomsmith/discovery"></div>
       <script is:inline src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
@@ -43,5 +108,13 @@ import Eyebrow from '../components/Eyebrow.astro';
         </p>
       </noscript>
     </Card>
+
+    <p class="mt-6 max-w-2xl text-sm text-ink/70">
+      Would rather write than book a slot? Email
+      <a
+        href={`mailto:${CONTACT_EMAIL}`}
+        class="font-medium text-accent underline underline-offset-4">{CONTACT_EMAIL}</a
+      > and tell me where things stand.
+    </p>
   </Section>
 </BaseLayout>
