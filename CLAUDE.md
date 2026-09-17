@@ -43,20 +43,27 @@ Small organizations, roughly **5–25 people**, that:
 Concretely, that means three kinds of organization:
 
 - **small professional practices** — dental, medical, legal, accounting,
-- **small nonprofits**,
-- **small local government agencies**.
+- **small service businesses** — contractors, trades, field services: crews out
+  on jobs, phones doing half the work, an office running on a handful of shared
+  systems. This is a world Tom knows from the inside, and the copy for it should
+  read that way — concrete and operational, never a category label,
+- **small nonprofits**.
+
+Local government agencies were the third type until the audience was revised;
+they are not a target now and should not be named as one. If one turns up, it is
+handled as what it is, not written for.
 
 What they have in common is more useful than what separates them. Each one holds
 data that matters to the people it belongs to — patient records, client files,
-donor details, resident information — on a handful of systems that arrived one at
-a time and were never looked at together. Each is small enough that the person
+customer and job records, donor details — on a handful of systems that arrived
+one at a time and were never looked at together. Each is small enough that the person
 who would have to fix a security problem is already doing three other jobs. Each
 has reached the point where security clearly matters and no one inside the
 organization owns it. A full-time security leader is more than they need or can
 justify. Product vendors answer a narrower question than the one being asked.
 
-Write for the office manager, the practice manager, the executive director, the
-county or city administrator. They are competent, busy, accountable for the
+Write for the office manager, the practice manager, the owner who also runs the
+office, the executive director. They are competent, busy, accountable for the
 decision, and not technical. Nothing on the site should assume otherwise.
 
 ## Where the work happens
@@ -151,9 +158,11 @@ are exactly the readers this practice wants.
 - **Define it in the sentence it appears in**, like any other acronym — a
   part-time security leader, shared across a few organizations rather than hired
   full time.
-- The same rule applies to *organization* over *business*. A dental practice, a
-  nonprofit and a county agency are not businesses, and copy that calls them one
-  tells a third of the audience the page is not about them.
+- The same rule applies to *organization* over *business* as the general word.
+  A dental practice and a nonprofit are not businesses, and copy that calls
+  everyone one tells part of the audience the page is not about them. A
+  contractor *is* a business, so the service-business card says so; the rule is
+  about the collective noun, not about avoiding the word where it is accurate.
 
 ## Stack
 
@@ -306,15 +315,20 @@ The primary conversion is the newsletter. Section order:
    hand-drawn arrow between them are **kept** — they are what stops a calm page
    reading as an impersonal one. Photo cluster above the headline on mobile,
    right-hand column on desktop.
-2. **Who this is for.** Four cards, a heading and one line each: *small
-   professional practices* (dental, medical, legal, accounting), *small
-   nonprofits*, *local government agencies*, and *anyone with no security owner*.
-   The fourth exists because the first three are examples, not a gate — an
-   organization that is none of them and in exactly the same position should not
-   read three cards and conclude the page is not for it. A line above the cards
-   gives the size, five to twenty-five people, since the h1 no longer does.
-   This band sits before the questions on purpose: a reader confirms the page is
-   about them before being asked to recognise themselves in a list.
+2. **Who this is for.** Three cards, a heading and one line each, in this order:
+   *small professional practices* (dental, medical, legal, accounting), *small
+   service businesses* (contractors, trades, field services — written from the
+   inside: crews on job sites, phones doing half the work, an office on a handful
+   of shared systems), *small nonprofits*. Three across from `md`; three cards in
+   a two-column grid orphan one on its own row.
+
+   The thing all three share — capable IT but nobody whose job is deciding what
+   happens next — is the **intro sentence**, not a fourth card. It is the thread
+   through the three, not a kind of organization on its own, and a card for it
+   read as a category rather than a condition. The intro also gives the size,
+   five to twenty-five people, since the h1 no longer does. This band sits
+   before the questions on purpose: a reader confirms the page is about them
+   before being asked to recognise themselves in a list.
 3. **The questions you're already asking.** The list of questions a reader in this
    situation already has, in the words they would actually use — *Are we secure
    enough? How do we stop someone falling for a phishing email? What should we fix
@@ -474,9 +488,9 @@ What the page should say now:
 - **Who it fits.** The ICP above, stated so a reader can self-qualify out as
   easily as in: 5–25 people, dependent on technology, nobody owning security, and
   questions arriving from clients, insurers, regulators or a board. Name the three
-  kinds of organization — small professional practices, small nonprofits, small
-  local government agencies — because a reader recognizes their own kind faster
-  than they recognise a headcount range.
+  kinds of organization — small professional practices, small service businesses,
+  small nonprofits — because a reader recognizes their own kind faster than they
+  recognise a headcount range.
 - **Where.** Based in Morgantown, working across the region, and working remotely
   too. One flat sentence, no apology.
 - **What the first conversation covers.** Where the organization stands today,
@@ -545,7 +559,7 @@ here too:
 >
 > It is aimed at small organizations of roughly 5–25 people that depend on
 > technology and have nobody whose actual job is security: small professional
-> practices, small nonprofits, and local government agencies.
+> practices, small service businesses, and small nonprofits.
 >
 > You will be talking to Tom Smith directly — CISSP, CISM, CDPSE, PMP. Based in
 > Morgantown, West Virginia, and works remotely.
@@ -688,8 +702,12 @@ words.
 - [x] "Growing businesses" is gone; the site says **small organizations**, and
       the headcount is five to twenty-five
 - [x] The three kinds of organization are named on Home, About and `/workwithme`
-      — small professional practices, small nonprofits, small local government
-      agencies — so a reader recognizes their own kind before a headcount range
+      — small professional practices, small service businesses, small nonprofits
+      — so a reader recognizes their own kind before a headcount range. Local
+      government agencies were the third until the audience was revised; the
+      replacement was made in one pass across every page and both meta
+      descriptions, and the h1 names the same three in the same order as the
+      cards beneath it
 - [x] Morgantown and the region appear on Home, About and `/workwithme`, stated
       flatly, with remote work in the same sentence — in body copy on Home and
       `/workwithme`, at length on About, and not in the hero eyebrow

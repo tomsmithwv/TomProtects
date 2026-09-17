@@ -26,25 +26,23 @@ const questions = [
   'Who is supposed to be in charge of all this?',
 ];
 
-// The reader should find themselves here before they read anything else. Four
-// rows rather than three: the last one catches an organization that is none of
-// the first three and is in exactly the same position anyway.
+// The reader should find themselves here before they read anything else. Three
+// kinds of organization, each described by what it actually looks like from the
+// inside rather than by a category label. The thing they have in common — no
+// one whose job is security — is the intro sentence, not a fourth card: it is
+// the thread through all three, not a kind of organization on its own.
 const audience = [
   {
     heading: 'Small professional practices',
     body: 'Dental, medical, legal and accounting offices, holding records that patients and clients trusted you with.',
   },
   {
+    heading: 'Small service businesses',
+    body: 'Contractors, trades and field services: crews on job sites all day, phones doing half the work, and an office that runs on a handful of systems everybody shares.',
+  },
+  {
     heading: 'Small nonprofits',
     body: 'Donor details and program data, and a board that has started asking how all of it is protected.',
-  },
-  {
-    heading: 'Local government agencies',
-    body: 'Resident information and public accountability, usually on a budget that was set a year in advance.',
-  },
-  {
-    heading: 'Anyone with no security owner',
-    body: 'Capable IT, in-house or a provider, but nobody whose job is deciding what should happen next.',
   },
 ] as const;
 
@@ -126,7 +124,7 @@ const help = [
 
 <BaseLayout
   title="TomProtects — Security advice for small organizations"
-  description="Security advice for small practices, nonprofits and local government agencies with nobody whose job is security. Based in Morgantown, West Virginia, working across the region and remotely."
+  description="Security advice for small practices, service businesses and nonprofits with nobody whose job is security. Based in Morgantown, West Virginia, working across the region and remotely."
   footerNewsletter={false}
 >
   <!-- 1. Hero: positioning, the checklist offer, and the signup -->
@@ -179,7 +177,7 @@ const help = [
       <div class="text-center lg:order-1">
         <Eyebrow class="mb-4">Fractional CISO &amp; Security Advisor</Eyebrow>
         <h1 class="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-          Straightforward security for small practices, nonprofits, and local agencies.
+          Straightforward security for small practices, service businesses, and nonprofits.
         </h1>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-ink/70 sm:text-xl">
           You depend on technology for nearly everything, you hold information people trusted you
@@ -233,11 +231,17 @@ const help = [
     <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Who this is for</h2>
 
     <p class="mt-6 max-w-2xl text-ink/70">
-      Mostly organizations of five to twenty-five people, where technology runs almost everything
-      and security belongs to nobody in particular.
+      Organizations of roughly five to twenty-five people that depend on technology for nearly
+      everything, with capable IT — in-house or a provider — but nobody whose job is deciding what
+      should happen next. What they do differs. That position is the same.
     </p>
 
-    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+    {/*
+      Three across from md, not two: three cards in a two-column grid leave one
+      orphaned on its own row, the same sparse shape the post grid was fixed for.
+      md rather than sm because three one-line cards get cramped at 640px.
+    */}
+    <div class="mt-10 grid gap-4 md:grid-cols-3">
       {audience.map((a) => (
         <Card>
           <h3 class="text-xl font-semibold">{a.heading}</h3>
