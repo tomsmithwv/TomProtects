@@ -26,7 +26,7 @@ const failed = Astro.url.searchParams.get('error') === '1';
           <Eyebrow>Newsletter</Eyebrow>
           <h1 class="mt-3 text-3xl font-semibold tracking-tight">That didn't go through</h1>
           <p class="mt-4 text-ink/70">
-            Your address wasn't added — either it looked malformed, or you tried a few times in
+            Your address wasn't added. Either it looked malformed, or you tried a few times in
             quick succession. Go back and try again, or email me at{' '}
             <a
               href={`mailto:${SITE.email}`}
@@ -42,7 +42,7 @@ const failed = Astro.url.searchParams.get('error') === '1';
           <Eyebrow>Newsletter</Eyebrow>
           <h1 class="mt-3 text-3xl font-semibold tracking-tight">You're on the list</h1>
           <p class="mt-4 text-ink/70">
-            Check your inbox to confirm your address — the checklist follows right after. If it
+            Check your inbox to confirm your address. The checklist follows right after. If it
             hasn't arrived in a few minutes, it's worth a look in your spam folder.
           </p>
         </>

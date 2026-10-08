@@ -7,14 +7,12 @@ Smith. Astro on Cloudflare Pages, deployed from a private GitHub repo. The site'
 job is to explain the practice, establish that Tom is credible, and convert
 readers to the newsletter.
 
-**Positioning:** the security advisor for a small organization that has nobody
-whose job is security. *Fractional CISO* is the name for the larger end of that
-work — a secondary descriptor, not the lead. See "Naming the work" under Voice.
+**Positioning:** the security advisor for online-first, expert-led businesses
+that have nobody whose job is security. See "Who this is for" and "Where the
+work happens" below. The site does not position Tom as a local provider.
 
-**Core message:** *Helping small organizations build their first real security
-program.*
-
-**Where the practice is based:** Morgantown, West Virginia.
+**Core message:** *Helping online-first businesses build their first real
+security program.*
 
 **The transformation the site sells:** from *"we don't know where to start"* to
 *"we understand our risks, have a prioritized roadmap, and know what to do next."*
@@ -31,71 +29,107 @@ looks like a leftover.
 
 ## Who this is for
 
-Small organizations, roughly **5–25 people**, that:
+**Online-first, expert-led businesses.** People who sell what they know, mostly
+through the internet:
 
-- depend on technology for nearly everything they do,
-- have **no dedicated security leadership** — usually a capable IT provider or
-  one internal IT person, but nobody whose job is to decide what the organization
-  should do about security and in what order,
-- are being asked security questions they can't currently answer, by **clients,
-  insurers, regulators, or their own board**.
+- coaches
+- consultants
+- creators
+- course sellers
+- newsletter operators
+- freelancers running a real business online
 
-Concretely, that means three kinds of organization:
+The usual shape:
 
-- **small professional practices** — dental, medical, legal, accounting,
-- **small service businesses** — contractors, trades, field services: crews out
-  on jobs, phones doing half the work, an office running on a handful of shared
-  systems. This is a world Tom knows from the inside, and the copy for it should
-  read that way — concrete and operational, never a category label,
-- **small nonprofits**.
+- **$100K to $1M+ in revenue.**
+- **Solo, or with 1 to 3 contractors** (a VA, an editor, a designer).
+- **No IT or security staff.** The owner set up every tool, and nobody has ever
+  reviewed any of it.
+- **Revenue that depends on three things:** platform access (Stripe, YouTube,
+  Kit, course platforms), email deliverability, and the trust of clients and
+  audience.
 
-Local government agencies were the third type until the audience was revised;
-they are not a target now and should not be named as one. If one turns up, it is
-handled as what it is, not written for.
+What they share is more useful than what separates them. Each one is a real
+business built on accounts they do not fully control, shared with people they
+do not fully track. A lost login, a suspended Stripe account, a hijacked
+YouTube channel, or a domain that stops delivering email is a business problem
+the same day. The person who would have to fix it is already doing the work
+the business sells.
 
-What they have in common is more useful than what separates them. Each one holds
-data that matters to the people it belongs to — patient records, client files,
-customer and job records, donor details — on a handful of systems that arrived
-one at a time and were never looked at together. Each is small enough that the person
-who would have to fix a security problem is already doing three other jobs. Each
-has reached the point where security clearly matters and no one inside the
-organization owns it. A full-time security leader is more than they need or can
-justify. Product vendors answer a narrower question than the one being asked.
+Write for the owner. They are capable, busy, accountable, and not technical.
+Nothing on the site should assume otherwise.
 
-Write for the office manager, the practice manager, the owner who also runs the
-office, the executive director. They are competent, busy, accountable for the
-decision, and not technical. Nothing on the site should assume otherwise.
+**This replaces the old audience.** The site used to target very small local
+organizations (5 to 25 people) in north central West Virginia: professional
+practices, contractors, dental offices, small nonprofits. That audience is
+retired. Do not reintroduce it: no "your team of 10", no offices, staff or
+employees as the reader's frame, no practice managers, boards, donors or
+patients, and no "your IT provider or MSP" as a default assumption.
+
+**Pending rewrites.** The "Pages" section and the "Definition of done" notes
+below still describe the old audience until the copy prompts land. Where they
+conflict with this section or with "Voice rules", this section wins. Decisions
+already made for those rewrites:
+
+- "Fractional CISO" is going. It is not a term this audience searches for.
+- The checklist is retitled *The Security Questions Every Growing Business
+  Should Be Able to Answer*.
 
 ## Where the work happens
 
-The practice is based in **Morgantown, West Virginia**, and is regionally
-anchored: it works with organizations in and around north-central West Virginia,
-where being able to turn up in person is part of what makes the advice land. It
-also works remotely, and does.
+**Location-independent, online-only. Never describe Tom as serving a geographic
+area.**
 
-Say this plainly where it belongs. **About is where it is said properly** — a
-full paragraph, both halves, part of the story. Home and `/workwithme` each carry
-one flat sentence in the body copy, and that is the whole of it; the location is
-not a strapline and does not belong in the hero eyebrow, where it was tried and
-cut. Geography is a qualifier, not a limitation: it tells a nearby reader this is
-someone they can actually sit down with, and it tells a remote reader the door is
-open. Never apologize for the location, never hedge it, never bury it in the
-footer as if it were a disclosure.
+That means none of the following, anywhere (copy, page titles, meta
+descriptions, OG tags, JSON-LD, alt text, sitemap, footer, form copy):
+
+- Morgantown, West Virginia, WV, "north central", or any other place name used
+  to say where Tom works
+- "local", "in your area", "service area", "nearby", "the region"
+- "in person", "on-site", "in the room", "meet up", or any line that implies
+  Tom can turn up somewhere
+
+Tom works remotely, and async-friendly: written back and forth, shared docs,
+and a call when a call is the faster way. Describe it that way if it needs
+describing at all.
+
+Structured data: there is none today. If it is added, use `ProfessionalService`
+or `Organization`. Never `LocalBusiness`, and never an `address` or
+`areaServed` property. Omit them; do not set them to "worldwide".
 
 ## What this practice is not
 
 Say so plainly on the site where it helps a reader self-qualify. Never as a swipe
 at anyone else's work.
 
-- **Advisory, not implementation.** Implementation happens through the client's
-  existing IT staff or MSP, who know the environment. Tom's part is making sure
-  the right work happens in the right order.
+- **Done with you, not done for you.** Tom works alongside the client, step by
+  step, and the client keeps the logins. He does not take over accounts, run
+  them for the client, or hold the keys. His part is making sure the right work
+  happens in the right order, and helping do it.
 - **Not penetration testing.** No offensive testing, no scanning as a service.
 - **Not an MSP or MSSP.** No managed systems, no monitoring, no help desk.
 - **Not compliance-only.** Frameworks inform the work; a certificate is not the
   goal. The goal is a business that is genuinely more secure and can explain
   itself.
 - **Not a reseller.** No products are sold, referred for commission, or bundled.
+
+## Voice rules
+
+These apply to all copy on the site, and to all copy written for it.
+
+- **Direct, warm, practical.** A knowledgeable friend, not a corporate
+  consultant.
+- **Plain language.** "Use" not "utilize", "fix" not "remediate".
+- **Short sentences and short paragraphs.** Contractions preferred.
+- **Never use em dashes.** Use periods, commas, or parentheses.
+- **No fear, urgency, or scarcity.** No hype words: unlock, empower, leverage,
+  game-changer, robust, deep dive.
+- **Name concrete things.** Stripe, YouTube, Kit, a VA, a contractor, a domain.
+- **Second person** ("you") for the reader. **First person** ("I") for Tom.
+
+The "Voice" section below adds to these. If the two ever disagree, these win.
+The existing copy and this brief still contain em dashes; they are being
+removed as each page is rewritten, and none go into anything new.
 
 ## Voice
 
@@ -281,8 +315,9 @@ a `prefers-reduced-motion` guard.
 
 `/` · `/about` · `/blog` · `/blog/{slug}` · `/workwithme` · `/privacy` · 404
 
-**Pricing: one number, in one place.** `/workwithme` states a fixed price for
-the starting assessment — **Security foundation assessment — $3,500** — because a
+**Pricing: one number, in one place.** `/workwithme` states the price of the
+starting assessment: **Security foundation assessment, starting at $1,000**.
+It replaced the old $3,500 figure. It is stated because a
 reader deciding whether to book needs to know whether this is a
 five-hundred-dollar conversation or a fifteen-thousand-dollar one, and making
 them ask is a tax on exactly the cautious reader this practice wants. The
@@ -290,14 +325,48 @@ figure lives here in the brief once, and on that page once; if it changes,
 those are the two places.
 
 That is the whole of it: **no price anywhere else on the site**, no packages, no
-tiers, no table, no "from", and no figure attached to the ongoing advisory —
-that is scoped in conversation, as it always was.
+tiers, no table, and no figure attached to anything else. "Starting at" is
+allowed on this one price and nowhere else. There is no nonprofit tier and no
+discounted tier of any kind. Ongoing help is a separate engagement, scoped in
+conversation.
 
 This reverses the v2 rule, which was that the site carried no pricing at all.
 That rule came from v1's launch-price block and price runway, which were a
 different thing: a funnel built around a number. One fixed entry price is not
 that, and the removal list at the end of this brief is about the funnel, not
 about ever naming a cost.
+
+### The starting assessment: what it includes (internal scope)
+
+This is the scope behind the $1,000 starting price. It is for Tom and for
+whoever writes copy. **It is not published as a spec.** The page describes it
+warmly and simply and never lists hours.
+
+- A review of the client's setup.
+- A written plan with priorities.
+- Up to 4 hours of screen-share working sessions to set things up together, if
+  the client wants them. The client stays logged in and keeps their logins.
+- One follow-up review about three months later.
+- Email help with questions, from the start of the engagement until that
+  follow-up review.
+
+**Email help ends after the follow-up review.** Ongoing help after that is a
+separate engagement.
+
+On the page:
+
+- The message is: I'll review your setup, give you a clear plan, and if you want
+  help, we'll make the changes together. About three months later we do a
+  follow-up review. Until then, email me with questions. The reader should feel
+  taken care of, not handed homework.
+- Don't list the 4 hours.
+- **Don't add language about what happens after the follow-up.** No ongoing
+  advisory pitch on this page.
+- Name the online-business concerns it covers: shared logins, MFA on revenue
+  platforms (Stripe, YouTube, your email, your registrar), domain and email
+  setup, account recovery, backups.
+- Never imply the client hands over logins or that Tom takes over accounts. The
+  line to match is "I work with you, not instead of you."
 
 ### Home
 
@@ -308,8 +377,7 @@ The primary conversion is the newsletter. Section order:
    second or two whether the page is about them. The core message did not
    survive as the h1 and does not need to — it is the first thing the lede says,
    which is where it now lives. The lede states the reader's situation and the
-   promise; a separate flat line gives Morgantown and the region; then the
-   newsletter offer in prose and the signup field. The job title lives in the
+   promise; then the newsletter offer in prose and the signup field. The job title lives in the
    eyebrow and nowhere else above the fold. A quiet secondary link to `/about`.
    The photograph of Tom, the handwritten "Hi, I'm Tom!" caption, and the
    hand-drawn arrow between them are **kept** — they are what stops a calm page
@@ -358,7 +426,7 @@ The primary conversion is the newsletter. Section order:
    stands), and
    *Newer risks, handled calmly* (AI governance as a plain question about which
    tools are in use and what data goes into them). Follow the cards with the
-   advisory-not-implementation note.
+   "I work with you, not instead of you" note.
 5. **How I think about security.** The philosophy in prose: security should leave
    an organization more confident, not more anxious; good security is practical
    and sustainable and fits how the place already works; it should be explainable
@@ -426,10 +494,6 @@ than a label the reader has to decode: the title for the ongoing end of the work
 defined in the sentence it appears in, for the reader who already knows the term
 and for the one meeting it for the first time.
 
-Morgantown belongs here too, as part of the story rather than a location stamp —
-where Tom is, and that the practice is deliberately anchored in the region while
-working remotely as well.
-
 Certifications: **CISSP, CISM, CDPSE, PMP**, each badge linking to its Credly
 record so the claim is checkable in one click. State plainly that they show the
 work has been measured against a standard, and that judgment matters more.
@@ -479,11 +543,10 @@ and all of that framing goes. Rewrite it around the advisory practice.
 
 What the page should say now:
 
-- **What the work is**, in plain language and no job title: helping a small
-  organization build its first real security program — work out where it stands,
-  decide what to do first, and keep it moving. Advisory, not implementation — the
-  work happens through the IT staff or provider already in place, and Tom's part
-  is making sure the right things happen in the right order. Point at the four
+- **What the work is**, in plain language and no job title: helping an online
+  business review its setup, get a clear plan, and make the changes together.
+  Done with you, not done for you: Tom works alongside the client, who keeps
+  their logins. Point at the four
   areas from the home page's "How I help" rather than restating them at length.
 - **Who it fits.** The ICP above, stated so a reader can self-qualify out as
   easily as in: 5–25 people, dependent on technology, nobody owning security, and
@@ -491,25 +554,15 @@ What the page should say now:
   kinds of organization — small professional practices, small service businesses,
   small nonprofits — because a reader recognizes their own kind faster than they
   recognise a headcount range.
-- **Where.** Based in Morgantown, working across the region, and working remotely
-  too. One flat sentence, no apology.
 - **What the first conversation covers.** Where the organization stands today,
   what is already being asked of it, and whether an engagement makes sense. No
   obligation either way.
-- **How an engagement starts.** The fixed-price starting assessment as the entry
-  point — scope and cost both set before it begins — with the figure in a Panel
-  rather than in the prose, so it can be found by someone scanning rather than
-  reading. One sentence follows it saying what the assessment is not: no
-  penetration testing, no remediation work, no ongoing monitoring. **A sentence,
-  never a list** — a bulleted set of exclusions reads as a contract, and the
-  point is to save a reader a wasted call, not to defend a scope.
-
-  Then that the assessment stands on its own — *if you would rather take the
-  roadmap and run it with the IT provider you already have*, conditional and
-  addressed to the reader, never "plenty of organizations do" — and that ongoing
-  month-to-month advisory is available *afterwards* rather than bundled, so a
-  reader can see the work before deciding whether they want more of it. The
-  ongoing side carries no figure.
+- **How an engagement starts.** The starting assessment as the entry point,
+  with the figure in a Panel rather than in the prose, so it can be found by
+  someone scanning rather than reading. Three to five short lines, then a short
+  "What you get" list. See "The starting assessment: what it includes" above.
+  One sentence says what it is not: not a penetration test, no monitoring.
+  **A sentence, never a list.**
 - **The one-off audit objection**, answered in a paragraph. A reader comparing
   this to a security firm's audit is asking a fair question and deserves a fair
   answer: an audit is a reasonable purchase, it produces a report at the point
@@ -561,8 +614,7 @@ here too:
 > technology and have nobody whose actual job is security: small professional
 > practices, small service businesses, and small nonprofits.
 >
-> You will be talking to Tom Smith directly — CISSP, CISM, CDPSE, PMP. Based in
-> Morgantown, West Virginia, and works remotely.
+> You will be talking to Tom Smith directly — CISSP, CISM, CDPSE, PMP.
 >
 > More at tomprotects.com/workwithme
 
@@ -591,16 +643,18 @@ embed on `/workwithme` as the one third-party script the site loads.
 
 The site's primary conversion, and the reason most pages end where they do.
 
-- **The offer:** the checklist, *The Security Questions Every Small Organization
-  Should Be Able to Answer* — a self-scoring readiness check the reader works
-  through on their own to come away with a clear picture of where the
-  organization stands. (Renamed with the narrowed audience, and the site already
-  says so. The Kit incentive does not exist yet, so there was nothing to keep in
-  sync — build it in Kit under this title.)
+- **The offer:** the checklist, *The Security Questions Every Growing Business
+  Should Be Able to Answer*. Blurb: "26 questions to find the gaps in your
+  accounts, email, backups, and access. Takes about 15 minutes. No security
+  background needed." Teaser examples are online ones: a VA with your Stripe
+  login, a contractor still in your Kit account, recovery options on your
+  YouTube channel. The number of questions and the time must match the real PDF.
+  Never use office, staff, or employee examples. The Kit incentive does not
+  exist yet in the TomProtects account, so build it in Kit under this title.
 - **Delivery:** Kit sends the checklist as the signup incentive. **The PDF is
   never hosted on this site.**
 - **Cadence and promise, stated at every signup:** one email a week with practical
-  security guidance for small organizations. No sales pitches. Unsubscribe at any
+  security guidance for online businesses. No sales pitches. Unsubscribe at any
   time, and the address goes nowhere else.
 - **Mechanics:** the form posts to this site's own `/api/subscribe`, which
   validates the address, rate-limits by IP, and upserts the subscriber into Kit
@@ -708,17 +762,17 @@ words.
       replacement was made in one pass across every page and both meta
       descriptions, and the h1 names the same three in the same order as the
       cards beneath it
-- [x] Morgantown and the region appear on Home, About and `/workwithme`, stated
-      flatly, with remote work in the same sentence — in body copy on Home and
-      `/workwithme`, at length on About, and not in the hero eyebrow
+- [x] Location language removed from Home, About, `/workwithme`, the default
+      description and every meta and OG description. See "Where the work
+      happens"
 - [x] "Fractional CISO" is out of the lead, though not off the page. It appears
       in the home hero eyebrow (a kicker above the plain-language h1, kept on
       purpose), the About meta description, one About paragraph that defines it,
       and the closing line of the "Keep it moving" card on Home. It is in no h1
       and in no `<title>`
-- [x] `SITE.positioning` is *Security advice for small organizations*, which is
+- [x] `SITE.positioning` is *Security for online businesses that run on trust*, which is
       what the default `<title>` and the footer copyright line are built from.
-      `SITE.location` was added alongside it
+      `SITE.location` has been removed
 - [x] The checklist is *The Security Questions Every Small Organization Should Be
       Able to Answer* everywhere the site offers it
 

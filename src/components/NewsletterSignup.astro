@@ -69,18 +69,24 @@ const fieldId = `nl-${instanceId}`;
       <p class:list={['mt-4 max-w-2xl', onDark ? 'text-cream/70' : 'text-ink/70']}>
         {concise ? (
           <Fragment>
-            Subscribe and the checklist comes with it — a self-scoring readiness check you work
-            through on your own.
+            Subscribe and the checklist comes with it: 26 questions to find the gaps in your
+            accounts, email, backups, and access.
           </Fragment>
         ) : (
           <Fragment>
             Subscribe and I'll send you the checklist:{' '}
-            <em>The Security Questions Every Small Organization Should Be Able to Answer</em>. It's
-            a self-scoring readiness check — you work through the questions, score yourself, and
-            come away with a clear picture of where your organization actually stands.
+            <em>The Security Questions Every Growing Business Should Be Able to Answer</em>. 26
+            questions to find the gaps in your accounts, email, backups, and access. Takes about
+            15 minutes. No security background needed.
           </Fragment>
         )}
       </p>
+      {!concise && (
+        <p class:list={['mt-3 max-w-2xl', onDark ? 'text-cream/70' : 'text-ink/70']}>
+          It asks things like: Does a VA still have your Stripe login? Is a contractor still in
+          your Kit account? Do you have recovery options on your YouTube channel?
+        </p>
+      )}
     </Fragment>
   )}
 
@@ -128,7 +134,7 @@ const fieldId = `nl-${instanceId}`;
     <p class:list={['max-w-2xl text-sm', onDark ? 'text-cream/60' : 'text-ink/60']}>
       {concise
         ? 'One email a week. No sales pitches, and you can unsubscribe at any time.'
-        : "One email a week with practical security guidance for small organizations. No sales pitches. Unsubscribe at any time, and your address goes nowhere else."}
+        : "One email a week with practical security guidance for online businesses. No sales pitches. Unsubscribe at any time, and your address goes nowhere else."}
     </p>
   )}
 </div>

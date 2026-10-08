@@ -16,33 +16,37 @@ import PullQuote from '../components/PullQuote.astro';
 // question. Phishing sits second because it is what people ask about first —
 // it is the part of security they have already seen with their own eyes.
 const questions = [
-  'Are we secure enough?',
-  'How do we stop someone falling for a phishing email?',
-  'What should we fix first?',
-  'Are we spending money on the right things?',
-  'Do we really need this security product?',
-  'Is our IT provider doing enough?',
-  'What happens if we lose access to our systems for a week?',
-  'Who is supposed to be in charge of all this?',
+  'Am I secure enough?',
+  'How do I stop someone falling for a phishing email?',
+  'What should I fix first?',
+  'Am I spending money on the right things?',
+  'Do I really need this security product?',
+  'Who still has access to my accounts?',
+  'What happens if I get locked out of Stripe or YouTube for a week?',
+  'Who is supposed to be handling all of this?',
 ];
 
-// The reader should find themselves here before they read anything else. Three
-// kinds of organization, each described by what it actually looks like from the
-// inside rather than by a category label. The thing they have in common — no
-// one whose job is security — is the intro sentence, not a fourth card: it is
-// the thread through all three, not a kind of organization on its own.
+// The reader should find themselves here before they read anything else. Four
+// kinds of online business, each described by what it depends on rather than
+// by a category label. The thing they have in common (no IT person, and no
+// clear sense of what "secure enough" means) is the intro paragraph, not a
+// fifth card: it is the thread through all four.
 const audience = [
   {
-    heading: 'Small professional practices',
-    body: 'Dental, medical, legal and accounting offices, holding records that patients and clients trusted you with.',
+    heading: 'Coaches and consultants',
+    body: 'Your clients trust you with sensitive information.',
   },
   {
-    heading: 'Small service businesses',
-    body: 'Contractors, trades and field services: crews on job sites all day, phones doing half the work, and an office that runs on a handful of systems everybody shares.',
+    heading: 'Creators and newsletter operators',
+    body: 'Your audience lives in a few platforms.',
   },
   {
-    heading: 'Small nonprofits',
-    body: 'Donor details and program data, and a board that has started asking how all of it is protected.',
+    heading: 'Course and membership sellers',
+    body: 'Your revenue runs through Stripe and a course platform.',
+  },
+  {
+    heading: 'Small online teams',
+    body: 'You share access with VAs and contractors.',
   },
 ] as const;
 
@@ -53,28 +57,25 @@ const audience = [
 // ever run, and a result cannot.
 const steps = [
   {
-    heading: 'A first call',
-    body: `A short conversation about where the organization stands, what is already being asked of
-      it, and whether an engagement would help at all. No obligation either way, and no pitch — if
-      this is not the right fit, that is a useful thing to find out in the first ten minutes.`,
+    heading: 'A short intro call',
+    body: `A short, no-pressure call about how your business runs online and what's on your mind.
+      If it isn't the right fit, that's a useful thing to find out in the first ten minutes.`,
   },
   {
-    heading: 'A starting assessment',
-    body: `A fixed-scope look at how the organization actually works and where the real exposure
-      sits: identity and access, the email and productivity platform your team lives in, whether
-      backups would genuinely get you running again, and the tools and vendors already in use.`,
+    heading: 'A review and a written plan',
+    body: `We look at your accounts, email, domain, and backups together on a call, with you logged
+      in. Then I write up a plan with your priorities in order: what to fix first, what can wait,
+      and why.`,
   },
   {
-    heading: 'A prioritized roadmap',
-    body: `The findings turned into an order rather than a list — what to do now, what can wait, and
-      what can reasonably be set aside — each with a reason and a realistic sense of the effort
-      involved. It is written to be read by your leadership as well as your IT provider.`,
+    heading: 'Working sessions',
+    body: `If you'd like help, we make the changes together on screen-share. You stay logged in, and
+      you keep your logins. I work with you, not instead of you.`,
   },
   {
-    heading: 'Then it is your call',
-    body: `You can take the roadmap and run it with the IT staff or provider you already have, or
-      keep me involved month to month to keep it current as things change. That decision comes
-      after the assessment, when there is something concrete to decide about.`,
+    heading: 'A follow-up check-in',
+    body: `About three months later, we do a follow-up review to make sure everything's still in
+      place.`,
   },
 ] as const;
 
@@ -84,47 +85,37 @@ const steps = [
 const help = [
   {
     icon: 'shield',
-    heading: 'Understand where you stand',
-    body: `Before anything else, you need an accurate picture. A security foundation assessment
-      looks at how your organization actually operates and where the real exposure sits — identity
-      and access first, then the email and productivity platform your team lives in all day. A
-      maturity assessment puts that in context, so you can see how far along you are rather than
-      only what is broken.`,
+    heading: 'Accounts and access',
+    body: `Who has access to what, and how to clean it up. That means logins shared with VAs and
+      contractors, MFA (a second check when you sign in) on the accounts that matter (Stripe,
+      YouTube, your email, your domain registrar), and a plan for getting back in if you're ever
+      locked out.`,
   },
   {
     icon: 'route',
-    heading: 'Know what to do next',
-    body: `A list of findings is not a plan. I turn what we learn into a prioritized roadmap: what
-      to do now, what can wait, and what you can reasonably set aside. That includes the practical
-      pieces: security policies people will actually follow, and having your answers in order
-      before a cyber insurance renewal or a customer security review. If part of your funding is
-      grant-based, that can carry security expectations of its own, and the same preparation
-      covers them.`,
+    heading: 'Email and domain',
+    body: `Make sure your emails land in inboxes and nobody can send as you. Your domain, DNS, and
+      email authentication (SPF, DKIM, and DMARC), set up right and written down.`,
   },
   {
     icon: 'clock',
-    heading: 'Keep it moving',
-    body: `Most security work stalls at the follow-through. So I stay involved month to month:
-      keeping the roadmap current, reviewing new vendors and software before they are woven into how
-      you work, confirming your backups would genuinely get you running again, and shaping security
-      awareness that feels useful rather than like a compliance exercise. This is the part some
-      people call a fractional CISO — a part-time security leader, shared across a few
-      organizations rather than hired full time.`,
+    heading: 'Backups and continuity',
+    body: `What happens if a platform locks you out or a laptop dies. Backups for the things you
+      can't recreate, and a simple plan so one bad day doesn't stop the business.`,
   },
   {
     icon: 'compass',
-    heading: 'Newer risks, handled calmly',
-    body: `AI is arriving in workplaces faster than the guidance around it. The useful questions are
-      plain ones: which tools are people already using, what information goes into them, and what
-      needs to be written down. This is more a governance question than a technical one, and it is
-      manageable with clear expectations.`,
+    heading: 'Ongoing security guidance',
+    body: `A security advisor you can call on. You get a prioritized roadmap, help with vendor and
+      AI tool decisions, and answers when a client asks about your security practices or a cyber
+      insurance form shows up.`,
   },
 ] as const;
 ---
 
 <BaseLayout
-  title="TomProtects — Security advice for small organizations"
-  description="Security advice for small practices, service businesses and nonprofits with nobody whose job is security. Based in Morgantown, West Virginia, working across the region and remotely."
+  title="TomProtects — Security for online businesses that run on trust"
+  description="A security advisor for online businesses. I help you protect the accounts, email, and access that keep your business running."
   footerNewsletter={false}
 >
   <!-- 1. Hero: positioning, the checklist offer, and the signup -->
@@ -175,24 +166,13 @@ const help = [
       </div>
 
       <div class="text-center lg:order-1">
-        <Eyebrow class="mb-4">Fractional CISO &amp; Security Advisor</Eyebrow>
+        <Eyebrow class="mb-4">Security advisor</Eyebrow>
         <h1 class="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-          Straightforward security for small practices, service businesses, and nonprofits.
+          Security for online businesses that run on trust.
         </h1>
         <p class="mx-auto mt-5 max-w-2xl text-lg text-ink/70 sm:text-xl">
-          You depend on technology for nearly everything, you hold information people trusted you
-          with, and nobody on staff owns security. I help you build your first real security
-          program: work out where you stand, what to fix first, and what can safely wait.
-        </p>
-
-        {/*
-          Geography, stated flat and once. It qualifies a reader in rather than
-          out, so both halves belong in the same sentence: nearby means I can be
-          in the room, further away means we work remotely.
-        */}
-        <p class="mx-auto mt-4 max-w-2xl text-ink/70">
-          I'm based in Morgantown, West Virginia, and work with organizations across the region —
-          and remotely with those further afield.
+          You built a business on your expertise, your audience, and your client relationships. I
+          help you protect the accounts, email, and access that keep it running.
         </p>
 
         {/*
@@ -202,8 +182,9 @@ const help = [
         */}
         <p class="mx-auto mt-6 max-w-2xl text-ink/70">
           Start with the free checklist:{' '}
-          <em>The Security Questions Every Small Organization Should Be Able to Answer</em>. A
-          self-scoring readiness check you can work through on your own.
+          <em>The Security Questions Every Growing Business Should Be Able to Answer</em>. 26
+          questions to find the gaps in your accounts, email, backups, and access. Takes about 15
+          minutes. No security background needed.
         </p>
 
         <NewsletterSignup
@@ -231,17 +212,17 @@ const help = [
     <h2 class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Who this is for</h2>
 
     <p class="mt-6 max-w-2xl text-ink/70">
-      Organizations of roughly five to twenty-five people that depend on technology for nearly
-      everything, with capable IT — in-house or a provider — but nobody whose job is deciding what
-      should happen next. What they do differs. That position is the same.
+      Coaches, consultants, creators, and course sellers running a real business online. You might
+      work solo or with a VA, editor, or a few contractors. You don't have an IT person, and
+      you're not sure what "secure enough" looks like for a business your size.
     </p>
 
     {/*
-      Three across from md, not two: three cards in a two-column grid leave one
+      Two across from md, not three: four cards in a three-column grid leave one
       orphaned on its own row, the same sparse shape the post grid was fixed for.
-      md rather than sm because three one-line cards get cramped at 640px.
+      md rather than sm because two-up cards get cramped at 640px.
     */}
-    <div class="mt-10 grid gap-4 md:grid-cols-3">
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
       {audience.map((a) => (
         <Card>
           <h3 class="text-xl font-semibold">{a.heading}</h3>
@@ -249,6 +230,12 @@ const help = [
         </Card>
       ))}
     </div>
+
+    <h3 class="mt-12 text-xl font-semibold">Who this isn't for</h3>
+    <p class="mt-3 max-w-2xl text-ink/70">
+      Businesses with an in-house IT or security team, or anyone looking for a quick tool
+      recommendation instead of a plan.
+    </p>
   </Section>
 
   <!-- 3. The questions you're already asking -->
@@ -260,9 +247,9 @@ const help = [
     <RuleList items={questions} class="mt-8" />
 
     <p class="mt-8 max-w-2xl text-ink/70">
-      These are reasonable questions, and they usually come up long before anyone on staff has the
-      time or background to answer them properly. Working through them in order is most of what a
-      security program is.
+      These are reasonable questions. They tend to come up before you have the time or background
+      to answer them properly. Working through them in order is most of what a security program
+      is.
     </p>
   </Section>
 
@@ -284,9 +271,9 @@ const help = [
 
     <Callout on="cream" class="mt-8 max-w-2xl">
       <p class="text-ink/80">
-        Worth being clear about: this is advisory work. I do not sell products or take over your
-        systems. Implementation happens through the IT staff or provider you already have, who know
-        your environment. My part is making sure the right work is happening in the right order.
+        Worth being clear about: I work with you, not instead of you. We go through the changes
+        together, step by step, and you keep the logins. I don't sell products, and I don't take
+        over your accounts.
       </p>
     </Callout>
   </Section>
@@ -299,28 +286,28 @@ const help = [
 
     <div class="mt-8 max-w-2xl space-y-6 text-ink/70">
       <p>
-        Security should leave an organization more confident, not more anxious. Fear is a poor
-        basis for decisions. It tends to produce spending on whatever seems most urgent that week,
-        rather than on what actually reduces risk.
+        Security should leave you more confident, not more anxious. Fear is a poor basis for
+        decisions. It tends to produce spending on whatever seems most urgent that week, rather
+        than on what actually reduces risk.
       </p>
 
       <p>
-        Good security is practical and sustainable. It fits the way you already work, it can be
-        maintained by the people you already have, and it is prioritized so the most important
-        things happen first. A recommendation that cannot survive a busy month is not the right
-        recommendation.
+        Good security is practical and sustainable. It fits the way you already work, you can keep
+        it up yourself (with help from a VA or contractor if you have one), and it is prioritized
+        so the most important things happen first. A recommendation that cannot survive a busy
+        month is not the right recommendation.
       </p>
 
       <p>
-        It should also be understandable. You should be able to explain where you stand to your
-        board, your insurer, or a client without needing a translator. That means talking in terms
-        of real-world outcomes rather than technical controls.
+        It should also be understandable. You should be able to explain where you stand to a
+        client, your insurer, or a partner without needing a translator. That means talking in
+        terms of real-world outcomes rather than technical controls.
       </p>
     </div>
 
     <PullQuote class="mt-10 max-w-2xl">
-      A small organization does not need enterprise security. It needs experienced guidance,
-      applied to its actual situation.
+      A business your size doesn't need enterprise security. It needs experienced guidance,
+      applied to your actual situation.
     </PullQuote>
   </Section>
 

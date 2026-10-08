@@ -10,7 +10,6 @@ export const SITE = {
   // Plain language, not the job title. The people this is written for are not
   // searching for a CISO; "fractional CISO" is kept for /about, where it reads
   // as biography rather than as a word the reader has to decode first.
-  positioning: 'Security advice for small organizations',
-  location: 'Morgantown, West Virginia',
+  positioning: 'Security for online businesses that run on trust',
   email: 'hello@tomprotects.com',
 } as const;
