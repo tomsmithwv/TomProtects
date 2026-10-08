@@ -316,7 +316,7 @@ a `prefers-reduced-motion` guard.
 `/` · `/about` · `/blog` · `/blog/{slug}` · `/workwithme` · `/privacy` · 404
 
 **Pricing: one number, in one place.** `/workwithme` states the price of the
-starting assessment: **Security foundation assessment, starting at $1,000**.
+Security Checkup + Setup: **Security Checkup + Setup, starting at $1,000**.
 It replaced the old $3,500 figure. It is stated because a
 reader deciding whether to book needs to know whether this is a
 five-hundred-dollar conversation or a fifteen-thousand-dollar one, and making
@@ -336,7 +336,7 @@ different thing: a funnel built around a number. One fixed entry price is not
 that, and the removal list at the end of this brief is about the funnel, not
 about ever naming a cost.
 
-### The starting assessment: what it includes (internal scope)
+### Security Checkup + Setup: what it includes (internal scope)
 
 This is the scope behind the $1,000 starting price. It is for Tom and for
 whoever writes copy. **It is not published as a spec.** The page describes it
@@ -412,7 +412,7 @@ The primary conversion is the newsletter. Section order:
    last question is the people question in a practice owner's register; anything
    built around a job title belongs nowhere near this list.
 4. **How I help.** Four cards, each an outcome first and a service second:
-   *Understand where you stand* (security foundation and maturity assessment,
+   *Understand where you stand* (the Security Checkup + Setup,
    most often identity and access plus the email and productivity platform),
    *Know what to do next* (a prioritized roadmap, policies people will follow,
    answers ready for an insurance renewal or a customer security review, and a
@@ -557,10 +557,10 @@ What the page should say now:
 - **What the first conversation covers.** Where the organization stands today,
   what is already being asked of it, and whether an engagement makes sense. No
   obligation either way.
-- **How an engagement starts.** The starting assessment as the entry point,
+- **How an engagement starts.** The Security Checkup + Setup as the entry point,
   with the figure in a Panel rather than in the prose, so it can be found by
   someone scanning rather than reading. Three to five short lines, then a short
-  "What you get" list. See "The starting assessment: what it includes" above.
+  "What you get" list. See "Security Checkup + Setup: what it includes" above.
   One sentence says what it is not: not a penetration test, no monitoring.
   **A sentence, never a list.**
 - **The one-off audit objection**, answered in a paragraph. A reader comparing
@@ -832,7 +832,7 @@ If any of this is still in the codebase, it is a leftover, not a feature.
   writes to them any more.
 - **v1's pricing *funnel*:** the launch-price block, the price runway, and the
   no-retainers framing that went with the retired review. Note the boundary: the
-  fixed-price starting assessment on `/workwithme` is deliberate and current, and
+  Security Checkup + Setup on `/workwithme` is deliberate and current, and
   is not one of these. What must not come back is a page organised around a
   price — a runway, a countdown, tiers, or a figure doing the persuading.
 - **Deliverability as a topic.** It is no longer what this practice is about. It
