@@ -653,9 +653,8 @@ The site's primary conversion, and the reason most pages end where they do.
   exist yet in the TomProtects account, so build it in Kit under this title.
 - **Delivery:** Kit sends the checklist as the signup incentive. **The PDF is
   never hosted on this site.**
-- **Cadence and promise, stated at every signup:** one email a week with practical
-  security guidance for online businesses. No sales pitches. Unsubscribe at any
-  time, and the address goes nowhere else.
+- **Microcopy, stated under every signup:** "Unsubscribe anytime. Your address is
+  never sold or shared." Do not promise a sending cadence or "no sales pitches".
 - **Mechanics:** the form posts to this site's own `/api/subscribe`, which
   validates the address, rate-limits by IP, and upserts the subscriber into Kit
   via API v4 with a source tag. The endpoint allowlists the tags a client may
