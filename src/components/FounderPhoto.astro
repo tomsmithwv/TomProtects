@@ -1,6 +1,8 @@
 ---
-// Founder photo (Tom). Source is a square 1:1 crop, served as WebP with a JPEG
-// fallback, both 400×400 (optimized). Pass `class` to set the display size.
+// Founder photo (Tom). Same image as the homepage hero: a square 1:1 crop,
+// served as WebP with a JPEG fallback, both 560×560. Pass `class` to set the
+// display size. The wrapper never shrinks and the image ignores max-width, so it
+// stays a true circle inside flex rows.
 interface Props {
   class?: string;
   loading?: 'lazy' | 'eager';
@@ -8,15 +10,15 @@ interface Props {
 const { class: cls = 'h-40 w-40', loading = 'lazy' } = Astro.props;
 ---
 
-<picture>
-  <source srcset="/images/tom-400.webp" type="image/webp" />
+<picture class="shrink-0">
+  <source srcset="/images/tom-hero-560.webp" type="image/webp" />
   <img
-    src="/images/tom-400.jpg"
-    alt="Tom Smith, founder of TomProtects"
-    width="400"
-    height="400"
+    src="/images/tom-hero-560.jpg"
+    alt="Tom Smith, founder of TomProtects, smiling in a navy blazer"
+    width="560"
+    height="560"
     loading={loading}
     decoding="async"
-    class={`rounded-full object-cover ring-2 ring-accent/30 ${cls}`}
+    class={`max-w-none rounded-full object-cover ring-2 ring-accent/30 ${cls}`}
   />
 </picture>
