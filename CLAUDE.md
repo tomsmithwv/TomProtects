@@ -644,7 +644,7 @@ embed on `/workwithme` as the one third-party script the site loads.
 The site's primary conversion, and the reason most pages end where they do.
 
 - **The offer:** the checklist, *The Security Questions Every Growing Business
-  Should Be Able to Answer*. Blurb: "26 questions to find the gaps in your
+  Should Be Able to Answer*. Blurb: "28 questions to find the gaps in your
   accounts, email, backups, and access. Takes about 15 minutes. No security
   background needed." Teaser examples are online ones: a VA with your Stripe
   login, a contractor still in your Kit account, recovery options on your
