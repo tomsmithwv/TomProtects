@@ -72,7 +72,7 @@ conflict with this section or with "Voice rules", this section wins. Decisions
 already made for those rewrites:
 
 - "Fractional CISO" is going. It is not a term this audience searches for.
-- The checklist is retitled *The Security Questions Every Growing Business
+- The checklist is retitled *The Security Questions Every Expert-Led Business
   Should Be Able to Answer*.
 
 ## Where the work happens
@@ -643,7 +643,7 @@ embed on `/workwithme` as the one third-party script the site loads.
 
 The site's primary conversion, and the reason most pages end where they do.
 
-- **The offer:** the checklist, *The Security Questions Every Growing Business
+- **The offer:** the checklist, *The Security Questions Every Expert-Led Business
   Should Be Able to Answer*. Blurb: "28 questions to find the gaps in your
   accounts, email, backups, and access. Takes about 15 minutes. No security
   background needed." Teaser examples are online ones: a VA with your Stripe
