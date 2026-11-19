@@ -12,6 +12,8 @@ interface Broadcast {
   public?: boolean;
   published_at?: string | null;
   created_at?: string | null;
+  send_at?: string | null;
+  status?: string;
   description?: string;
   preview_text?: string;
   content?: string;
@@ -146,6 +148,26 @@ function formatDate(iso?: string | null): string {
   }
 }
 
+// The date a post went out: the send time first, then Kit's publish time.
+function postDate(b: Broadcast): string {
+  return b.send_at || b.published_at || '';
+}
+
+// A broadcast belongs on the blog only once it has actually been sent.
+// `public` alone isn't enough: Kit marks a scheduled broadcast public as soon
+// as "publish to web" is on, before it sends. So it must also have a send or
+// publish time that is already in the past, and, when Kit reports a status,
+// that status must be one that means the email has gone out. Drafts (no
+// send time) and future-scheduled sends stay hidden until their time passes.
+const SENT_STATUSES = new Set(['completed', 'sending']);
+
+function isLive(b: Broadcast, now: number): boolean {
+  if (b.public !== true) return false;
+  if (b.status && !SENT_STATUSES.has(b.status)) return false;
+  const sentAt = Date.parse(postDate(b));
+  return Number.isFinite(sentAt) && sentAt <= now;
+}
+
 // List public broadcasts, newest first, with slugs + excerpts. Paginates up to
 // 5 pages of 50 (250 posts) defensively.
 export async function getPublicBroadcasts(apiKey: string): Promise<Post[]> {
@@ -164,20 +186,19 @@ export async function getPublicBroadcasts(apiKey: string): Promise<Post[]> {
     }
   }
 
-  const publicOnes = all.filter((b) => b.public === true);
-  publicOnes.sort(
-    (a, b) =>
-      (Date.parse(b.published_at || b.created_at || '') || 0) -
-      (Date.parse(a.published_at || a.created_at || '') || 0),
-  );
+  // Filtering runs after the cache read, so "now" is always the current
+  // request time even when the Kit list itself is up to an hour old.
+  const now = Date.now();
+  const publicOnes = all.filter((b) => isLive(b, now));
+  publicOnes.sort((a, b) => (Date.parse(postDate(b)) || 0) - (Date.parse(postDate(a)) || 0));
 
   const slugs = assignSlugs(publicOnes);
   return publicOnes.map((b) => ({
     id: b.id,
     subject: b.subject || `Post ${b.id}`,
     slug: slugs.get(b.id)!,
-    date: b.published_at || b.created_at || '',
-    dateLabel: formatDate(b.published_at || b.created_at),
+    date: postDate(b),
+    dateLabel: formatDate(postDate(b)),
     excerpt: makeExcerpt(b),
   }));
 }
